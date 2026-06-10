@@ -30,12 +30,21 @@ function Resume() {
         >
           <ArrowLeft className="h-4 w-4" /> Back
         </a>
-        <button
-          onClick={() => window.print()}
-          className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 font-mono text-sm text-foreground transition-colors hover:bg-accent"
-        >
-          <Download className="h-4 w-4" /> Print / Save PDF
-        </button>
+        <div className="flex items-center gap-2">
+          <a
+            href="/alex-chen-resume.pdf"
+            download
+            className="inline-flex items-center gap-2 rounded-md border border-primary bg-primary px-4 py-2 font-mono text-sm text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            <Download className="h-4 w-4" /> Download PDF
+          </a>
+          <button
+            onClick={() => window.print()}
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 font-mono text-sm text-foreground transition-colors hover:bg-accent"
+          >
+            Print
+          </button>
+        </div>
       </div>
 
       {/* Header */}

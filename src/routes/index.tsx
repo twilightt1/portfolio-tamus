@@ -5,6 +5,7 @@ import {
   ArrowUpRight,
   Check,
   Copy,
+  FileText,
   Github,
   Linkedin,
   Mail,
@@ -202,6 +203,12 @@ function Index() {
             className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
             <Mail className="h-4 w-4" /> Get in touch
+          </a>
+          <a
+            href="/resume"
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          >
+            <FileText className="h-4 w-4" /> View CV
           </a>
         </div>
 

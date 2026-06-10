@@ -3,11 +3,10 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/projects", label: "Projects" },
-  { to: "/skills", label: "Skills" },
-  { to: "/contact", label: "Contact" },
+  { href: "#about", label: "About" },
+  { href: "#projects", label: "Projects" },
+  { href: "#skills", label: "Skills" },
+  { href: "#contact", label: "Contact" },
 ] as const;
 
 export function Header() {
@@ -27,15 +26,13 @@ export function Header() {
 
         <nav className="hidden items-center gap-1 md:flex">
           {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
+            <a
+              key={l.href}
+              href={l.href}
               className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-              activeProps={{ className: "rounded-md px-3 py-2 text-sm text-foreground bg-accent" }}
-              activeOptions={{ exact: l.to === "/" }}
             >
               {l.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
@@ -52,16 +49,14 @@ export function Header() {
         <nav className="border-t border-border/60 bg-background md:hidden">
           <div className="mx-auto flex max-w-5xl flex-col px-4 py-2 sm:px-6">
             {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
+              <a
+                key={l.href}
+                href={l.href}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-3 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
-                activeProps={{ className: "rounded-md px-3 py-3 text-sm text-foreground bg-accent" }}
-                activeOptions={{ exact: l.to === "/" }}
               >
                 {l.label}
-              </Link>
+              </a>
             ))}
           </div>
         </nav>

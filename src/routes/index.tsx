@@ -9,6 +9,13 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { SectionHeading } from "../components/site/SectionHeading";
 
 export const Route = createFileRoute("/")({
@@ -58,33 +65,69 @@ const projects = [
     name: "Sentiment Analysis API",
     blurb:
       "Fine-tuned DistilBERT on movie reviews and served it through a FastAPI endpoint with caching and rate limiting.",
+    description:
+      "Built an end-to-end sentiment classification pipeline starting from raw IMDB review data. Tokenized and fine-tuned DistilBERT using HuggingFace Transformers, then exported to ONNX for faster CPU inference. Wrapped the model in a FastAPI service with Redis caching and slowapi rate limiting. Deployed on a small VPS and load-tested with Locust.",
     tags: ["PyTorch", "HuggingFace", "FastAPI"],
     accent: "from-primary/20 to-accent",
     glyph: "{ }",
+    learnings: [
+      "Learned how to optimize transformer inference for CPU-only environments.",
+      "Understood the trade-offs between model size, latency, and accuracy.",
+      "Gained experience deploying ML services with real-world constraints like rate limiting.",
+    ],
+    githubUrl: "#",
+    demoUrl: "#",
   },
   {
     name: "Neural Style Transfer Studio",
     blurb:
       "Interactive web app that applies arbitrary style transfer in the browser using a quantized ONNX model.",
+    description:
+      "Implemented a real-time neural style transfer application that runs entirely client-side. Converted a pre-trained PyTorch model to ONNX, then quantized it to INT8 for fast inference. Built a React frontend that reads images from the user's camera or file uploads and renders stylized output through an HTML5 canvas pipeline.",
     tags: ["ONNX", "WebGL", "React"],
     accent: "from-fuchsia-400/20 to-primary/10",
     glyph: "✦",
+    learnings: [
+      "Learned the ONNX conversion and quantization workflow end-to-end.",
+      "Explored WebGL and canvas performance optimization for image processing.",
+      "Discovered how to ship ML models to users without backend infrastructure.",
+    ],
+    githubUrl: "#",
+    demoUrl: "#",
   },
   {
     name: "GridWorld RL Agent",
     blurb:
       "Implemented DQN and PPO from scratch and benchmarked them on a custom grid world environment.",
+    description:
+      "Wrote DQN and PPO algorithms from scratch in NumPy and PyTorch to solve a custom grid world environment with stochastic transitions and sparse rewards. Implemented experience replay, target networks, advantage estimation, and entropy regularization. Logged training curves and compared sample efficiency across both methods.",
     tags: ["RL", "NumPy", "Gym"],
     accent: "from-emerald-400/20 to-accent",
     glyph: "λ",
+    learnings: [
+      "Deep understanding of policy gradients and value-based methods.",
+      "Learned to debug unstable RL training by inspecting gradients and rewards.",
+      "Built custom Gym environments and learned the OpenAI Gym API deeply.",
+    ],
+    githubUrl: "#",
+    demoUrl: "#",
   },
   {
     name: "RAG Notes Assistant",
     blurb:
       "Personal knowledge assistant that indexes markdown notes with embeddings and answers questions with citations.",
+    description:
+      "Created a retrieval-augmented generation system for personal knowledge management. Parsed markdown notes into chunks, generated embeddings with a local sentence-transformer model, and stored them in pgvector. Built a simple CLI and FastAPI frontend that answers natural language queries by retrieving relevant chunks and composing answers with a local LLM via llama.cpp.",
     tags: ["LangChain", "pgvector", "OpenAI"],
     accent: "from-amber-400/20 to-accent",
     glyph: "⟶",
+    learnings: [
+      "Learned how chunking strategy drastically changes retrieval quality.",
+      "Understood the full RAG pipeline from ingestion to generation.",
+      "Gained hands-on experience with vector databases and embedding models.",
+    ],
+    githubUrl: "#",
+    demoUrl: "#",
   },
 ];
 
@@ -121,6 +164,8 @@ const skillGroups = [
 ];
 
 function Index() {
+  const [openProject, setOpenProject] = useState<number | null>(null);
+
   return (
     <>
       {/* Hero */}
@@ -252,10 +297,11 @@ function Index() {
           />
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            {projects.map((p) => (
+            {projects.map((p, idx) => (
               <article
                 key={p.name}
-                className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40"
+                onClick={() => setOpenProject(idx)}
+                className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40 cursor-pointer"
               >
                 <div
                   className={`relative grid h-40 place-items-center bg-gradient-to-br ${p.accent}`}
@@ -286,13 +332,15 @@ function Index() {
                   </div>
                   <div className="mt-5 flex items-center gap-4 border-t border-border/60 pt-4">
                     <a
-                      href="#"
+                      href={p.githubUrl}
+                      onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
                     >
                       <Github className="h-3.5 w-3.5" /> code
                     </a>
                     <a
-                      href="#"
+                      href={p.demoUrl}
+                      onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
                     >
                       <ArrowUpRight className="h-3.5 w-3.5" /> demo
@@ -304,6 +352,81 @@ function Index() {
           </div>
         </div>
       </section>
+
+      {/* Project Modal */}
+      <Dialog
+        open={openProject !== null}
+        onOpenChange={(open) => !open && setOpenProject(null)}
+      >
+        <DialogContent className="max-w-lg gap-0 p-0 overflow-hidden sm:rounded-xl">
+          {openProject !== null && (
+            <>
+              <div
+                className={`relative grid h-44 place-items-center bg-gradient-to-br ${projects[openProject].accent}`}
+              >
+                <span className="font-mono text-6xl font-bold text-primary/60">
+                  {projects[openProject].glyph}
+                </span>
+              </div>
+              <div className="p-6 sm:p-8">
+                <DialogHeader className="text-left">
+                  <DialogTitle className="font-mono text-xl font-semibold tracking-tight">
+                    {projects[openProject].name}
+                  </DialogTitle>
+                  <DialogDescription className="sr-only">
+                    Project details for {projects[openProject].name}
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="mt-4 space-y-4">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {projects[openProject].description}
+                  </p>
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-widest text-primary">
+                      // key learnings
+                    </p>
+                    <ul className="mt-2 space-y-1.5">
+                      {projects[openProject].learnings.map((l) => (
+                        <li
+                          key={l}
+                          className="flex items-start gap-2 text-sm text-foreground"
+                        >
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                          {l}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {projects[openProject].tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-md bg-accent px-2 py-0.5 font-mono text-[11px] text-accent-foreground"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-4 flex items-center gap-4 border-t border-border/60 pt-4">
+                    <a
+                      href={projects[openProject].githubUrl}
+                      className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-2 font-mono text-xs text-foreground transition-colors hover:bg-accent"
+                    >
+                      <Github className="h-3.5 w-3.5" /> View code
+                    </a>
+                    <a
+                      href={projects[openProject].demoUrl}
+                      className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-2 font-mono text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+                    >
+                      <ArrowUpRight className="h-3.5 w-3.5" /> Live demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Skills */}
       <section

@@ -5,6 +5,7 @@ import {
   ArrowUpRight,
   Check,
   Copy,
+  FileText,
   Github,
   Linkedin,
   Mail,

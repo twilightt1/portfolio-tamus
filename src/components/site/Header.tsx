@@ -8,6 +8,7 @@ const links = [
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
   { href: "#contact", label: "Contact" },
+  { to: "/resume", label: "Resume" },
 ] as const;
 
 export function Header() {

@@ -90,16 +90,18 @@ export function ContactSection() {
                   <span className="relative z-10">{t('sendEmail')}</span>
                   <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full" />
                 </a>
+                {/* TODO: Replace with your actual GitHub profile URL */}
                 <a
-                  href="https://github.com"
+                  href="https://github.com/yourusername"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg border border-border/80 bg-background/80 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent/50 hover:shadow-md"
                 >
                   <Github className="h-4 w-4" /> GitHub
                 </a>
+                {/* TODO: Replace with your actual LinkedIn profile URL */}
                 <a
-                  href="https://linkedin.com"
+                  href="https://linkedin.com/in/yourusername"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg border border-border/80 bg-background/80 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent/50 hover:shadow-md"

@@ -127,6 +127,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   body {
@@ -135,6 +136,7 @@
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   code, pre, .font-mono {
@@ -273,5 +275,31 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+}
+
+/* === PRINT STYLES === */
+@media print {
+  header,
+  footer,
+  .no-print,
+  button,
+  a[href^="mailto:"],
+  a[download] {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+  }
+
+  section {
+    page-break-inside: avoid;
+  }
+
+  .scroll-mt-20 {
+    scroll-margin-top: 0;
   }
 }

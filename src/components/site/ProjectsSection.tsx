@@ -240,12 +240,12 @@ export function ProjectsSection() {
                     </ul>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {projects[openProject].tags.map((t) => (
+                    {projects[openProject].tags.map((tag) => (
                       <span
-                        key={t}
+                        key={tag}
                         className="rounded-md border border-border/60 bg-background/50 px-3 py-1.5 font-mono text-[11px] text-accent-foreground"
                       >
-                        {t}
+                        {tag}
                       </span>
                     ))}
                   </div>

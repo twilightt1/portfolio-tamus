@@ -19,6 +19,30 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Selected projects, skills, and contact info.",
       },
+      {
+        property: "og:image",
+        content: "https://your-domain.com/og-image.png",
+      },
+      {
+        property: "og:url",
+        content: "https://your-domain.com",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        name: "twitter:title",
+        content: "Tamus Pham — AI/ML Engineer Intern",
+      },
+      {
+        name: "twitter:description",
+        content: "Selected projects, skills, and contact info.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://your-domain.com/og-image.png",
+      },
     ],
   }),
   component: Index,

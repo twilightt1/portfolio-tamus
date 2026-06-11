@@ -59,11 +59,13 @@ function Resume() {
           <a href="mailto:phamvantam03.tk@gmail.com" className="inline-flex items-center gap-1.5 hover:text-foreground">
             <Mail className="h-3.5 w-3.5" /> phamvantam03.tk@gmail.com
           </a>
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-foreground">
-            <Github className="h-3.5 w-3.5" /> github.com
+          {/* TODO: Replace with your actual GitHub profile URL */}
+          <a href="https://github.com/yourusername" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-foreground">
+            <Github className="h-3.5 w-3.5" /> github.com/yourusername
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-foreground">
-            <Linkedin className="h-3.5 w-3.5" /> linkedin.com
+          {/* TODO: Replace with your actual LinkedIn profile URL */}
+          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-foreground">
+            <Linkedin className="h-3.5 w-3.5" /> linkedin.com/in/yourusername
           </a>
         </div>
       </header>

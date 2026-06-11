@@ -4,14 +4,19 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
 } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import "../styles.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
 import { I18nProvider } from "../lib/i18n";
+import { PageTransition } from "../components/ui/PageTransition";
+import { CustomCursor } from "../components/ui/CustomCursor";
+import { useKonamiCode } from "../hooks/useKonamiCode";
+import { MatrixRain } from "../components/ui/MatrixRain";
 
 function NotFoundComponent() {
   return (
@@ -81,13 +86,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const [showMatrixRain, setShowMatrixRain] = useState(false);
+
+  useKonamiCode(() => {
+    setShowMatrixRain(true);
+  });
 
   return (
     <I18nProvider>
+      <CustomCursor />
+      <MatrixRain
+        isActive={showMatrixRain}
+        onClose={() => setShowMatrixRain(false)}
+      />
       <div className="flex min-h-screen flex-col bg-background">
         <Header />
         <main className="flex-1">
-          <Outlet />
+          <PageTransition key={location.pathname}>
+            <Outlet />
+          </PageTransition>
         </main>
         <Footer />
       </div>

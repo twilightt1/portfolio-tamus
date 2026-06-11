@@ -34,8 +34,15 @@ export function ScrollReveal({
     <div
       ref={ref}
       className={`${baseStyles} ${isVisible ? visibleStyles : hiddenStyles[direction]} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{
+        transitionDelay: `${delay}ms`,
+        position: "relative",
+      }}
     >
+      {/* Shimmer overlay before reveal */}
+      {!isVisible && (
+        <div className="absolute inset-0 -z-10 animate-pulse rounded-lg bg-gradient-to-r from-muted via-muted/50 to-muted" />
+      )}
       {children}
     </div>
   );

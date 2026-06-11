@@ -1,16 +1,19 @@
 import { Link } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useI18n } from "@/lib/i18n";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { t } = useI18n();
   const activeSection = useScrollSpy(["about", "projects", "skills", "contact"]);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileNavRef = useFocusTrap(open, menuButtonRef.current);
 
   const links = [
     { href: "#about", label: t('aboutLabel'), id: "about" },
@@ -78,7 +81,9 @@ export function Header() {
           <ThemeToggle />
 
           <button
+            ref={menuButtonRef}
             aria-label="Toggle menu"
+            aria-expanded={open}
             className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border/60 bg-background/50 backdrop-blur-sm transition-colors hover:bg-accent md:hidden"
             onClick={() => setOpen((v) => !v)}
           >
@@ -88,7 +93,12 @@ export function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-border/60 bg-background/95 backdrop-blur-md md:hidden">
+        <nav
+          ref={mobileNavRef}
+          role="dialog"
+          aria-label="Mobile navigation"
+          className="border-t border-border/60 bg-background/95 backdrop-blur-md md:hidden"
+        >
           <div className="mx-auto flex max-w-none flex-col px-6 py-2 sm:px-10 lg:px-20 xl:px-32">
             {links.map((l) =>
               "to" in l ? (

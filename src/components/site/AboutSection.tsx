@@ -65,7 +65,7 @@ export function AboutSection() {
                 <div className="relative grid aspect-square w-full max-w-[220px] place-items-center rounded-2xl border border-border/60 bg-gradient-to-br from-primary/10 to-accent/5 shadow-lg">
                   <div className="flex flex-col items-center gap-2">
                     <span className="font-mono text-5xl font-bold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent">
-                      AC
+                      TP
                     </span>
                     <span className="font-mono text-xs text-muted-foreground">
                       ML / AI

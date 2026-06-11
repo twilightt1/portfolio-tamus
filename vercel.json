@@ -3,6 +3,6 @@
   "outputDirectory": "dist/client",
   "framework": "vite",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!assets|alex-chen-resume.pdf).*)", "destination": "/index.html" }
   ]
 }

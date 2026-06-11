@@ -8,13 +8,13 @@ import { ContactSection } from "../components/site/ContactSection";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alex Chen — ML/AI Engineer Intern" },
+      { title: "Tamus Pham — AI/ML Engineer Intern" },
       {
         name: "description",
         content:
-          "Portfolio of Alex Chen — ML/AI engineer in training. Projects, skills, and contact info.",
+          "Portfolio of Tamus Pham — AI/ML engineer in training. Projects, skills, and contact info.",
       },
-      { property: "og:title", content: "Alex Chen — ML/AI Engineer Intern" },
+      { property: "og:title", content: "Tamus Pham — AI/ML Engineer Intern" },
       {
         property: "og:description",
         content: "Selected projects, skills, and contact info.",

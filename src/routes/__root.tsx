@@ -80,14 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Alex Chen — ML/AI Engineer Portfolio" },
+      { title: "Tamus Pham — AI/ML Engineer Portfolio" },
       {
         name: "description",
         content:
-          "Portfolio of Alex Chen — an ML/AI software engineer seeking internship opportunities.",
+          "Portfolio of Tamus Pham — an AI/ML software engineer seeking internship opportunities.",
       },
-      { name: "author", content: "Alex Chen" },
-      { property: "og:title", content: "Alex Chen — ML/AI Engineer Portfolio" },
+      { name: "author", content: "Tamus Pham" },
+      { property: "og:title", content: "Tamus Pham — AI/ML Engineer Portfolio" },
       {
         property: "og:description",
         content: "Selected projects, skills, and contact info.",

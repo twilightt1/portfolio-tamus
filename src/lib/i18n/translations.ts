@@ -26,10 +26,10 @@ export const translations = {
     ja: 'こんにちは、私は',
   },
   heroName: {
-    en: 'Alex',
-    vi: 'Alex',
-    zh: 'Alex',
-    ja: 'Alex',
+    en: 'Tamus',
+    vi: 'Tamus',
+    zh: 'Tamus',
+    ja: 'Tamus',
   },
   heroBuild: {
     en: 'I build',

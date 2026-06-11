@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { ArrowUpRight, Github, Sparkles } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { TiltCard } from "@/components/ui/TiltCard";
 import {
   Dialog,
   DialogContent,
@@ -94,25 +96,31 @@ export function ProjectsSection() {
 
       <div className="relative mx-auto max-w-none px-6 py-20 sm:px-10 sm:py-24 lg:px-20 xl:px-32">
         <div className="mb-12 sm:mb-16">
-          <p className="font-mono text-xs uppercase tracking-widest text-primary">
-            // {t('projectsSection')}
-          </p>
-          <h2 className="mt-3 font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {t('thingsIBuilt')}
-          </h2>
-          <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            {t('projectsDescription')}
-          </p>
+          <ScrollReveal>
+            <p className="font-mono text-xs uppercase tracking-widest text-primary">
+              // {t('projectsSection')}
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <h2 className="mt-3 font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              {t('thingsIBuilt')}
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+              {t('projectsDescription')}
+            </p>
+          </ScrollReveal>
         </div>
 
         {/* Project cards - Bento Grid */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {projects.map((p, idx) => (
-            <article
-              key={p.name}
-              onClick={() => setOpenProject(idx)}
-              className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/10"
-            >
+            <ScrollReveal key={p.name} delay={idx * 150} direction="up">
+              <TiltCard
+                onClick={() => setOpenProject(idx)}
+                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/10"
+              >
               {/* Gradient overlay on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-10`} />
 
@@ -175,7 +183,8 @@ export function ProjectsSection() {
                   </div>
                 </div>
               </div>
-            </article>
+              </TiltCard>
+            </ScrollReveal>
           ))}
         </div>
       </div>

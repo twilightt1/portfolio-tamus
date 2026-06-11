@@ -1,5 +1,6 @@
 import { ArrowRight, FileText, Mail } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { Typewriter } from "@/components/ui/Typewriter";
 
 export function HeroSection() {
   const { t } = useI18n();
@@ -92,7 +93,7 @@ export function HeroSection() {
                   <span className="h-3 w-3 rounded-full bg-yellow-400 shadow-sm shadow-yellow-400/50" />
                   <span className="h-3 w-3 rounded-full bg-green-400 shadow-sm shadow-green-400/50" />
                   <span className="ml-4 font-mono text-[11px] text-muted-foreground">
-                    alex.py
+                    tamus.py
                   </span>
                   <div className="ml-auto flex items-center gap-1.5">
                     <span className="h-1 w-1 rounded-full bg-muted-foreground/30" />
@@ -106,53 +107,64 @@ export function HeroSection() {
                     <p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p>
                   </div>
                   <div className="p-5 font-mono text-[13px] leading-[2.1]">
-                    <p className="animate-fade-in delay-500">
-                      <span className="text-primary/70">class</span>{" "}
-                      <span className="text-foreground">Engineer</span>
-                      <span className="text-muted-foreground">:</span>
+                    <p>
+                      <Typewriter text="class" delay={500} className="text-primary/70" />
+                      {" "}
+                      <Typewriter text="Engineer" delay={700} className="text-foreground" />
+                      <Typewriter text=":" delay={900} className="text-muted-foreground" />
                     </p>
-                    <p className="animate-fade-in delay-700 pl-4">
-                      <span className="text-primary/70">def</span>{" "}
-                      <span className="text-foreground">__init__</span>
-                      <span className="text-muted-foreground">(self):</span>
+                    <p className="pl-4">
+                      <Typewriter text="def" delay={1100} className="text-primary/70" />
+                      {" "}
+                      <Typewriter text="__init__" delay={1300} className="text-foreground" />
+                      <Typewriter text="(self):" delay={1500} className="text-muted-foreground" />
                     </p>
-                    <p className="animate-fade-in delay-700 pl-8">
-                      <span className="text-primary/70">self</span>
-                      <span className="text-muted-foreground">.</span>
-                      <span className="text-foreground">focus</span>{" "}
-                      <span className="text-muted-foreground">=</span>{" "}
-                      <span className="text-primary/80">"ML/AI"</span>
+                    <p className="pl-8">
+                      <Typewriter text="self" delay={1800} className="text-primary/70" />
+                      <Typewriter text="." delay={1950} className="text-muted-foreground" />
+                      <Typewriter text="focus" delay={2000} className="text-foreground" />
+                      {" "}
+                      <Typewriter text="=" delay={2200} className="text-muted-foreground" />
+                      {" "}
+                      <Typewriter text='"ML/AI"' delay={2300} className="text-primary/80" />
                     </p>
-                    <p className="animate-fade-in delay-700 pl-8">
-                      <span className="text-primary/70">self</span>
-                      <span className="text-muted-foreground">.</span>
-                      <span className="text-foreground">stack</span>{" "}
-                      <span className="text-muted-foreground">=</span>{" "}
-                      <span className="text-muted-foreground">[</span>
-                      <span className="text-primary/80">"Python"</span>
-                      <span className="text-muted-foreground">,</span>{" "}
-                      <span className="text-primary/80">"PyTorch"</span>
-                      <span className="text-muted-foreground">]</span>
+                    <p className="pl-8">
+                      <Typewriter text="self" delay={2700} className="text-primary/70" />
+                      <Typewriter text="." delay={2850} className="text-muted-foreground" />
+                      <Typewriter text="stack" delay={2900} className="text-foreground" />
+                      {" "}
+                      <Typewriter text="=" delay={3100} className="text-muted-foreground" />
+                      {" "}
+                      <Typewriter text="[" delay={3200} className="text-muted-foreground" />
+                      <Typewriter text='"Python"' delay={3250} className="text-primary/80" />
+                      <Typewriter text="," delay={3500} className="text-muted-foreground" />
+                      {" "}
+                      <Typewriter text='"PyTorch"' delay={3550} className="text-primary/80" />
+                      <Typewriter text="]" delay={3800} className="text-muted-foreground" />
                     </p>
-                    <p className="animate-fade-in delay-700 pl-8">
-                      <span className="text-primary/70">self</span>
-                      <span className="text-muted-foreground">.</span>
-                      <span className="text-foreground">status</span>{" "}
-                      <span className="text-muted-foreground">=</span>{" "}
-                      <span className="text-primary/80">"seeking_intern"</span>
+                    <p className="pl-8">
+                      <Typewriter text="self" delay={4100} className="text-primary/70" />
+                      <Typewriter text="." delay={4250} className="text-muted-foreground" />
+                      <Typewriter text="status" delay={4300} className="text-foreground" />
+                      {" "}
+                      <Typewriter text="=" delay={4500} className="text-muted-foreground" />
+                      {" "}
+                      <Typewriter text='"seeking_intern"' delay={4600} className="text-primary/80" />
                     </p>
-                    <p className="animate-fade-in delay-700" />
-                    <p className="animate-fade-in delay-700 pl-4">
-                      <span className="text-primary/70">def</span>{" "}
-                      <span className="text-foreground">build</span>
-                      <span className="text-muted-foreground">(self, idea):</span>
+                    <p />
+                    <p className="pl-4">
+                      <Typewriter text="def" delay={5200} className="text-primary/70" />
+                      {" "}
+                      <Typewriter text="build" delay={5400} className="text-foreground" />
+                      <Typewriter text="(self, idea):" delay={5600} className="text-muted-foreground" />
                     </p>
-                    <p className="animate-fade-in delay-700 pl-8">
-                      <span className="text-primary/70">return</span>{" "}
-                      <span className="text-foreground">self</span>
-                      <span className="text-muted-foreground">.</span>
-                      <span className="text-foreground">ship</span>
-                      <span className="text-muted-foreground">(idea)</span>
+                    <p className="pl-8">
+                      <Typewriter text="return" delay={6100} className="text-primary/70" />
+                      {" "}
+                      <Typewriter text="self" delay={6400} className="text-primary/70" />
+                      <Typewriter text="." delay={6550} className="text-muted-foreground" />
+                      <Typewriter text="ship" delay={6600} className="text-foreground" />
+                      <Typewriter text="(idea)" delay={6800} className="text-muted-foreground" />
                       <span className="ml-1 inline-block h-[14px] w-[2px] animate-pulse bg-primary" />
                     </p>
                   </div>

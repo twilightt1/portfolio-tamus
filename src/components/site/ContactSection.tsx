@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Check, Copy, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
-const EMAIL = "alex@example.com";
+const EMAIL = "phamvantam03.tk@gmail.com";
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
@@ -27,19 +28,26 @@ export function ContactSection() {
 
       <div className="relative mx-auto max-w-none px-6 py-20 sm:px-10 sm:py-24 lg:px-20 xl:px-32">
         <div className="mb-12 sm:mb-16">
-          <p className="font-mono text-xs uppercase tracking-widest text-primary">
-            // {t('contact')}
-          </p>
-          <h2 className="mt-3 font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {t('letsBuildSomething')}
-          </h2>
-          <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            {t('contactDescription')}
-          </p>
+          <ScrollReveal>
+            <p className="font-mono text-xs uppercase tracking-widest text-primary">
+              // {t('contact')}
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <h2 className="mt-3 font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              {t('letsBuildSomething')}
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+              {t('contactDescription')}
+            </p>
+          </ScrollReveal>
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr]">
           {/* Main contact card */}
+          <ScrollReveal delay={300} direction="left">
           <div className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/30 hover:bg-card hover:shadow-2xl hover:shadow-primary/10 sm:p-10">
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -102,7 +110,10 @@ export function ContactSection() {
             </div>
           </div>
 
+          </ScrollReveal>
+
           {/* Side info cards */}
+          <ScrollReveal delay={400} direction="right">
           <div className="flex flex-col gap-4">
             <div className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5">
               <div className="flex items-center gap-4">
@@ -152,6 +163,7 @@ export function ContactSection() {
               </div>
             </div>
           </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

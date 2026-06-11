@@ -4,15 +4,15 @@ import { ArrowLeft, Download, Github, Linkedin, Mail } from "lucide-react";
 export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
-      { title: "Resume — Alex Chen" },
+      { title: "Resume — Tamus Pham" },
       {
         name: "description",
-        content: "Resume of Alex Chen — ML/AI engineer in training.",
+        content: "Resume of Tamus Pham — AI/ML engineer in training.",
       },
-      { property: "og:title", content: "Resume — Alex Chen" },
+      { property: "og:title", content: "Resume — Tamus Pham" },
       {
         property: "og:description",
-        content: "Resume of Alex Chen — ML/AI engineer in training.",
+        content: "Resume of Tamus Pham — AI/ML engineer in training.",
       },
     ],
   }),
@@ -50,14 +50,14 @@ function Resume() {
       {/* Header */}
       <header className="border-b border-border pb-8">
         <h1 className="font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Alex Chen
+          Tamus Pham
         </h1>
         <p className="mt-2 text-lg text-muted-foreground">
-          ML / AI Engineer Intern
+          AI / ML Engineer Intern
         </p>
         <div className="mt-4 flex flex-wrap gap-4 font-mono text-sm text-muted-foreground">
-          <a href="mailto:alex.chen@example.com" className="inline-flex items-center gap-1.5 hover:text-foreground">
-            <Mail className="h-3.5 w-3.5" /> alex.chen@example.com
+          <a href="mailto:phamvantam03.tk@gmail.com" className="inline-flex items-center gap-1.5 hover:text-foreground">
+            <Mail className="h-3.5 w-3.5" /> phamvantam03.tk@gmail.com
           </a>
           <a href="https://github.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-foreground">
             <Github className="h-3.5 w-3.5" /> github.com

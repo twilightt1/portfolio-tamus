@@ -17,7 +17,7 @@ export function Footer() {
               <span className="inline-block rounded-md bg-primary/10 px-1.5 py-0.5 text-primary">
                 &gt;_
               </span>
-              <span>alex.chen</span>
+              <span>tamus.pham</span>
             </div>
             <p className="max-w-xs text-sm text-muted-foreground">
               {t('footerDescription')}
@@ -64,7 +64,7 @@ export function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="mailto:alex@example.com"
+                href="mailto:phamvantam03.tk@gmail.com"
                 className="group grid h-10 w-10 place-items-center rounded-lg border border-border/60 bg-background/50 transition-all hover:border-primary/30 hover:bg-primary/5 hover:shadow-md"
                 aria-label="Email"
               >
@@ -95,7 +95,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-8 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Alex Chen — {t('builtWithCare')}
+            © {new Date().getFullYear()} Tamus Pham — {t('builtWithCare')}
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

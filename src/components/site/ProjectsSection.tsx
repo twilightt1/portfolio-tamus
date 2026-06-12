@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback } from "react";
-import { ArrowUpRight, Github, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, Github, Sparkles, Keyboard } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TiltCard } from "@/components/ui/TiltCard";
@@ -82,9 +82,15 @@ const projects = [
   },
 ];
 
+// Collect all unique tags
+const allTags = ["All", ...Array.from(new Set(projects.flatMap((p) => p.tags)))];
+
 export function ProjectsSection() {
   const [openProject, setOpenProject] = useState<number | null>(null);
+  const [activeTag, setActiveTag] = useState("All");
   const { t } = useI18n();
+
+  const filtered = activeTag === "All" ? projects : projects.filter((p) => p.tags.includes(activeTag));
 
   return (
     <section id="projects" className="relative scroll-mt-20 border-t border-border/60">
@@ -98,7 +104,7 @@ export function ProjectsSection() {
         <div className="mb-12 sm:mb-16">
           <ScrollReveal>
             <p className="font-mono text-xs uppercase tracking-widest text-primary">
-              // {t('projectsSection')}
+              {t('projectsSection')}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={100}>
@@ -111,78 +117,97 @@ export function ProjectsSection() {
               {t('projectsDescription')}
             </p>
           </ScrollReveal>
+
+          {/* Filter tabs */}
+          <ScrollReveal delay={300}>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {allTags.map((tag) => (
+                <button
+                  key={tag}
+                  onClick={() => setActiveTag(tag)}
+                  className={`rounded-full border px-4 py-1.5 font-mono text-xs transition-all duration-200 ${
+                    activeTag === tag
+                      ? "border-primary bg-primary text-primary-foreground shadow-md shadow-primary/25"
+                      : "border-border/60 bg-card/60 text-muted-foreground hover:border-primary/40 hover:bg-primary/5 hover:text-foreground"
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
 
         {/* Project cards - Bento Grid */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {projects.map((p, idx) => (
-            <ScrollReveal key={p.name} delay={idx * 150} direction="up">
+          {filtered.map((p, idx) => (
+            <ScrollReveal key={p.name} delay={idx * 100} direction="up">
               <TiltCard
-                onClick={() => setOpenProject(idx)}
+                onClick={() => setOpenProject(projects.indexOf(p))}
                 className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/10"
               >
-              {/* Gradient overlay on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-10`} />
+                {/* Gradient overlay on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-10`} />
 
-              {/* Top: Glyph area */}
-              <div
-                className={`relative grid h-44 place-items-center bg-gradient-to-br ${p.accent}`}
-              >
-                <span className="font-mono text-6xl font-bold text-primary/60 transition-all duration-500 group-hover:scale-110 group-hover:text-primary/80">
-                  {p.glyph}
-                </span>
-                <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1 backdrop-blur-sm">
-                  <Sparkles className="h-3 w-3 text-primary" />
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    0{idx + 1}
+                {/* Top: Glyph area */}
+                <div
+                  className={`relative grid h-44 place-items-center bg-gradient-to-br ${p.accent}`}
+                >
+                  <span className="font-mono text-6xl font-bold text-primary/60 transition-all duration-500 group-hover:scale-110 group-hover:text-primary/80">
+                    {p.glyph}
                   </span>
+                  <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1 backdrop-blur-sm">
+                    <Sparkles className="h-3 w-3 text-primary" />
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                      0{idx + 1}
+                    </span>
+                  </div>
+                  <div className="absolute right-4 top-4 rounded-md border border-border/60 bg-background/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground backdrop-blur">
+                    {t('project')}
+                  </div>
                 </div>
-                <div className="absolute right-4 top-4 rounded-md border border-border/60 bg-background/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground backdrop-blur">
-                  {t('project')}
-                </div>
-              </div>
 
-              {/* Bottom: Content */}
-              <div className="flex flex-1 flex-col p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-mono text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
-                    {p.name}
-                  </h3>
-                  <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1" />
-                </div>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {p.blurb}
-                </p>
+                {/* Bottom: Content */}
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="font-mono text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
+                      {p.name}
+                    </h3>
+                    <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1" />
+                  </div>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {p.blurb}
+                  </p>
 
-                <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-border/60 pt-5">
-                  <div className="flex flex-wrap gap-2">
-                    {p.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-md border border-border/60 bg-background/50 px-2.5 py-1 font-mono text-[11px] text-accent-foreground transition-colors group-hover:border-primary/20 group-hover:bg-primary/5"
+                  <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-border/60 pt-5">
+                    <div className="flex flex-wrap gap-2">
+                      {p.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-md border border-border/60 bg-background/50 px-2.5 py-1 font-mono text-[11px] text-accent-foreground transition-colors group-hover:border-primary/20 group-hover:bg-primary/5"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <a
+                        href={p.githubUrl}
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <a
-                      href={p.githubUrl}
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-                    >
-                      <Github className="h-3.5 w-3.5" /> {t('code')}
-                    </a>
-                    <a
-                      href={p.demoUrl}
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-                    >
-                      <ArrowUpRight className="h-3.5 w-3.5" /> {t('demo')}
-                    </a>
+                        <Github className="h-3.5 w-3.5" /> {t('code')}
+                      </a>
+                      <a
+                        href={p.demoUrl}
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                      >
+                        <ArrowUpRight className="h-3.5 w-3.5" /> {t('demo')}
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
               </TiltCard>
             </ScrollReveal>
           ))}
@@ -225,7 +250,7 @@ export function ProjectsSection() {
                   </p>
                   <div className="rounded-xl border border-border/60 bg-muted/30 p-5">
                     <p className="font-mono text-xs uppercase tracking-widest text-primary">
-                      // {t('keyLearnings')}
+                      {t('keyLearnings')}
                     </p>
                     <ul className="mt-3 space-y-2">
                       {projects[openProject].learnings.map((l) => (
@@ -249,19 +274,26 @@ export function ProjectsSection() {
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center gap-3 border-t border-border/60 pt-5">
-                    <a
-                      href={projects[openProject].githubUrl}
-                      className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2.5 font-mono text-xs text-foreground transition-colors hover:bg-accent"
-                    >
-                      <Github className="h-4 w-4" /> {t('viewCode')}
-                    </a>
-                    <a
-                      href={projects[openProject].demoUrl}
-                      className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 font-mono text-xs font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
-                    >
-                      <ArrowUpRight className="h-4 w-4" /> {t('liveDemo')}
-                    </a>
+                  <div className="flex items-center justify-between gap-3 border-t border-border/60 pt-5">
+                    <div className="flex items-center gap-3">
+                      <a
+                        href={projects[openProject].githubUrl}
+                        className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2.5 font-mono text-xs text-foreground transition-colors hover:bg-accent"
+                      >
+                        <Github className="h-4 w-4" /> {t('viewCode')}
+                      </a>
+                      <a
+                        href={projects[openProject].demoUrl}
+                        className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 font-mono text-xs font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
+                      >
+                        <ArrowUpRight className="h-4 w-4" /> {t('liveDemo')}
+                      </a>
+                    </div>
+                    {/* ESC hint */}
+                    <span className="hidden items-center gap-1.5 font-mono text-[10px] text-muted-foreground/60 sm:flex">
+                      <kbd className="rounded border border-border/60 bg-muted/50 px-1.5 py-0.5 text-[10px]">ESC</kbd>
+                      to close
+                    </span>
                   </div>
                 </div>
               </div>

@@ -12,6 +12,7 @@ import "../styles.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
+import { BackToTop } from "../components/ui/BackToTop";
 import { I18nProvider } from "../lib/i18n";
 import { PageTransition } from "../components/ui/PageTransition";
 import { CustomCursor } from "../components/ui/CustomCursor";
@@ -108,6 +109,7 @@ function RootComponent() {
           </PageTransition>
         </main>
         <Footer />
+        <BackToTop />
       </div>
     </I18nProvider>
   );

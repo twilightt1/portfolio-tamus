@@ -30,7 +30,7 @@ export function ContactSection() {
         <div className="mb-12 sm:mb-16">
           <ScrollReveal>
             <p className="font-mono text-xs uppercase tracking-widest text-primary">
-              // {t('contact')}
+              {t('contact')}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={100}>
@@ -54,7 +54,7 @@ export function ContactSection() {
 
             <div className="relative">
               <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                // {t('email')}
+                {t('email')}
               </p>
               <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                 <a

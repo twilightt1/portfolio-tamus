@@ -10,6 +10,7 @@ import { useFocusTrap } from "@/hooks/useFocusTrap";
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const { t } = useI18n();
   const activeSection = useScrollSpy(["about", "projects", "skills", "contact"]);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -24,14 +25,18 @@ export function Header() {
   ] as const;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+      className={`relative sticky top-0 z-40 w-full transition-all duration-300 ${
         scrolled
           ? "border-b border-border/60 bg-background/80 shadow-lg shadow-black/[0.02] backdrop-blur-md supports-[backdrop-filter]:bg-background/60"
           : "border-b border-transparent bg-transparent"
@@ -65,7 +70,7 @@ export function Header() {
                 <a
                   key={l.href}
                   href={l.href}
-                  className={`relative rounded-md px-3 py-2 text-sm transition-colors after:absolute after:bottom-0.5 after:left-1/2 after:h-[2px] after:-translate-x-1/2 after:rounded-full after:bg-primary after:transition-all ${
+                  className={`relative rounded-md px-3 py-2 text-sm transition-colors after:absolute after:bottom-0.5 after:left-1/2 after:h-[2px] after:-translate-x-1/2 after:rounded-full after:bg-primary after:transition-all duration-300 ${
                     "id" in l && activeSection === l.id
                       ? "text-primary after:w-4/5"
                       : "text-muted-foreground hover:text-foreground hover:after:w-4/5"
@@ -92,42 +97,50 @@ export function Header() {
         </div>
       </div>
 
-      {open && (
-        <nav
-          ref={mobileNavRef}
-          role="dialog"
-          aria-label="Mobile navigation"
-          className="border-t border-border/60 bg-background/95 backdrop-blur-md md:hidden"
-        >
-          <div className="mx-auto flex max-w-none flex-col px-6 py-2 sm:px-10 lg:px-20 xl:px-32">
-            {links.map((l) =>
-              "to" in l ? (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  onClick={() => setOpen(false)}
-                  className="rounded-md px-3 py-3 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
-                >
-                  {l.label}
-                </Link>
-              ) : (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className={`rounded-md px-3 py-3 text-sm transition-colors ${
-                    "id" in l && activeSection === l.id
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:bg-accent hover:text-foreground"
-                  }`}
-                >
-                  {l.label}
-                </a>
-              )
-            )}
-          </div>
-        </nav>
-      )}
+      {/* Scroll progress bar */}
+      <div
+        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary via-primary/80 to-primary/40 transition-[width] duration-100"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
+      {/* Mobile nav — slide-down animation */}
+      <div
+        ref={mobileNavRef}
+        role="dialog"
+        aria-label="Mobile navigation"
+        aria-hidden={!open}
+        className={`overflow-hidden border-border/60 bg-background/95 backdrop-blur-md md:hidden transition-all duration-300 ease-in-out ${
+          open ? "max-h-96 border-t opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="mx-auto flex max-w-none flex-col px-6 py-2 sm:px-10 lg:px-20 xl:px-32">
+          {links.map((l) =>
+            "to" in l ? (
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => setOpen(false)}
+                className="rounded-md px-3 py-3 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`rounded-md px-3 py-3 text-sm transition-colors ${
+                  "id" in l && activeSection === l.id
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                }`}
+              >
+                {l.label}
+              </a>
+            )
+          )}
+        </div>
+      </div>
     </header>
   );
 }

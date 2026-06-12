@@ -27,7 +27,7 @@ export function Footer() {
           {/* Navigation */}
           <div className="space-y-4">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              // {t('navigate')}
+              {t('navigate')}
             </p>
             <nav className="flex flex-col space-y-2">
               <a
@@ -60,7 +60,7 @@ export function Footer() {
           {/* Connect */}
           <div className="space-y-4">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              // {t('connectLabel')}
+              {t('connectLabel')}
             </p>
             <div className="flex gap-3">
               <a

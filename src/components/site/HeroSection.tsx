@@ -85,6 +85,8 @@ export function HeroSection() {
           {/* Right: Animated Code Card */}
           <div className="animate-slide-in-right delay-400 hidden lg:block">
             <div className="animate-float relative">
+              {/* Animated gradient border */}
+              {/* <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-br from-primary/40 via-transparent to-accent/40 animate-spin-slow opacity-60" style={{ animationDuration: '8s' }} /> */}
               <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-primary/15 via-transparent to-accent/15 blur-2xl" />
               <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/95 shadow-2xl backdrop-blur-xl">
                 {/* Window chrome */}
@@ -126,7 +128,7 @@ export function HeroSection() {
                       {" "}
                       <Typewriter text="=" delay={2200} className="text-muted-foreground" />
                       {" "}
-                      <Typewriter text='"ML/AI"' delay={2300} className="text-primary/80" />
+                      <Typewriter text='"AI/ML"' delay={2300} className="text-primary/80" />
                     </p>
                     <p className="pl-8">
                       <Typewriter text="self" delay={2700} className="text-primary/70" />
@@ -165,7 +167,7 @@ export function HeroSection() {
                       <Typewriter text="." delay={6550} className="text-muted-foreground" />
                       <Typewriter text="ship" delay={6600} className="text-foreground" />
                       <Typewriter text="(idea)" delay={6800} className="text-muted-foreground" />
-                      <span className="ml-1 inline-block h-[14px] w-[2px] animate-pulse bg-primary" />
+                      {/* <span className="ml-1 inline-block h-[14px] w-[2px] animate-pulse bg-primary" /> */}
                     </p>
                   </div>
                 </div>
@@ -177,10 +179,10 @@ export function HeroSection() {
         {/* Stats bar */}
         <div className="animate-fade-in-up delay-500 mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {[
-            { k: t('focus'), v: t('mlAI') },
-            { k: t('stack'), v: t('pythonPyTorch') },
-            { k: t('projects'), v: t('shipped') },
-            { k: t('status'), v: t('seekingIntern') },
+            { k: t('focus'), v: t('mlAI'), sub: "Primary" },
+            { k: t('stack'), v: t('pythonPyTorch'), sub: "Core tools" },
+            { k: t('projects'), v: "4 shipped", sub: "& counting" },
+            { k: t('status'), v: t('seekingIntern'), sub: "2025" },
           ].map((item, idx) => (
             <div
               key={item.k}
@@ -191,6 +193,9 @@ export function HeroSection() {
               </p>
               <p className="mt-1.5 font-mono text-sm font-semibold text-foreground">
                 {item.v}
+              </p>
+              <p className="mt-0.5 font-mono text-[10px] text-muted-foreground/60">
+                {item.sub}
               </p>
             </div>
           ))}

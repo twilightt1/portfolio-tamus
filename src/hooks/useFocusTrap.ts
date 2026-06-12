@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
  * @param returnFocusTo - Element to return focus to when trap closes
  */
 export function useFocusTrap(isOpen: boolean, returnFocusTo?: HTMLElement | null) {
-  const containerRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isOpen || !containerRef.current) return;

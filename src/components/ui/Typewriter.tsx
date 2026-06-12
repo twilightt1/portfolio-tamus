@@ -26,7 +26,7 @@ export function Typewriter({ text, delay = 0, className = "" }: TypewriterProps)
       const timeout = setTimeout(() => {
         setDisplayedText((prev) => prev + text[currentIndex]);
         setCurrentIndex((prev) => prev + 1);
-      }, 50);
+      }, 35);
 
       return () => clearTimeout(timeout);
     }

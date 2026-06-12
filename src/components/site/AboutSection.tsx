@@ -41,7 +41,7 @@ export function AboutSection() {
         <div className="mb-12 sm:mb-16">
         <ScrollReveal delay={0}>
           <p className="font-mono text-xs uppercase tracking-widest text-primary">
-            // {t('about')}
+            {t('about')}
           </p>
         </ScrollReveal>
         <ScrollReveal delay={100}>
@@ -120,31 +120,32 @@ export function AboutSection() {
             <ScrollReveal delay={600} direction="right">
               <div>
                 <h3 className="font-mono text-sm uppercase tracking-widest text-muted-foreground">
-                  // {t('timeline')}
+                  {t('timeline')}
                 </h3>
-                <ol className="mt-6 space-y-4">
+                <ol className="relative mt-6 space-y-0">
+                  {/* Vertical connector line */}
+                  <div className="absolute left-[21px] top-5 bottom-5 w-px bg-gradient-to-b from-primary/40 via-border/60 to-transparent" />
                   {timeline.map((item, idx) => {
                     const Icon = item.icon;
                     return (
-                      <li key={item.title}>
-                        <div className="group flex gap-4 rounded-xl border border-border/60 bg-card/60 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5">
-                          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
-                            <Icon className="h-5 w-5 text-primary" />
-                          </div>
-                          <div className="flex-1">
-                            <p className="font-mono text-xs font-medium text-primary">
-                              {item.year}
-                            </p>
-                            <p className="mt-1 text-base font-semibold text-foreground">
-                              {item.title}
-                            </p>
-                            <p className="text-sm text-muted-foreground">
-                              {item.org}
-                            </p>
-                            <p className="mt-2 text-sm text-muted-foreground/80">
-                              {item.detail}
-                            </p>
-                          </div>
+                      <li key={item.title} className="relative pl-14 pb-6 last:pb-0">
+                        {/* Icon dot on the line */}
+                        <div className="group/dot absolute left-0 top-0 grid h-11 w-11 place-items-center rounded-full border-2 border-border/60 bg-card transition-all duration-300 hover:border-primary/50 hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 z-10">
+                          <Icon className="h-5 w-5 text-primary" />
+                        </div>
+                        <div className="group rounded-xl border border-border/60 bg-card/60 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5">
+                          <p className="font-mono text-xs font-medium text-primary">
+                            {item.year}
+                          </p>
+                          <p className="mt-1 text-base font-semibold text-foreground">
+                            {item.title}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {item.org}
+                          </p>
+                          <p className="mt-2 text-sm text-muted-foreground/80">
+                            {item.detail}
+                          </p>
                         </div>
                       </li>
                     );

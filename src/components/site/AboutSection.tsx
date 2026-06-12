@@ -54,7 +54,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative scroll-mt-20 border-t border-border/60 bg-muted/30"
+      className="relative border-t border-border/60 bg-muted/30"
     >
       {/* Dot pattern + drift orb */}
       <div className="bg-dots pointer-events-none absolute inset-0 opacity-25" />
@@ -89,14 +89,14 @@ export function AboutSection() {
             {/* Avatar with animated gradient border */}
             <ScrollReveal delay={300} direction="left">
               <div className="group relative">
-                {/* Animated gradient border */}
-                <div className="animate-gradient absolute -inset-[2px] rounded-3xl bg-gradient-to-br from-primary via-primary/60 to-primary bg-[length:200%_200%] opacity-50 blur-[1px] transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="relative grid aspect-square w-full max-w-[220px] place-items-center rounded-2xl border border-border/60 bg-gradient-to-br from-primary/8 to-accent/5 shadow-lg">
-                  <div className="flex flex-col items-center gap-3">
-                    <span className="font-mono text-5xl font-bold text-gradient">
+                {/* Animated gradient border - smoother */}
+                <div className="animate-gradient absolute -inset-[2px] rounded-3xl bg-gradient-to-br from-primary via-primary/60 to-primary bg-[length:200%_200%] opacity-50 blur-[1px] transition-opacity duration-500 group-hover:opacity-75" />
+                <div className="relative grid aspect-square w-full max-w-[220px] place-items-center rounded-2xl border border-border/60 bg-gradient-to-br from-primary/8 to-accent/5 shadow-lg transition-all duration-500 group-hover:shadow-xl">
+                  <div className="flex flex-col items-center gap-3 transition-transform duration-300 group-hover:scale-105">
+                    <span className="font-mono text-5xl font-bold text-gradient transition-all duration-300 group-hover:text-primary">
                       TP
                     </span>
-                    <span className="font-mono text-xs text-muted-foreground">
+                    <span className="font-mono text-xs text-muted-foreground transition-colors duration-300 group-hover:text-primary">
                       ML / AI
                     </span>
                   </div>
@@ -112,12 +112,13 @@ export function AboutSection() {
                   { icon: "🎓", label: t("classOf") },
                   { icon: "☕", label: t("poweredBy") },
                   { icon: "🧠", label: t("mlAIFocus") },
-                ].map((item) => (
+                ].map((item, idx) => (
                   <div
                     key={item.label}
-                    className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-mono text-sm text-muted-foreground transition-all duration-300 hover:bg-primary/8 hover:text-foreground"
+                    className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-mono text-sm text-muted-foreground transition-all duration-300 hover:bg-primary/8 hover:text-foreground hover:translate-x-1 active:translate-x-0"
+                    style={{ animationDelay: `${idx * 50}ms` }}
                   >
-                    <span className="text-base">{item.icon}</span>
+                    <span className="text-base transition-transform duration-300 group-hover:scale-110">{item.icon}</span>
                     <span>{item.label}</span>
                   </div>
                 ))}

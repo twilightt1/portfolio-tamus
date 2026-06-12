@@ -93,7 +93,7 @@ export function ProjectsSection() {
   const filtered = activeTag === "All" ? projects : projects.filter((p) => p.tags.includes(activeTag));
 
   return (
-    <section id="projects" className="relative scroll-mt-20 border-t border-border/60">
+    <section id="projects" className="relative border-t border-border/60">
       {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute right-0 top-1/4 h-[400px] w-[400px] rounded-full bg-primary/5 blur-[100px]" />
@@ -125,10 +125,10 @@ export function ProjectsSection() {
                 <button
                   key={tag}
                   onClick={() => setActiveTag(tag)}
-                  className={`rounded-full border px-4 py-1.5 font-mono text-xs transition-all duration-200 ${
+                  className={`rounded-full border px-4 py-1.5 font-mono text-xs transition-all duration-300 ${
                     activeTag === tag
-                      ? "border-primary bg-primary text-primary-foreground shadow-md shadow-primary/25"
-                      : "border-border/60 bg-card/60 text-muted-foreground hover:border-primary/40 hover:bg-primary/5 hover:text-foreground"
+                      ? "border-primary bg-primary text-primary-foreground shadow-md shadow-primary/25 scale-105"
+                      : "border-border/60 bg-card/60 text-muted-foreground hover:border-primary/40 hover:bg-primary/5 hover:text-foreground hover:scale-105 active:scale-95"
                   }`}
                 >
                   {tag}
@@ -144,38 +144,38 @@ export function ProjectsSection() {
             <ScrollReveal key={p.name} delay={idx * 100} direction="up">
               <TiltCard
                 onClick={() => setOpenProject(projects.indexOf(p))}
-                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/10"
+                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/15 active:translate-y-0"
               >
-                {/* Gradient overlay on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-10`} />
+                {/* Gradient overlay on hover - smoother */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-all duration-500 group-hover:opacity-10 group-hover:scale-105`} />
 
                 {/* Top: Glyph area */}
                 <div
-                  className={`relative grid h-44 place-items-center bg-gradient-to-br ${p.accent}`}
+                  className={`relative grid h-44 place-items-center bg-gradient-to-br ${p.accent} transition-all duration-500 group-hover:brightness-110`}
                 >
-                  <span className="font-mono text-6xl font-bold text-primary/60 transition-all duration-500 group-hover:scale-110 group-hover:text-primary/80">
+                  <span className="font-mono text-6xl font-bold text-primary/60 transition-all duration-500 group-hover:scale-110 group-hover:text-primary/80 group-hover:animate-wiggle">
                     {p.glyph}
                   </span>
-                  <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1 backdrop-blur-sm">
-                    <Sparkles className="h-3 w-3 text-primary" />
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1 backdrop-blur-sm transition-all duration-300 group-hover:border-primary/40 group-hover:bg-background/90">
+                    <Sparkles className="h-3 w-3 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:animate-wiggle" />
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
                       0{idx + 1}
                     </span>
                   </div>
-                  <div className="absolute right-4 top-4 rounded-md border border-border/60 bg-background/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground backdrop-blur">
+                  <div className="absolute right-4 top-4 rounded-md border border-border/60 bg-background/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground backdrop-blur transition-all duration-300 group-hover:border-primary/40 group-hover:bg-background/90 group-hover:text-foreground">
                     {t('project')}
                   </div>
                 </div>
 
                 {/* Bottom: Content */}
-                <div className="flex flex-1 flex-col p-6">
+                <div className="flex flex-1 flex-col p-6 transition-all duration-300 group-hover:translate-y-[-2px]">
                   <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-mono text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
+                    <h3 className="font-mono text-lg font-semibold text-foreground transition-colors duration-300 group-hover:text-primary">
                       {p.name}
                     </h3>
-                    <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1" />
+                    <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:scale-110" />
                   </div>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground/90">
                     {p.blurb}
                   </p>
 
@@ -184,7 +184,7 @@ export function ProjectsSection() {
                       {p.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-md border border-border/60 bg-background/50 px-2.5 py-1 font-mono text-[11px] text-accent-foreground transition-colors group-hover:border-primary/20 group-hover:bg-primary/5"
+                          className="rounded-md border border-border/60 bg-background/50 px-2.5 py-1 font-mono text-[11px] text-accent-foreground transition-all duration-300 group-hover:border-primary/20 group-hover:bg-primary/5 group-hover:scale-105"
                         >
                           {tag}
                         </span>
@@ -194,16 +194,16 @@ export function ProjectsSection() {
                       <a
                         href={p.githubUrl}
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                        className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-foreground hover:scale-105 active:scale-95"
                       >
-                        <Github className="h-3.5 w-3.5" /> {t('code')}
+                        <Github className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" /> {t('code')}
                       </a>
                       <a
                         href={p.demoUrl}
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                        className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-foreground hover:scale-105 active:scale-95"
                       >
-                        <ArrowUpRight className="h-3.5 w-3.5" /> {t('demo')}
+                        <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" /> {t('demo')}
                       </a>
                     </div>
                   </div>

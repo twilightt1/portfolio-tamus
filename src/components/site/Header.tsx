@@ -110,17 +110,18 @@ export function Header() {
         aria-label="Mobile navigation"
         aria-hidden={!open}
         className={`overflow-hidden border-border/60 bg-background/95 backdrop-blur-md md:hidden transition-all duration-300 ease-in-out ${
-          open ? "max-h-96 border-t opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-[500px] border-t opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="mx-auto flex max-w-none flex-col px-6 py-2 sm:px-10 lg:px-20 xl:px-32">
-          {links.map((l) =>
+        <div className="mx-auto flex max-w-none flex-col gap-1 px-6 py-3 sm:px-10 lg:px-20 xl:px-32">
+          {links.map((l, idx) =>
             "to" in l ? (
               <Link
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-3 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
+                className="rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground transition-all duration-300 hover:-translate-x-1 hover:bg-accent/50 hover:text-foreground active:translate-x-0"
+                style={{ animationDelay: `${idx * 50}ms` }}
               >
                 {l.label}
               </Link>
@@ -129,11 +130,12 @@ export function Header() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className={`rounded-md px-3 py-3 text-sm transition-colors ${
+                className={`rounded-lg px-4 py-3 text-sm font-medium transition-all duration-300 hover:-translate-x-1 active:translate-x-0 ${
                   "id" in l && activeSection === l.id
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                    ? "bg-primary/10 text-primary border-l-2 border-primary"
+                    : "text-muted-foreground hover:bg-accent/50 hover:text-foreground"
                 }`}
+                style={{ animationDelay: `${idx * 50}ms` }}
               >
                 {l.label}
               </a>

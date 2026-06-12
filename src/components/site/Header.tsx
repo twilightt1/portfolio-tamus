@@ -45,10 +45,10 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-none items-center justify-between px-6 sm:px-10 lg:px-20 xl:px-32">
         <Link
           to="/"
-          className="group flex items-center gap-1.5 font-mono text-sm font-semibold tracking-tight text-foreground"
+          className="group flex items-center gap-1.5 font-mono text-sm font-semibold tracking-tight text-foreground transition-all duration-300 hover:drop-shadow-[0_0_8px_oklch(from_var(--primary)_l_c_h_/_0.3)]"
           onClick={() => setOpen(false)}
         >
-          <span className="inline-block rounded-md bg-primary/10 px-1.5 py-0.5 text-primary transition-colors group-hover:bg-primary/20">
+          <span className="inline-block rounded-md bg-primary/10 px-1.5 py-0.5 text-primary transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_12px_oklch(from_var(--primary)_l_c_h_/_0.2)]">
             &gt;_
           </span>
           <span className="hidden sm:inline">tamus.pham</span>
@@ -62,7 +62,7 @@ export function Header() {
                 <Link
                   key={l.to}
                   to={l.to}
-                  className="relative rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground after:absolute after:bottom-0.5 after:left-1/2 after:h-[2px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-primary after:transition-all hover:after:w-4/5"
+                  className="relative rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground after:absolute after:bottom-0.5 after:left-1/2 after:h-[2px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-gradient-to-r after:from-primary after:to-primary/60 after:transition-all after:duration-300 after:ease-spring hover:after:w-4/5"
                 >
                   {l.label}
                 </Link>
@@ -70,7 +70,7 @@ export function Header() {
                 <a
                   key={l.href}
                   href={l.href}
-                  className={`relative rounded-md px-3 py-2 text-sm transition-colors after:absolute after:bottom-0.5 after:left-1/2 after:h-[2px] after:-translate-x-1/2 after:rounded-full after:bg-primary after:transition-all duration-300 ${
+                  className={`relative rounded-md px-3 py-2 text-sm transition-colors after:absolute after:bottom-0.5 after:left-1/2 after:h-[2px] after:-translate-x-1/2 after:rounded-full after:bg-gradient-to-r after:from-primary after:to-primary/60 after:transition-all after:duration-300 after:ease-spring ${
                     "id" in l && activeSection === l.id
                       ? "text-primary after:w-4/5"
                       : "text-muted-foreground hover:text-foreground hover:after:w-4/5"
@@ -99,7 +99,7 @@ export function Header() {
 
       {/* Scroll progress bar */}
       <div
-        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary via-primary/80 to-primary/40 transition-[width] duration-100"
+        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary via-primary/80 to-primary/40 transition-[width] duration-100 shadow-[0_0_8px_oklch(from_var(--primary)_l_c_h_/_0.4)]"
         style={{ width: `${scrollProgress}%` }}
       />
 

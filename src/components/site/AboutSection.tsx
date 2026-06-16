@@ -1,202 +1,261 @@
-import { BookOpen, Code, FolderGit2, GraduationCap } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import {
+  BookOpen,
+  Code,
+  GraduationCap,
+  Sparkles,
+  MapPin,
+  Zap,
+  Brain,
+  Globe,
+  ArrowUpRight,
+  GitBranch,
+} from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { useRef, useEffect, useState } from "react";
 
-const timeline = [
+const journeyMilestones = [
   {
-    year: "2024 — Present",
-    title: "B.S. Computer Science",
-    org: "State University",
-    detail: "Coursework in ML, deep learning, linear algebra, and systems.",
+    year: "2024",
+    title: "Started B.S. in Computer Science",
+    description:
+      "Diving into ML, deep learning, linear algebra, and systems at State University.",
     icon: GraduationCap,
+    tag: "Education",
   },
   {
     year: "2025",
-    title: "Undergraduate Research Assistant",
-    org: "NLP Lab",
-    detail: "Studying transformer interpretability on small language models.",
+    title: "Joined NLP Research Lab",
+    description:
+      "Undergraduate RA studying how small language models represent knowledge internally.",
     icon: BookOpen,
+    tag: "Research",
   },
   {
     year: "2025",
-    title: "Open Source Contributor",
-    org: "Various",
-    detail: "Bug fixes and docs for a handful of ML tooling repos.",
-    icon: FolderGit2,
+    title: "Open Source Contributions",
+    description:
+      "Shipping bug fixes, docs, and features across several ML tooling repositories.",
+    icon: GitBranch,
+    tag: "Community",
   },
+];
+
+const techItems = [
+  { name: "Python", icon: Globe },
+  { name: "PyTorch", icon: Brain },
+  { name: "React", icon: Code },
+  { name: "TypeScript", icon: Code },
 ];
 
 export function AboutSection() {
   const { t } = useI18n();
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const [fillHeight, setFillHeight] = useState(0);
-
-  // Animate timeline fill as user scrolls into view
-  useEffect(() => {
-    const node = timelineRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          const ratio = entry.intersectionRatio;
-          setFillHeight(Math.min(ratio * 2, 1) * 100);
-        }
-      },
-      { threshold: Array.from({ length: 11 }, (_, i) => i / 10) }
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section
       id="about"
-      className="relative border-t border-border/60 bg-muted/30"
+      className="relative border-t border-border/60 bg-muted/20 overflow-hidden"
     >
-      {/* Dot pattern + drift orb */}
-      <div className="bg-dots pointer-events-none absolute inset-0 opacity-25" />
-      <div
-        className="pointer-events-none absolute left-1/3 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/4 blur-[120px]"
-        style={{ animation: "orb-drift 18s ease-in-out infinite" }}
-      />
+      {/* Ambient background */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-0 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-primary/5 blur-[140px]" />
+        <div className="absolute right-0 bottom-0 h-[400px] w-[400px] translate-x-1/3 translate-y-1/4 rounded-full bg-accent/5 blur-[120px]" />
+      </div>
 
-      <div className="relative mx-auto max-w-none px-6 py-24 sm:px-10 sm:py-28 lg:px-20 xl:px-32">
-        {/* Section heading */}
-        <div className="mb-14 sm:mb-18">
+      <div className="relative mx-auto max-w-7xl px-6 py-24 sm:px-10 sm:py-32 lg:px-20">
+        {/* Section Header */}
+        <div className="mb-14 max-w-3xl">
           <ScrollReveal>
-            <p className="font-mono text-xs uppercase tracking-widest text-primary">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-primary">
+              <Sparkles className="h-3 w-3" />
               {t("about")}
-            </p>
+            </div>
           </ScrollReveal>
           <ScrollReveal delay={100}>
-            <h2 className="text-gradient-static mt-3 font-mono text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mt-6 font-mono text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
               {t("curiousByDefault")}
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
               {t("aboutDescription")}
             </p>
           </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_1.5fr]">
-          {/* Left: Avatar + quick facts */}
-          <div className="flex flex-col items-start gap-8">
-            {/* Avatar with animated gradient border */}
-            <ScrollReveal delay={300} direction="left">
-              <div className="group relative">
-                {/* Animated gradient border - smoother */}
-                <div className="animate-gradient absolute -inset-[2px] rounded-3xl bg-gradient-to-br from-primary via-primary/60 to-primary bg-[length:200%_200%] opacity-50 blur-[1px] transition-opacity duration-500 group-hover:opacity-75" />
-                <div className="relative grid aspect-square w-full max-w-[220px] place-items-center rounded-2xl border border-border/60 bg-gradient-to-br from-primary/8 to-accent/5 shadow-lg transition-all duration-500 group-hover:shadow-xl">
-                  <div className="flex flex-col items-center gap-3 transition-transform duration-300 group-hover:scale-105">
-                    <span className="font-mono text-5xl font-bold text-gradient transition-all duration-300 group-hover:text-primary">
-                      TP
-                    </span>
-                    <span className="font-mono text-xs text-muted-foreground transition-colors duration-300 group-hover:text-primary">
-                      ML / AI
-                    </span>
+        {/* 3 Cards — clean and balanced */}
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+          {/* Card 1: Bio */}
+          <ScrollReveal delay={300} className="lg:col-span-2">
+            <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm p-7 sm:p-8 transition-all duration-500 hover:border-border hover:shadow-xl">
+              <div className="flex items-start gap-5">
+                <div className="hidden sm:flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/10">
+                  <Code className="h-6 w-6 text-primary" />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="font-mono text-sm font-semibold uppercase tracking-wider text-primary">
+                    Who I Am
+                  </h3>
+                  <div className="space-y-3 text-base leading-relaxed text-muted-foreground">
+                    <p>
+                      I'm a CS undergrad obsessed with understanding{" "}
+                      <span className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 font-medium text-primary">
+                        <Brain className="h-3.5 w-3.5" />
+                        how models think
+                      </span>
+                      . My work sits at the intersection of{" "}
+                      <span className="font-medium text-foreground">ML</span>,{" "}
+                      <span className="font-medium text-foreground">systems</span>,
+                      and whatever paper caught my attention at 2 AM.
+                    </p>
+                    <p>
+                      Outside of class I'm usually fine-tuning models, contributing
+                      to open source, or writing about what I learn. Currently
+                      excited about retrieval-augmented systems and efficient
+                      training on a budget.
+                    </p>
+                  </div>
+
+                  {/* Inline tech chips */}
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {techItems.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <span
+                          key={item.name}
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-border/40 bg-muted/30 px-3 py-1.5 font-mono text-xs text-muted-foreground transition-all duration-300 hover:border-primary/30 hover:text-primary"
+                        >
+                          <Icon className="h-3 w-3" />
+                          {item.name}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
+            </div>
+          </ScrollReveal>
 
-            {/* Quick facts */}
-            <ScrollReveal delay={400} direction="left">
-              <div className="w-full space-y-1 rounded-xl border border-border/60 bg-card/80 p-4 shadow-sm backdrop-blur-sm">
-                {[
-                  { icon: "📍", label: t("basedIn") },
-                  { icon: "🎓", label: t("classOf") },
-                  { icon: "☕", label: t("poweredBy") },
-                  { icon: "🧠", label: t("mlAIFocus") },
-                ].map((item, idx) => (
-                  <div
-                    key={item.label}
-                    className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-mono text-sm text-muted-foreground transition-all duration-300 hover:bg-primary/8 hover:text-foreground hover:translate-x-1 active:translate-x-0"
-                    style={{ animationDelay: `${idx * 50}ms` }}
-                  >
-                    <span className="text-base transition-transform duration-300 group-hover:scale-110">{item.icon}</span>
-                    <span>{item.label}</span>
+          {/* Card 2: Quick Info */}
+          <ScrollReveal delay={400}>
+            <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm p-7 transition-all duration-500 hover:border-border hover:shadow-xl">
+              <div className="flex flex-col h-full justify-between gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                      <MapPin className="h-5 w-5 text-emerald-500" />
+                    </div>
+                    <div>
+                      <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                        Based in
+                      </p>
+                      <p className="text-sm font-semibold text-foreground">
+                        United States
+                      </p>
+                    </div>
                   </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 border border-blue-500/20">
+                      <GraduationCap className="h-5 w-5 text-blue-500" />
+                    </div>
+                    <div>
+                      <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                        Education
+                      </p>
+                      <p className="text-sm font-semibold text-foreground">
+                        B.S. CS — Class of 2028
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 border border-amber-500/20">
+                      <Zap className="h-5 w-5 text-amber-500" />
+                    </div>
+                    <div>
+                      <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                        Focus
+                      </p>
+                      <p className="text-sm font-semibold text-foreground">
+                        ML / AI Research
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Status indicator */}
+                <div className="flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-3 py-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                  </span>
+                  <span className="font-mono text-xs text-emerald-600 dark:text-emerald-400">
+                    Open to opportunities
+                  </span>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* Card 3: Journey — full width below */}
+        <ScrollReveal delay={500}>
+          <div className="mt-5 group relative overflow-hidden rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm p-7 sm:p-8 transition-all duration-500 hover:border-border hover:shadow-xl">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-mono text-sm font-semibold uppercase tracking-wider text-primary">
+                Journey
+              </h3>
+              <div className="flex items-center gap-1.5">
+                {journeyMilestones.map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={`h-1.5 w-8 rounded-full ${
+                      idx === 0 ? "bg-primary" : "bg-primary/20"
+                    }`}
+                  />
                 ))}
               </div>
-            </ScrollReveal>
-          </div>
+            </div>
 
-          {/* Right: Bio + Timeline */}
-          <div className="space-y-14">
-            {/* Bio */}
-            <ScrollReveal delay={500} direction="right">
-              <div className="space-y-5 text-base leading-relaxed text-foreground">
-                <p>
-                  {t("bio1")}{" "}
-                  <span className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 font-medium text-primary">
-                    <Code className="h-3.5 w-3.5" />
-                    {t("machineLearning")}
-                  </span>
-                  ,{" "}
-                  <span className="inline-flex items-center gap-1 rounded-md bg-accent/50 px-2 py-0.5 font-medium">
-                    systems
-                  </span>
-                  , {t("bio1b")}
-                </p>
-                <p>{t("bio2")}</p>
-              </div>
-            </ScrollReveal>
-
-            {/* Timeline with animated fill */}
-            <ScrollReveal delay={600} direction="right">
-              <div ref={timelineRef}>
-                <h3 className="font-mono text-sm uppercase tracking-widest text-muted-foreground">
-                  {t("timeline")}
-                </h3>
-                <ol className="relative mt-6 space-y-0">
-                  {/* Background track line */}
-                  <div className="absolute left-[21px] top-5 bottom-5 w-px bg-border/40" />
-                  {/* Animated fill line */}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {journeyMilestones.map((milestone, idx) => {
+                const Icon = milestone.icon;
+                return (
                   <div
-                    className="absolute left-[21px] top-5 w-px bg-gradient-to-b from-primary via-primary/60 to-primary/30 transition-all duration-1000 ease-out"
-                    style={{ height: `${fillHeight}%`, maxHeight: "calc(100% - 40px)" }}
-                  />
+                    key={milestone.title}
+                    className="group/milestone relative rounded-xl border border-border/40 bg-muted/20 p-5 transition-all duration-500 hover:border-primary/30 hover:bg-primary/5 hover:shadow-lg hover:shadow-primary/5"
+                  >
+                    {idx < journeyMilestones.length - 1 && (
+                      <div className="hidden sm:block absolute top-1/2 -right-2.5 h-px w-5 bg-border/60 z-10" />
+                    )}
 
-                  {timeline.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <li
-                        key={item.title}
-                        className="relative pl-14 pb-8 last:pb-0"
-                      >
-                        {/* Icon circle on the line */}
-                        <div className="absolute left-0 top-0 z-10 grid h-11 w-11 place-items-center rounded-full border-2 border-border/60 bg-card transition-all duration-500 ease-spring hover:border-primary/50 hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20">
-                          <Icon className="h-5 w-5 text-primary" />
-                        </div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 transition-all duration-300 group-hover/milestone:from-primary/30 group-hover/milestone:to-primary/10 group-hover/milestone:border-primary/40">
+                        <Icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <span className="font-mono text-xs font-bold text-primary">
+                          {milestone.year}
+                        </span>
+                        <span className="ml-2 inline-flex items-center rounded-md bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                          {milestone.tag}
+                        </span>
+                      </div>
+                    </div>
 
-                        {/* Card */}
-                        <div className="group spotlight-card rounded-xl border border-border/60 bg-card/60 p-5 transition-all duration-500 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-card hover:shadow-xl hover:shadow-primary/5">
-                          <p className="font-mono text-xs font-medium text-primary">
-                            {item.year}
-                          </p>
-                          <p className="mt-1 text-base font-semibold text-foreground">
-                            {item.title}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {item.org}
-                          </p>
-                          <p className="mt-2 text-sm text-muted-foreground/80">
-                            {item.detail}
-                          </p>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ol>
-              </div>
-            </ScrollReveal>
+                    <h4 className="text-sm font-semibold text-foreground mb-1.5 transition-colors duration-300 group-hover/milestone:text-primary">
+                      {milestone.title}
+                    </h4>
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                      {milestone.description}
+                    </p>
+
+                    <ArrowUpRight className="absolute top-4 right-4 h-3.5 w-3.5 text-muted-foreground/0 transition-all duration-300 group-hover/milestone:text-primary/60 group-hover/milestone:-translate-y-0.5 group-hover/milestone:translate-x-0.5" />
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

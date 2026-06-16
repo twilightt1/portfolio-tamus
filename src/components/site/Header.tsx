@@ -38,7 +38,7 @@ export function Header() {
     <header
       className={`relative sticky top-0 z-40 w-full transition-all duration-300 ${
         scrolled
-          ? "border-b border-border/60 bg-background/80 shadow-lg shadow-black/[0.02] backdrop-blur-md supports-[backdrop-filter]:bg-background/60"
+          ? "border-b border-border/60 bg-background/80 shadow-lg shadow-foreground/[0.04] backdrop-blur-md supports-[backdrop-filter]:bg-background/60"
           : "border-b border-transparent bg-transparent"
       }`}
     >

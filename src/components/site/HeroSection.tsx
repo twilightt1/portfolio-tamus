@@ -48,7 +48,7 @@ export function HeroSection() {
           <div className="w-full">
             {/* Badge */}
             <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-primary backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-primary/50 hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20">
-              <span className="pulse-ring relative flex h-2.5 w-2.5 shrink-0">
+              <span className="pulse-ring relative flex h-2.5 w-2.5 shrink-0 rounded-full">
                 <span className="relative inline-flex h-full w-full animate-ping-fade rounded-full bg-primary" />
               </span>
               {t("openToInternships")}

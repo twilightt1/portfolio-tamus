@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 export function useScrollSpy(sectionIds: string[], offset = 100) {
   const [activeId, setActiveId] = useState<string>("");
 
+  // Stabilize: use a stringified key so the effect only re-runs
+  // when the actual IDs change, not when a new array reference is passed
+  const idsKey = sectionIds.join(",");
+
   useEffect(() => {
+    const ids = idsKey.split(",").filter(Boolean);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -18,16 +24,13 @@ export function useScrollSpy(sectionIds: string[], offset = 100) {
       },
     );
 
-    const elements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
 
-    elements.forEach((el) => el && observer.observe(el));
-
-    return () => {
-      elements.forEach((el) => el && observer.unobserve(el));
-    };
-  }, [sectionIds, offset]);
+    return () => observer.disconnect();
+  }, [idsKey, offset]);
 
   return activeId;
 }

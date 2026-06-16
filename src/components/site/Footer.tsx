@@ -27,7 +27,7 @@ export function Footer() {
           {/* Navigation */}
           <div className="space-y-4">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              // {t('navigate')}
+              {t('navigate')}
             </p>
             <nav className="flex flex-col space-y-2">
               <a
@@ -60,7 +60,7 @@ export function Footer() {
           {/* Connect */}
           <div className="space-y-4">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              // {t('connectLabel')}
+              {t('connectLabel')}
             </p>
             <div className="flex gap-3">
               <a
@@ -70,8 +70,9 @@ export function Footer() {
               >
                 <Mail className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
               </a>
+              {/* TODO: Replace with your actual GitHub profile URL */}
               <a
-                href="https://github.com"
+                href="https://github.com/yourusername"
                 target="_blank"
                 rel="noreferrer"
                 className="group grid h-10 w-10 place-items-center rounded-lg border border-border/60 bg-background/50 transition-all hover:border-primary/30 hover:bg-primary/5 hover:shadow-md"
@@ -79,8 +80,9 @@ export function Footer() {
               >
                 <Github className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
               </a>
+              {/* TODO: Replace with your actual LinkedIn profile URL */}
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/yourusername"
                 target="_blank"
                 rel="noreferrer"
                 className="group grid h-10 w-10 place-items-center rounded-lg border border-border/60 bg-background/50 transition-all hover:border-primary/30 hover:bg-primary/5 hover:shadow-md"

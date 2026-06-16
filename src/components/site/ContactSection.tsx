@@ -20,7 +20,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative scroll-mt-20 border-t border-border/60">
+    <section id="contact" className="relative border-t border-border/60">
       {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
@@ -30,7 +30,7 @@ export function ContactSection() {
         <div className="mb-12 sm:mb-16">
           <ScrollReveal>
             <p className="font-mono text-xs uppercase tracking-widest text-primary">
-              // {t('contact')}
+              {t('contact')}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={100}>
@@ -54,7 +54,7 @@ export function ContactSection() {
 
             <div className="relative">
               <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                // {t('email')}
+                {t('email')}
               </p>
               <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                 <a
@@ -90,16 +90,18 @@ export function ContactSection() {
                   <span className="relative z-10">{t('sendEmail')}</span>
                   <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full" />
                 </a>
+                {/* TODO: Replace with your actual GitHub profile URL */}
                 <a
-                  href="https://github.com"
+                  href="https://github.com/yourusername"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg border border-border/80 bg-background/80 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent/50 hover:shadow-md"
                 >
                   <Github className="h-4 w-4" /> GitHub
                 </a>
+                {/* TODO: Replace with your actual LinkedIn profile URL */}
                 <a
-                  href="https://linkedin.com"
+                  href="https://linkedin.com/in/yourusername"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg border border-border/80 bg-background/80 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent/50 hover:shadow-md"

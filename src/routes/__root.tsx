@@ -1,17 +1,23 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
 } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import "../styles.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
+import { BackToTop } from "../components/ui/BackToTop";
 import { I18nProvider } from "../lib/i18n";
+import { PageTransition } from "../components/ui/PageTransition";
+import { CustomCursor } from "../components/ui/CustomCursor";
+import { useKonamiCode } from "../hooks/useKonamiCode";
+import { MatrixRain } from "../components/ui/MatrixRain";
 
 function NotFoundComponent() {
   return (
@@ -81,18 +87,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const [showMatrixRain, setShowMatrixRain] = useState(false);
+
+  useKonamiCode(() => {
+    setShowMatrixRain(true);
+  });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <I18nProvider>
-        <div className="flex min-h-screen flex-col bg-background">
-          <Header />
-          <main className="flex-1">
+    <I18nProvider>
+      <CustomCursor />
+      <MatrixRain
+        isActive={showMatrixRain}
+        onClose={() => setShowMatrixRain(false)}
+      />
+      <div className="flex min-h-screen flex-col bg-background">
+        <Header />
+        <main className="flex-1">
+          <PageTransition key={location.pathname}>
             <Outlet />
-          </main>
-          <Footer />
-        </div>
-      </I18nProvider>
-    </QueryClientProvider>
+          </PageTransition>
+        </main>
+        <Footer />
+        <BackToTop />
+      </div>
+    </I18nProvider>
   );
 }

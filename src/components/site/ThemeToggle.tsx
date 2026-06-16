@@ -9,11 +9,7 @@ function getInitial(): "light" | "dark" {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  useEffect(() => {
-    setTheme(getInitial());
-  }, []);
+  const [theme, setTheme] = useState<"light" | "dark">(getInitial);
 
   useEffect(() => {
     const root = document.documentElement;

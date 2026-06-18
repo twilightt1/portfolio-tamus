@@ -6,23 +6,21 @@ const skillGroups = [
   {
     titleKey: "languages" as const,
     icon: Code2,
-    items: ["Python", "TypeScript", "C++", "SQL", "Bash"],
+    items: ["Python", "SQL", "C++", "JavaScript", "Java"],
     color: "text-blue-500",
     bgColor: "bg-blue-500/10",
     borderColor: "hover:border-blue-500/30",
     glowColor: "hover:shadow-blue-500/20",
   },
   {
-    titleKey: "mlAI" as const,
+    titleKey: "machineLearningCore" as const,
     icon: Brain,
     items: [
-      "PyTorch",
-      "TensorFlow",
-      "scikit-learn",
-      "HuggingFace",
-      "NumPy",
-      "Pandas",
-      "LangChain",
+      "Regression",
+      "Classification",
+      "Clustering",
+      "Feature Engineering",
+      "Model Evaluation",
     ],
     color: "text-purple-500",
     bgColor: "bg-purple-500/10",
@@ -30,16 +28,36 @@ const skillGroups = [
     glowColor: "hover:shadow-purple-500/20",
   },
   {
+    titleKey: "deepLearning" as const,
+    icon: Rocket,
+    items: ["Neural Networks", "CNN", "RNN/LSTM", "Transformers", "Transfer Learning"],
+    color: "text-pink-500",
+    bgColor: "bg-pink-500/10",
+    borderColor: "hover:border-pink-500/30",
+    glowColor: "hover:shadow-pink-500/20",
+  },
+  {
+    titleKey: "librariesFrameworks" as const,
+    icon: Cloud,
+    items: ["NumPy", "Pandas", "scikit-learn", "TensorFlow", "PyTorch", "OpenCV", "FastAPI"],
+    color: "text-cyan-500",
+    bgColor: "bg-cyan-500/10",
+    borderColor: "hover:border-cyan-500/30",
+    glowColor: "hover:shadow-cyan-500/20",
+  },
+  {
     titleKey: "toolsAndCloud" as const,
     icon: Cloud,
     items: [
-      "Docker",
       "Git",
-      "AWS",
-      "GCP",
-      "Postgres",
-      "FastAPI",
-      "Weights & Biases",
+      "GitHub",
+      "Docker",
+      "Linux",
+      "PostgreSQL",
+      "MongoDB",
+      "ChromaDB",
+      "Qdrant",
+      "pgvector",
     ],
     color: "text-emerald-500",
     bgColor: "bg-emerald-500/10",
@@ -47,9 +65,13 @@ const skillGroups = [
     glowColor: "hover:shadow-emerald-500/20",
   },
   {
-    titleKey: "currentlyLearning" as const,
+    titleKey: "certifications" as const,
     icon: Rocket,
-    items: ["CUDA kernels", "JAX", "Triton", "Distributed training"],
+    items: [
+      "Machine Learning Specialization",
+      "Deep Learning Specialization",
+      "Python for Data Science",
+    ],
     color: "text-amber-500",
     bgColor: "bg-amber-500/10",
     borderColor: "hover:border-amber-500/30",
@@ -61,10 +83,7 @@ export function SkillsSection() {
   const { t } = useI18n();
 
   return (
-    <section
-      id="skills"
-      className="relative border-t border-border/60 bg-muted/30"
-    >
+    <section id="skills" className="relative border-t border-border/60 bg-muted/30">
       {/* Grid pattern */}
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-20" />
 
@@ -109,7 +128,9 @@ export function SkillsSection() {
                         <div
                           className={`grid h-12 w-12 place-items-center rounded-xl ${g.bgColor} transition-all duration-300 ease-spring group-hover:scale-110 group-hover:shadow-lg ${g.glowColor}`}
                         >
-                          <Icon className={`h-6 w-6 ${g.color} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12`} />
+                          <Icon
+                            className={`h-6 w-6 ${g.color} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12`}
+                          />
                         </div>
                         <h3 className="font-mono text-sm font-semibold uppercase tracking-widest text-foreground transition-colors duration-300 group-hover:text-primary">
                           {t(g.titleKey)}

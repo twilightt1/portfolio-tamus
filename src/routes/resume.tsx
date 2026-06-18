@@ -32,7 +32,7 @@ function Resume() {
         </a>
         <div className="flex items-center gap-2">
           <a
-            href="/tamus-pham-resume.pdf"
+            href="/Tamus_AI_Engineer_CV.pdf"
             download
             className="inline-flex items-center gap-2 rounded-md border border-primary bg-primary px-4 py-2 font-mono text-sm text-primary-foreground transition-colors hover:bg-primary/90"
           >

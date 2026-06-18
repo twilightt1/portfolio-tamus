@@ -13,40 +13,6 @@ import {
 
 const projects = [
   {
-    name: "Sentiment Analysis API",
-    blurb:
-      "Fine-tuned DistilBERT on movie reviews and served it through a FastAPI endpoint with caching and rate limiting.",
-    description:
-      "Built an end-to-end sentiment classification pipeline starting from raw IMDB review data. Tokenized and fine-tuned DistilBERT using HuggingFace Transformers, then exported to ONNX for faster CPU inference. Wrapped the model in a FastAPI service with Redis caching and slowapi rate limiting. Deployed on a small VPS and load-tested with Locust.",
-    tags: ["PyTorch", "HuggingFace", "FastAPI"],
-    accent: "from-primary/20 to-accent",
-    glyph: "{ }",
-    learnings: [
-      "Learned how to optimize transformer inference for CPU-only environments.",
-      "Understood the trade-offs between model size, latency, and accuracy.",
-      "Gained experience deploying ML services with real-world constraints like rate limiting.",
-    ],
-    githubUrl: "#",
-    demoUrl: "#",
-  },
-  {
-    name: "Neural Style Transfer Studio",
-    blurb:
-      "Interactive web app that applies arbitrary style transfer in the browser using a quantized ONNX model.",
-    description:
-      "Implemented a real-time neural style transfer application that runs entirely client-side. Converted a pre-trained PyTorch model to ONNX, then quantized it to INT8 for fast inference. Built a React frontend that reads images from the user's camera or file uploads and renders stylized output through an HTML5 canvas pipeline.",
-    tags: ["ONNX", "WebGL", "React"],
-    accent: "from-fuchsia-400/20 to-primary/10",
-    glyph: "✦",
-    learnings: [
-      "Learned the ONNX conversion and quantization workflow end-to-end.",
-      "Explored WebGL and canvas performance optimization for image processing.",
-      "Discovered how to ship ML models to users without backend infrastructure.",
-    ],
-    githubUrl: "#",
-    demoUrl: "#",
-  },
-  {
     name: "GridWorld RL Agent",
     blurb:
       "Implemented DQN and PPO from scratch and benchmarked them on a custom grid world environment.",

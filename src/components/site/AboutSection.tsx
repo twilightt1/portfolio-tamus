@@ -150,7 +150,7 @@ export function AboutSection() {
                         Based in
                       </p>
                       <p className="text-sm font-semibold text-foreground">
-                        United States
+                        Vietnam
                       </p>
                     </div>
                   </div>
@@ -176,7 +176,7 @@ export function AboutSection() {
                         Focus
                       </p>
                       <p className="text-sm font-semibold text-foreground">
-                        ML / AI Research
+                        AI / ML Engineer
                       </p>
                     </div>
                   </div>

@@ -237,7 +237,7 @@ export function HeroSection() {
             [
               { k: t("focus"), v: t("mlAI"), sub: "Primary focus" },
               { k: t("stack"), v: t("pythonPyTorch"), sub: "Core tools" },
-              { k: t("projects"), v: "4 shipped", sub: "Production-ready" },
+              { k: t("projects"), v: "2 shipped", sub: "Production-ready" },
               { k: t("status"), v: t("seekingIntern"), sub: "Available now" },
             ].map((item, idx) => (
               <div

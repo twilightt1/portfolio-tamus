@@ -120,10 +120,10 @@ export const translations = {
     ja: 'ステータス',
   },
   seekingIntern: {
-    en: 'Seeking intern',
-    vi: 'Tìm thực tập',
-    zh: '寻找实习',
-    ja: 'インターン募集中',
+    en: 'Seeking intern or fresher',
+    vi: 'Tìm thực tập hoặc Fresher',
+    zh: '寻找实习或Freshman',
+    ja: 'インターンまたはフレッシュマンを募集中',
   },
   
   // Scroll

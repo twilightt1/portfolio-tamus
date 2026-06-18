@@ -64,19 +64,6 @@ const skillGroups = [
     borderColor: "hover:border-emerald-500/30",
     glowColor: "hover:shadow-emerald-500/20",
   },
-  {
-    titleKey: "certifications" as const,
-    icon: Rocket,
-    items: [
-      "Machine Learning Specialization",
-      "Deep Learning Specialization",
-      "Python for Data Science",
-    ],
-    color: "text-amber-500",
-    bgColor: "bg-amber-500/10",
-    borderColor: "hover:border-amber-500/30",
-    glowColor: "hover:shadow-amber-500/20",
-  },
 ];
 
 export function SkillsSection() {

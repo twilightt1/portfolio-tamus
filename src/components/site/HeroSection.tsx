@@ -1,10 +1,18 @@
 import { ArrowRight, FileText, Mail } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { Typewriter } from "@/components/ui/Typewriter";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 
 // Refactored single Typewriter wrapper for cleaner code
-const CodeLine = ({ text, delay = 0, className = "" }: { text: string; delay?: number; className?: string }) => (
+const CodeLine = ({
+  text,
+  delay = 0,
+  className = "",
+}: {
+  text: string;
+  delay?: number;
+  className?: string;
+}) => (
   <span className={className}>
     <Typewriter text={text} delay={delay} />
   </span>
@@ -57,15 +65,11 @@ export function HeroSection() {
             {/* H1 Title */}
             <h1 className="animate-fade-in-up delay-100 mt-9 font-mono text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               {t("heroGreeting")}{" "}
-              <span className="inline-block align-middle text-gradient">
-                {t("heroName")}.
-              </span>
+              <span className="inline-block align-middle text-gradient">{t("heroName")}.</span>
               <br />
-              <span className="text-muted-foreground">{t("heroBuild")}{" "}</span>
+              <span className="text-muted-foreground">{t("heroBuild")} </span>
               <span className="relative inline-block">
-                <span className="relative z-10 text-foreground">
-                  {t("heroMLSystems")}
-                </span>
+                <span className="relative z-10 text-foreground">{t("heroMLSystems")}</span>
                 <span className="absolute -bottom-1 left-0 h-4 w-full bg-gradient-to-r from-primary/20 to-primary/5 -skew-x-6 rounded-sm" />
               </span>
               <br />
@@ -83,9 +87,7 @@ export function HeroSection() {
                 href="#projects"
                 className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:translate-y-0"
               >
-                <span className="relative z-10">
-                  {t("viewProjects")}
-                </span>
+                <span className="relative z-10">{t("viewProjects")}</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 {/* Ripple effect */}
                 <span className="absolute inset-0 scale-0 rounded-lg bg-white/20 opacity-0 transition-all duration-500 group-hover:scale-150 group-hover:opacity-100" />
@@ -100,14 +102,17 @@ export function HeroSection() {
                 href="#contact"
                 className="group inline-flex items-center gap-2 rounded-lg border border-border/80 bg-background/80 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/10 hover:shadow-md active:translate-y-0"
               >
-                <Mail className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" /> {t("getInTouch")}
+                <Mail className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
+                {t("getInTouch")}
               </a>
 
               <a
-                href="/resume"
+                href="/Tamus_AI_Engineer_CV.pdf"
+                download
                 className="group inline-flex items-center gap-2 rounded-lg border border-border/80 bg-background/80 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/10 hover:shadow-md active:translate-y-0"
               >
-                <FileText className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" /> {t("viewCV")}
+                <FileText className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
+                {t("downloadCV")}
               </a>
             </div>
           </div>
@@ -154,59 +159,178 @@ export function HeroSection() {
                   {/* Syntax-highlighted code */}
                   <div className="p-5 font-mono text-[13px] leading-[2.2]">
                     <p>
-                      <CodeLine text="class" delay={500} className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground" />{" "}
-                      <CodeLine text="Engineer" delay={700} className="text-foreground transition-colors duration-300 group-hover:text-primary" />
-                      <CodeLine text=":" delay={900} className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80" />
+                      <CodeLine
+                        text="class"
+                        delay={500}
+                        className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground"
+                      />{" "}
+                      <CodeLine
+                        text="Engineer"
+                        delay={700}
+                        className="text-foreground transition-colors duration-300 group-hover:text-primary"
+                      />
+                      <CodeLine
+                        text=":"
+                        delay={900}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />
                     </p>
                     <p className="pl-4">
-                      <CodeLine text="def" delay={1100} className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground" />{" "}
-                      <CodeLine text="__init__" delay={1300} className="text-foreground transition-colors duration-300 group-hover:text-primary" />
-                      <CodeLine text="(self):" delay={1500} className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80" />
+                      <CodeLine
+                        text="def"
+                        delay={1100}
+                        className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground"
+                      />{" "}
+                      <CodeLine
+                        text="__init__"
+                        delay={1300}
+                        className="text-foreground transition-colors duration-300 group-hover:text-primary"
+                      />
+                      <CodeLine
+                        text="(self):"
+                        delay={1500}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />
                     </p>
                     <p className="pl-8">
-                      <CodeLine text="self" delay={1800} className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground" />
+                      <CodeLine
+                        text="self"
+                        delay={1800}
+                        className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground"
+                      />
                       {"."}
-                      <CodeLine text="focus" delay={2000} className="text-foreground transition-colors duration-300 group-hover:text-primary" />
-                      {" "}
-                      <CodeLine text="=" delay={2200} className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80" />
-                      {" "}
-                      <CodeLine text='"AI/ML"' delay={2300} className="text-primary/60 transition-colors duration-300 group-hover:text-primary/80" />
+                      <CodeLine
+                        text="focus"
+                        delay={2000}
+                        className="text-foreground transition-colors duration-300 group-hover:text-primary"
+                      />{" "}
+                      <CodeLine
+                        text="="
+                        delay={2200}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />{" "}
+                      <CodeLine
+                        text='"AI/ML"'
+                        delay={2300}
+                        className="text-primary/60 transition-colors duration-300 group-hover:text-primary/80"
+                      />
                     </p>
                     <p className="pl-8">
-                      <CodeLine text="self" delay={2700} className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground" />
+                      <CodeLine
+                        text="self"
+                        delay={2700}
+                        className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground"
+                      />
                       {"."}
-                      <CodeLine text="stack" delay={2900} className="text-foreground transition-colors duration-300 group-hover:text-primary" />
-                      {" "}
-                      <CodeLine text="=" delay={3100} className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80" />
-                      {" "}
-                      <CodeLine text="[" delay={3200} className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80" />
-                      <CodeLine text='"Python"' delay={3250} className="text-primary/60 transition-colors duration-300 group-hover:text-primary/80" />
-                      <CodeLine text="," delay={3500} className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80" />
-                      {" "}
-                      <CodeLine text='"PyTorch"' delay={3550} className="text-primary/60 transition-colors duration-300 group-hover:text-primary/80" />
-                      <CodeLine text="]" delay={3800} className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80" />
+                      <CodeLine
+                        text="stack"
+                        delay={2900}
+                        className="text-foreground transition-colors duration-300 group-hover:text-primary"
+                      />{" "}
+                      <CodeLine
+                        text="="
+                        delay={3100}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />{" "}
+                      <CodeLine
+                        text="["
+                        delay={3200}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />
+                      <CodeLine
+                        text='"Python"'
+                        delay={3250}
+                        className="text-primary/60 transition-colors duration-300 group-hover:text-primary/80"
+                      />
+                      <CodeLine
+                        text=","
+                        delay={3500}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />{" "}
+                      <CodeLine
+                        text='"FastAPI"'
+                        delay={3550}
+                        className="text-primary/60 transition-colors duration-300 group-hover:text-primary/80"
+                      />
+                      <CodeLine
+                        text=","
+                        delay={3800}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />{" "}
+                      <CodeLine
+                        text='"PyTorch"'
+                        delay={3850}
+                        className="text-primary/60 transition-colors duration-300 group-hover:text-primary/80"
+                      />
+                      <CodeLine
+                        text="]"
+                        delay={4100}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />
                     </p>
                     <p className="pl-8">
-                      <CodeLine text="self" delay={4100} className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground" />
+                      <CodeLine
+                        text="self"
+                        delay={4100}
+                        className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground"
+                      />
                       {"."}
-                      <CodeLine text="status" delay={4300} className="text-foreground transition-colors duration-300 group-hover:text-primary" />
-                      {" "}
-                      <CodeLine text="=" delay={4500} className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80" />
-                      {" "}
-                      <CodeLine text='"seeking_intern"' delay={4600} className="text-primary/60 transition-colors duration-300 group-hover:text-primary/80" />
+                      <CodeLine
+                        text="status"
+                        delay={4300}
+                        className="text-foreground transition-colors duration-300 group-hover:text-primary"
+                      />{" "}
+                      <CodeLine
+                        text="="
+                        delay={4500}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />{" "}
+                      <CodeLine
+                        text='"AI/ML intern | fresher"'
+                        delay={4600}
+                        className="text-primary/60 transition-colors duration-300 group-hover:text-primary/80"
+                      />
                     </p>
                     <p />
                     <p className="pl-4">
-                      <CodeLine text="def" delay={5200} className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground" />{" "}
-                      <CodeLine text="build" delay={5400} className="text-foreground transition-colors duration-300 group-hover:text-primary" />
-                      <CodeLine text="(self, idea):" delay={5600} className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80" />
+                      <CodeLine
+                        text="def"
+                        delay={5200}
+                        className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground"
+                      />{" "}
+                      <CodeLine
+                        text="build"
+                        delay={5400}
+                        className="text-foreground transition-colors duration-300 group-hover:text-primary"
+                      />
+                      <CodeLine
+                        text="(self, idea):"
+                        delay={5600}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />
                     </p>
                     <p className="pl-8">
-                      <CodeLine text="return" delay={6100} className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground" />{" "}
-                      <CodeLine text="self" delay={6400} className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground" />
+                      <CodeLine
+                        text="return"
+                        delay={6100}
+                        className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground"
+                      />{" "}
+                      <CodeLine
+                        text="self"
+                        delay={6400}
+                        className="text-primary/70 transition-colors duration-300 group-hover:text-accent-foreground"
+                      />
                       {"."}
-                      <CodeLine text="ship" delay={6600} className="text-foreground transition-colors duration-300 group-hover:text-primary" />
-                      <CodeLine text="(idea)" delay={6800} className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80" />
+                      <CodeLine
+                        text="ship"
+                        delay={6600}
+                        className="text-foreground transition-colors duration-300 group-hover:text-primary"
+                      />
+                      <CodeLine
+                        text="(idea)"
+                        delay={6800}
+                        className="text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/80"
+                      />
                     </p>
                   </div>
 
@@ -233,28 +357,27 @@ export function HeroSection() {
 
         {/* Stats bar */}
         <div className="animate-fade-in-up delay-500 mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {
-            [
-              { k: t("focus"), v: t("mlAI"), sub: "Primary focus" },
-              { k: t("stack"), v: t("pythonPyTorch"), sub: "Core tools" },
-              { k: t("projects"), v: "2 shipped", sub: "Production-ready" },
-              { k: t("status"), v: t("seekingIntern"), sub: "Available now" },
-            ].map((item, idx) => (
-              <div
-                key={item.k}
-                className="gradient-border group relative rounded-xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-card/90 hover:shadow-2xl hover:shadow-primary/15"
-              >
-                <p className="font-mono text-[10px] uppercase tracking-widest text-primary transition-colors group-hover:text-accent-foreground">
-                  {item.k}
-                </p>
-                <p className="mt-1.5 font-mono text-sm font-semibold text-foreground transition-all group-hover:scale-105 group-hover:text-primary">
-                  {item.v}
-                </p>
-                <p className="mt-0.5 font-mono text-[10px] text-muted-foreground/60 group-hover:text-muted-foreground">
-                  {item.sub}
-                </p>
-              </div>
-            ))}
+          {[
+            { k: t("focus"), v: "LLM / RAG", sub: "Applied NLP" },
+            { k: t("stack"), v: t("pythonPyTorch"), sub: "Core tools" },
+            { k: t("projects"), v: t("shipped"), sub: "Production-ready" },
+            { k: t("status"), v: t("seekingIntern"), sub: "Available now" },
+          ].map((item, idx) => (
+            <div
+              key={item.k}
+              className="gradient-border group relative rounded-xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-card/90 hover:shadow-2xl hover:shadow-primary/15"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-widest text-primary transition-colors group-hover:text-accent-foreground">
+                {item.k}
+              </p>
+              <p className="mt-1.5 font-mono text-sm font-semibold text-foreground transition-all group-hover:scale-105 group-hover:text-primary">
+                {item.v}
+              </p>
+              <p className="mt-0.5 font-mono text-[10px] text-muted-foreground/60 group-hover:text-muted-foreground">
+                {item.sub}
+              </p>
+            </div>
+          ))}
         </div>
 
         {/* Scroll indicator */}

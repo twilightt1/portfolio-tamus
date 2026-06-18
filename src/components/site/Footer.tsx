@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Globe, Mail } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
 export function Footer() {
@@ -19,40 +19,38 @@ export function Footer() {
               </span>
               <span>tamus.pham</span>
             </div>
-            <p className="max-w-xs text-sm text-muted-foreground">
-              {t('footerDescription')}
-            </p>
+            <p className="max-w-xs text-sm text-muted-foreground">{t("footerDescription")}</p>
           </div>
 
           {/* Navigation */}
           <div className="space-y-4">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              {t('navigate')}
+              {t("navigate")}
             </p>
             <nav className="flex flex-col space-y-2">
               <a
                 href="#about"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                {t('aboutLabel')}
+                {t("aboutLabel")}
               </a>
               <a
                 href="#projects"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                {t('projectsLabel')}
+                {t("projectsLabel")}
               </a>
               <a
                 href="#skills"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                {t('skillsLabel')}
+                {t("skillsLabel")}
               </a>
               <a
                 href="#contact"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                {t('contactLabel')}
+                {t("contactLabel")}
               </a>
             </nav>
           </div>
@@ -60,19 +58,18 @@ export function Footer() {
           {/* Connect */}
           <div className="space-y-4">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              {t('connectLabel')}
+              {t("connectLabel")}
             </p>
             <div className="flex gap-3">
               <a
-                href="mailto:phamvantam03.tk@gmail.com"
+                href="mailto:working@tamus.dev"
                 className="group grid h-10 w-10 place-items-center rounded-lg border border-border/60 bg-background/50 transition-all hover:border-primary/30 hover:bg-primary/5 hover:shadow-md"
                 aria-label="Email"
               >
                 <Mail className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
               </a>
-              {/* TODO: Replace with your actual GitHub profile URL */}
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/twilightt1"
                 target="_blank"
                 rel="noreferrer"
                 className="group grid h-10 w-10 place-items-center rounded-lg border border-border/60 bg-background/50 transition-all hover:border-primary/30 hover:bg-primary/5 hover:shadow-md"
@@ -80,15 +77,14 @@ export function Footer() {
               >
                 <Github className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
               </a>
-              {/* TODO: Replace with your actual LinkedIn profile URL */}
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://tamus.dev"
                 target="_blank"
                 rel="noreferrer"
                 className="group grid h-10 w-10 place-items-center rounded-lg border border-border/60 bg-background/50 transition-all hover:border-primary/30 hover:bg-primary/5 hover:shadow-md"
-                aria-label="LinkedIn"
+                aria-label="Website"
               >
-                <Linkedin className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
+                <Globe className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
               </a>
             </div>
           </div>
@@ -97,13 +93,13 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-8 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Tamus Pham — {t('builtWithCare')}
+            © {new Date().getFullYear()} Tamus Pham — {t("builtWithCare")}
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="group inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
           >
-            {t('backToTop')}
+            {t("backToTop")}
             <svg
               className="h-3 w-3 transition-transform group-hover:-translate-y-0.5"
               fill="none"

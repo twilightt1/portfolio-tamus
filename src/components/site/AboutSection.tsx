@@ -1,61 +1,19 @@
-import { useState, useEffect, useRef } from "react";
-import {
-  BookOpen,
-  Code,
-  GraduationCap,
-  Sparkles,
-  MapPin,
-  Zap,
-  Brain,
-  Globe,
-  ArrowUpRight,
-  GitBranch,
-} from "lucide-react";
+import { Brain, Code, Database, GraduationCap, MapPin, Sparkles, Zap } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
-const journeyMilestones = [
-  {
-    year: "2024",
-    title: "Started B.S. in Computer Science",
-    description:
-      "Diving into ML, deep learning, linear algebra, and systems at State University.",
-    icon: GraduationCap,
-    tag: "Education",
-  },
-  {
-    year: "2025",
-    title: "Joined NLP Research Lab",
-    description:
-      "Undergraduate RA studying how small language models represent knowledge internally.",
-    icon: BookOpen,
-    tag: "Research",
-  },
-  {
-    year: "2025",
-    title: "Open Source Contributions",
-    description:
-      "Shipping bug fixes, docs, and features across several ML tooling repositories.",
-    icon: GitBranch,
-    tag: "Community",
-  },
-];
-
 const techItems = [
-  { name: "Python", icon: Globe },
+  { name: "Python", icon: Code },
+  { name: "FastAPI", icon: Zap },
   { name: "PyTorch", icon: Brain },
-  { name: "React", icon: Code },
-  { name: "TypeScript", icon: Code },
+  { name: "pgvector", icon: Database },
 ];
 
 export function AboutSection() {
   const { t } = useI18n();
 
   return (
-    <section
-      id="about"
-      className="relative border-t border-border/60 bg-muted/20 overflow-hidden"
-    >
+    <section id="about" className="relative border-t border-border/60 bg-muted/20 overflow-hidden">
       {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-0 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-primary/5 blur-[140px]" />
@@ -94,26 +52,18 @@ export function AboutSection() {
                 </div>
                 <div className="space-y-4">
                   <h3 className="font-mono text-sm font-semibold uppercase tracking-wider text-primary">
-                    Who I Am
+                    {t("aboutWhoIAm")}
                   </h3>
                   <div className="space-y-3 text-base leading-relaxed text-muted-foreground">
                     <p>
-                      I'm a CS undergrad obsessed with understanding{" "}
+                      {t("aboutBioIntro")}{" "}
                       <span className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 font-medium text-primary">
                         <Brain className="h-3.5 w-3.5" />
-                        how models think
+                        {t("aboutBioHighlight")}
                       </span>
-                      . My work sits at the intersection of{" "}
-                      <span className="font-medium text-foreground">ML</span>,{" "}
-                      <span className="font-medium text-foreground">systems</span>,
-                      and whatever paper caught my attention at 2 AM.
+                      {t("aboutBioAfterHighlight")}
                     </p>
-                    <p>
-                      Outside of class I'm usually fine-tuning models, contributing
-                      to open source, or writing about what I learn. Currently
-                      excited about retrieval-augmented systems and efficient
-                      training on a budget.
-                    </p>
+                    <p>{t("aboutBioSecond")}</p>
                   </div>
 
                   {/* Inline tech chips */}
@@ -147,10 +97,10 @@ export function AboutSection() {
                     </div>
                     <div>
                       <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                        Based in
+                        {t("aboutBasedInLabel")}
                       </p>
                       <p className="text-sm font-semibold text-foreground">
-                        Vietnam
+                        {t("aboutLocationValue")}
                       </p>
                     </div>
                   </div>
@@ -160,10 +110,10 @@ export function AboutSection() {
                     </div>
                     <div>
                       <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                        Education
+                        {t("aboutEducationLabel")}
                       </p>
                       <p className="text-sm font-semibold text-foreground">
-                        B.S. CS — Class of 2028
+                        {t("aboutEducationValue")}
                       </p>
                     </div>
                   </div>
@@ -173,10 +123,10 @@ export function AboutSection() {
                     </div>
                     <div>
                       <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                        Focus
+                        {t("aboutFocusLabel")}
                       </p>
                       <p className="text-sm font-semibold text-foreground">
-                        AI / ML Engineer
+                        {t("aboutFocusValue")}
                       </p>
                     </div>
                   </div>
@@ -189,73 +139,13 @@ export function AboutSection() {
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                   </span>
                   <span className="font-mono text-xs text-emerald-600 dark:text-emerald-400">
-                    Open to opportunities
+                    {t("aboutStatusValue")}
                   </span>
                 </div>
               </div>
             </div>
           </ScrollReveal>
         </div>
-
-        {/* Card 3: Journey — full width below */}
-        <ScrollReveal delay={500}>
-          <div className="mt-5 group relative overflow-hidden rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm p-7 sm:p-8 transition-all duration-500 hover:border-border hover:shadow-xl">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="font-mono text-sm font-semibold uppercase tracking-wider text-primary">
-                Journey
-              </h3>
-              <div className="flex items-center gap-1.5">
-                {journeyMilestones.map((_, idx) => (
-                  <div
-                    key={idx}
-                    className={`h-1.5 w-8 rounded-full ${
-                      idx === 0 ? "bg-primary" : "bg-primary/20"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-              {journeyMilestones.map((milestone, idx) => {
-                const Icon = milestone.icon;
-                return (
-                  <div
-                    key={milestone.title}
-                    className="group/milestone relative rounded-xl border border-border/40 bg-muted/20 p-5 transition-all duration-500 hover:border-primary/30 hover:bg-primary/5 hover:shadow-lg hover:shadow-primary/5"
-                  >
-                    {idx < journeyMilestones.length - 1 && (
-                      <div className="hidden sm:block absolute top-1/2 -right-2.5 h-px w-5 bg-border/60 z-10" />
-                    )}
-
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 transition-all duration-300 group-hover/milestone:from-primary/30 group-hover/milestone:to-primary/10 group-hover/milestone:border-primary/40">
-                        <Icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <span className="font-mono text-xs font-bold text-primary">
-                          {milestone.year}
-                        </span>
-                        <span className="ml-2 inline-flex items-center rounded-md bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-                          {milestone.tag}
-                        </span>
-                      </div>
-                    </div>
-
-                    <h4 className="text-sm font-semibold text-foreground mb-1.5 transition-colors duration-300 group-hover/milestone:text-primary">
-                      {milestone.title}
-                    </h4>
-                    <p className="text-xs leading-relaxed text-muted-foreground">
-                      {milestone.description}
-                    </p>
-
-                    <ArrowUpRight className="absolute top-4 right-4 h-3.5 w-3.5 text-muted-foreground/0 transition-all duration-300 group-hover/milestone:text-primary/60 group-hover/milestone:-translate-y-0.5 group-hover/milestone:translate-x-0.5" />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );

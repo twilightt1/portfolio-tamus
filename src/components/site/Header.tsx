@@ -21,7 +21,6 @@ export function Header() {
     { href: "#projects", label: t('projectsLabel'), id: "projects" },
     { href: "#skills", label: t('skillsLabel'), id: "skills" },
     { href: "#contact", label: t('contactLabel'), id: "contact" },
-    { to: "/resume", label: t('resume') },
   ] as const;
 
   useEffect(() => {

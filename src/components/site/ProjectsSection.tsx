@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, Github, Sparkles, Keyboard } from "lucide-react";
+import { ArrowUpRight, Github, Sparkles } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TiltCard } from "@/components/ui/TiltCard";
@@ -13,37 +13,37 @@ import {
 
 const projects = [
   {
-    name: "GridWorld RL Agent",
+    name: "AI Resume Match & Optimizer",
     blurb:
-      "Implemented DQN and PPO from scratch and benchmarked them on a custom grid world environment.",
+      "End-to-end AI/ML pipeline that parses resumes and job descriptions, scores match quality, and generates truth-guarded rewrite suggestions.",
     description:
-      "Wrote DQN and PPO algorithms from scratch in NumPy and PyTorch to solve a custom grid world environment with stochastic transitions and sparse rewards. Implemented experience replay, target networks, advantage estimation, and entropy regularization. Logged training curves and compared sample efficiency across both methods.",
-    tags: ["RL", "NumPy", "Gym"],
-    accent: "from-emerald-400/20 to-accent",
-    glyph: "λ",
+      "Built an end-to-end AI/ML system for resume and job-description analysis. The pipeline extracts structured resume/JD features, computes match quality with semantic similarity and lexical overlap, retrieves requirement-level evidence with sentence-transformer embeddings and pgvector, and validates AI-generated optimization suggestions to reduce unsupported or hallucinated claims.",
+    tags: ["Python", "NLP", "LLMs", "FastAPI", "pgvector"],
+    accent: "from-cyan-400/20 to-primary/20",
+    glyph: "∑",
     learnings: [
-      "Deep understanding of policy gradients and value-based methods.",
-      "Learned to debug unstable RL training by inspecting gradients and rewards.",
-      "Built custom Gym environments and learned the OpenAI Gym API deeply.",
+      "Parsed resumes and job descriptions into structured features for requirement-level matching.",
+      "Implemented embeddings and pgvector retrieval for semantic skill matching and ATS keyword coverage.",
+      "Added evaluation workflows for parsing, matching, retrieval quality, and guardrail performance.",
     ],
-    githubUrl: "#",
+    githubUrl: "https://github.com/twilightt1",
     demoUrl: "#",
   },
   {
-    name: "RAG Notes Assistant",
+    name: "Personal AI Second Brain",
     blurb:
-      "Personal knowledge assistant that indexes markdown notes with embeddings and answers questions with citations.",
+      "Hybrid RAG and agentic memory system using BM25, dense retrieval, reranking, LangGraph self-correction, and citation-aware answers.",
     description:
-      "Created a retrieval-augmented generation system for personal knowledge management. Parsed markdown notes into chunks, generated embeddings with a local sentence-transformer model, and stored them in pgvector. Built a simple CLI and FastAPI frontend that answers natural language queries by retrieving relevant chunks and composing answers with a local LLM via llama.cpp.",
-    tags: ["LangChain", "pgvector", "OpenAI"],
-    accent: "from-amber-400/20 to-accent",
-    glyph: "⟶",
+      "Built a personal knowledge assistant with a hybrid RAG pipeline that fuses BM25 and dense vector retrieval via Reciprocal Rank Fusion, reranks results with a Jina cross-encoder, and uses a LangGraph agent with LLM-graded self-correction loops to reduce hallucinations and enforce citation accuracy. The system includes a memory layer with entity extraction, time-decay salience scoring, and knowledge-graph context injection.",
+    tags: ["Python", "FastAPI", "LangGraph", "ChromaDB", "PostgreSQL"],
+    accent: "from-violet-400/20 to-accent/20",
+    glyph: "ψ",
     learnings: [
-      "Learned how chunking strategy drastically changes retrieval quality.",
-      "Understood the full RAG pipeline from ingestion to generation.",
-      "Gained hands-on experience with vector databases and embedding models.",
+      "Combined BM25 and vector search with RRF to improve retrieval coverage across personal notes.",
+      "Designed self-correction loops that grade answers and citations before returning responses.",
+      "Evaluated RAG quality with custom metrics, a 40+ QA dataset, experiment tracking, and cost logging.",
     ],
-    githubUrl: "#",
+    githubUrl: "https://github.com/twilightt1",
     demoUrl: "#",
   },
 ];
@@ -56,7 +56,8 @@ export function ProjectsSection() {
   const [activeTag, setActiveTag] = useState("All");
   const { t } = useI18n();
 
-  const filtered = activeTag === "All" ? projects : projects.filter((p) => p.tags.includes(activeTag));
+  const filtered =
+    activeTag === "All" ? projects : projects.filter((p) => p.tags.includes(activeTag));
 
   return (
     <section id="projects" className="relative border-t border-border/60">
@@ -70,17 +71,17 @@ export function ProjectsSection() {
         <div className="mb-12 sm:mb-16">
           <ScrollReveal>
             <p className="font-mono text-xs uppercase tracking-widest text-primary">
-              {t('projectsSection')}
+              {t("projectsSection")}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <h2 className="mt-3 font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              {t('thingsIBuilt')}
+              {t("thingsIBuilt")}
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              {t('projectsDescription')}
+              {t("projectsDescription")}
             </p>
           </ScrollReveal>
 
@@ -113,7 +114,9 @@ export function ProjectsSection() {
                 className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/15 active:translate-y-0"
               >
                 {/* Gradient overlay on hover - smoother */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-all duration-500 group-hover:opacity-10 group-hover:scale-105`} />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-all duration-500 group-hover:opacity-10 group-hover:scale-105`}
+                />
 
                 {/* Top: Glyph area */}
                 <div
@@ -129,7 +132,7 @@ export function ProjectsSection() {
                     </span>
                   </div>
                   <div className="absolute right-4 top-4 rounded-md border border-border/60 bg-background/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground backdrop-blur transition-all duration-300 group-hover:border-primary/40 group-hover:bg-background/90 group-hover:text-foreground">
-                    {t('project')}
+                    {t("project")}
                   </div>
                 </div>
 
@@ -159,17 +162,21 @@ export function ProjectsSection() {
                     <div className="flex items-center gap-3">
                       <a
                         href={p.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
                         onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-foreground hover:scale-105 active:scale-95"
                       >
-                        <Github className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" /> {t('code')}
+                        <Github className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />{" "}
+                        {t("code")}
                       </a>
                       <a
                         href={p.demoUrl}
                         onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-foreground hover:scale-105 active:scale-95"
                       >
-                        <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" /> {t('demo')}
+                        <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />{" "}
+                        {t("demo")}
                       </a>
                     </div>
                   </div>
@@ -181,10 +188,7 @@ export function ProjectsSection() {
       </div>
 
       {/* Project Modal */}
-      <Dialog
-        open={openProject !== null}
-        onOpenChange={(open) => !open && setOpenProject(null)}
-      >
+      <Dialog open={openProject !== null} onOpenChange={(open) => !open && setOpenProject(null)}>
         <DialogContent className="max-w-2xl gap-0 p-0 overflow-hidden sm:rounded-2xl">
           {openProject !== null && (
             <>
@@ -216,14 +220,11 @@ export function ProjectsSection() {
                   </p>
                   <div className="rounded-xl border border-border/60 bg-muted/30 p-5">
                     <p className="font-mono text-xs uppercase tracking-widest text-primary">
-                      {t('keyLearnings')}
+                      {t("keyLearnings")}
                     </p>
                     <ul className="mt-3 space-y-2">
                       {projects[openProject].learnings.map((l) => (
-                        <li
-                          key={l}
-                          className="flex items-start gap-3 text-sm text-foreground"
-                        >
+                        <li key={l} className="flex items-start gap-3 text-sm text-foreground">
                           <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                           <span>{l}</span>
                         </li>
@@ -244,20 +245,24 @@ export function ProjectsSection() {
                     <div className="flex items-center gap-3">
                       <a
                         href={projects[openProject].githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
                         className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2.5 font-mono text-xs text-foreground transition-colors hover:bg-accent"
                       >
-                        <Github className="h-4 w-4" /> {t('viewCode')}
+                        <Github className="h-4 w-4" /> {t("viewCode")}
                       </a>
                       <a
                         href={projects[openProject].demoUrl}
                         className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 font-mono text-xs font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
                       >
-                        <ArrowUpRight className="h-4 w-4" /> {t('liveDemo')}
+                        <ArrowUpRight className="h-4 w-4" /> {t("liveDemo")}
                       </a>
                     </div>
                     {/* ESC hint */}
                     <span className="hidden items-center gap-1.5 font-mono text-[10px] text-muted-foreground/60 sm:flex">
-                      <kbd className="rounded border border-border/60 bg-muted/50 px-1.5 py-0.5 text-[10px]">ESC</kbd>
+                      <kbd className="rounded border border-border/60 bg-muted/50 px-1.5 py-0.5 text-[10px]">
+                        ESC
+                      </kbd>
                       to close
                     </span>
                   </div>

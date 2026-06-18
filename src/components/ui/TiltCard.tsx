@@ -6,30 +6,45 @@ interface TiltCardProps {
   onClick?: () => void;
   maxTilt?: number;
   ariaLabel?: string;
+  keyboardInteractive?: boolean;
 }
 
-export function TiltCard({ children, className = "", onClick, maxTilt = 8, ariaLabel }: TiltCardProps) {
+export function TiltCard({
+  children,
+  className = "",
+  onClick,
+  maxTilt = 8,
+  ariaLabel,
+  keyboardInteractive = true,
+}: TiltCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const isKeyboardInteractive = Boolean(onClick && keyboardInteractive);
 
-  const handleMouseMove = useCallback((e: MouseEvent<HTMLDivElement>) => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce), (hover: none), (pointer: coarse)").matches) {
-      return;
-    }
+  const handleMouseMove = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      if (
+        window.matchMedia("(prefers-reduced-motion: reduce), (hover: none), (pointer: coarse)")
+          .matches
+      ) {
+        return;
+      }
 
-    const card = cardRef.current;
-    if (!card) return;
+      const card = cardRef.current;
+      if (!card) return;
 
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -maxTilt;
-    const rotateY = ((x - centerX) / centerX) * maxTilt;
+      const rotateX = ((y - centerY) / centerY) * -maxTilt;
+      const rotateY = ((x - centerX) / centerX) * maxTilt;
 
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-  }, [maxTilt]);
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    },
+    [maxTilt],
+  );
 
   const handleMouseLeave = useCallback(() => {
     const card = cardRef.current;
@@ -38,14 +53,17 @@ export function TiltCard({ children, className = "", onClick, maxTilt = 8, ariaL
     }
   }, []);
 
-  const handleKeyDown = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
-    if (!onClick) return;
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent<HTMLDivElement>) => {
+      if (!isKeyboardInteractive || e.target !== e.currentTarget) return;
 
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      onClick();
-    }
-  }, [onClick]);
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onClick?.();
+      }
+    },
+    [isKeyboardInteractive, onClick],
+  );
 
   return (
     <div
@@ -55,9 +73,9 @@ export function TiltCard({ children, className = "", onClick, maxTilt = 8, ariaL
       onKeyDown={handleKeyDown}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      role={onClick ? "button" : undefined}
-      tabIndex={onClick ? 0 : undefined}
-      aria-label={ariaLabel}
+      role={isKeyboardInteractive ? "button" : undefined}
+      tabIndex={isKeyboardInteractive ? 0 : undefined}
+      aria-label={isKeyboardInteractive ? ariaLabel : undefined}
       style={{ transition: "transform 0.2s ease-out" }}
     >
       {children}

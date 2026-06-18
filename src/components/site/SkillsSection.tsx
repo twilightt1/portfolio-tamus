@@ -66,6 +66,16 @@ const skillGroups = [
   },
 ];
 
+const relevantSkills = [
+  "Python",
+  "PyTorch",
+  "FastAPI",
+  "PostgreSQL",
+  "pgvector",
+  "RAG",
+  "LLM Evaluation",
+];
+
 export function SkillsSection() {
   const { t } = useI18n();
 
@@ -94,6 +104,26 @@ export function SkillsSection() {
           </ScrollReveal>
         </div>
 
+        <ScrollReveal delay={260}>
+          <div className="mb-8 rounded-2xl border border-primary/15 bg-primary/5 p-4 backdrop-blur-sm">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="font-mono text-xs uppercase tracking-widest text-primary">
+                {t("mostRelevant")}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {relevantSkills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-full border border-primary/20 bg-background/70 px-3 py-1.5 font-mono text-[11px] text-foreground shadow-sm shadow-primary/5"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
         {/* Skills grid */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {skillGroups.map((g, groupIdx) => {
@@ -101,7 +131,7 @@ export function SkillsSection() {
             return (
               <ScrollReveal key={g.titleKey} delay={groupIdx * 120} direction="up">
                 <div
-                  className={`group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur-sm transition-all duration-300 ease-spring hover:-translate-y-1.5 hover:bg-card ${g.borderColor} ${g.glowColor} hover:shadow-2xl active:translate-y-0`}
+                  className={`group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-300 ease-spring hover:-translate-y-1 hover:bg-card sm:p-6 ${g.borderColor} ${g.glowColor} hover:shadow-2xl active:translate-y-0`}
                 >
                   {/* Category glow overlay on hover - smoother */}
                   <div
@@ -125,7 +155,7 @@ export function SkillsSection() {
                       </div>
                       {/* Count badge */}
                       <span
-                        className={`rounded-full ${g.bgColor} px-2.5 py-0.5 font-mono text-[10px] font-semibold ${g.color} transition-all duration-300 group-hover:scale-110`}
+                        className={`rounded-full border border-border/40 bg-background/60 px-2.5 py-0.5 font-mono text-[10px] font-semibold ${g.color} transition-all duration-300 group-hover:scale-105`}
                       >
                         {g.items.length}
                       </span>
@@ -136,7 +166,7 @@ export function SkillsSection() {
                       {g.items.map((item, itemIdx) => (
                         <span
                           key={item}
-                          className={`rounded-lg border border-border/60 bg-background/60 px-3.5 py-2 font-mono text-sm text-foreground transition-all duration-300 ease-spring hover:${g.borderColor} hover:bg-primary/5 hover:text-primary hover:shadow-md hover:-translate-y-0.5 active:translate-y-0`}
+                          className={`rounded-lg border border-border/60 bg-background/60 px-3 py-2 font-mono text-sm text-foreground transition-all duration-300 ease-spring hover:bg-primary/5 hover:text-primary hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 ${g.borderColor}`}
                           style={{ animationDelay: `${itemIdx * 30}ms` }}
                         >
                           {item}

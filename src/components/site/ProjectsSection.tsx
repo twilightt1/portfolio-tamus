@@ -90,11 +90,13 @@ export function ProjectsSection() {
             <div className="mt-8 flex flex-wrap gap-2">
               {allTags.map((tag) => (
                 <button
+                  key={tag}
+                  onClick={() => setActiveTag(tag)}
                   aria-pressed={activeTag === tag}
                   className={`touch-target rounded-full border px-4 py-1.5 font-mono text-xs transition-all duration-300 ${
                     activeTag === tag
-                      ? "border-primary bg-primary text-primary-foreground shadow-md shadow-primary/25 scale-105"
-                      : "border-border/60 bg-card/60 text-muted-foreground hover:border-primary/40 hover:bg-primary/5 hover:text-foreground hover:scale-105 active:scale-95"
+                      ? "scale-105 border-primary bg-primary text-primary-foreground shadow-md shadow-primary/25"
+                      : "border-border/60 bg-card/60 text-muted-foreground hover:scale-105 hover:border-primary/40 hover:bg-primary/5 hover:text-foreground active:scale-95"
                   }`}
                 >
                   {tag}
@@ -110,7 +112,7 @@ export function ProjectsSection() {
             <ScrollReveal key={p.name} delay={idx * 100} direction="up">
               <TiltCard
                 onClick={() => setOpenProject(projects.indexOf(p))}
-                ariaLabel={`${t("openProjectDetails")}: ${p.name}`}
+                keyboardInteractive={false}
                 className="card-interactive tap-highlight-none group relative cursor-pointer overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/15 active:translate-y-0"
               >
                 {/* Gradient overlay on hover - smoother */}
@@ -144,9 +146,17 @@ export function ProjectsSection() {
                     </h3>
                     <div className="flex flex-col items-end gap-2">
                       <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:scale-110 group-hover:text-primary" />
-                      <span className="rounded-full border border-border/60 bg-background/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground transition-colors group-hover:border-primary/30 group-hover:text-primary">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setOpenProject(projects.indexOf(p));
+                        }}
+                        aria-label={`${t("openProjectDetails")}: ${p.name}`}
+                        className="touch-target rounded-full border border-border/60 bg-background/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground transition-all hover:border-primary/30 hover:bg-primary/5 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                      >
                         {t("viewCaseStudy")}
-                      </span>
+                      </button>
                     </div>
                   </div>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground/90">
@@ -177,7 +187,8 @@ export function ProjectsSection() {
                       </a>
                       {p.demoUrl === "#" ? (
                         <span className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground/70">
-                          <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /> {t("demoComingSoon")}
+                          <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />{" "}
+                          {t("demoComingSoon")}
                         </span>
                       ) : (
                         <a

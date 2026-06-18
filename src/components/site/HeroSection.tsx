@@ -98,7 +98,7 @@ export function HeroSection() {
 
               <a
                 href="#contact"
-                className="touch-target group inline-flex items-center justify-center gap-2 rounded-xl border border-primary/25 bg-primary/10 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/45 hover:bg-primary/15 hover:shadow-md active:translate-y-0"
+                className="touch-target group inline-flex items-center justify-center gap-2 rounded-xl border border-primary/25 bg-primary/10 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/15 hover:shadow-md active:translate-y-0"
               >
                 <Mail className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
                 {t("getInTouch")}
@@ -374,7 +374,7 @@ export function HeroSection() {
         {/* Stats bar */}
         <div className="animate-fade-in-up delay-500 mt-14 grid grid-cols-2 gap-3 sm:mt-20 sm:grid-cols-4 sm:gap-4">
           {[
-            { k: t("focus"), v: "LLM / RAG", sub: "Applied NLP" },
+            { k: t("focus"), v: "AI / ML", sub: "Primary focus" },
             { k: t("stack"), v: t("pythonPyTorch"), sub: "Core tools" },
             { k: t("projects"), v: t("shipped"), sub: "Production-ready" },
             { k: t("status"), v: t("seekingIntern"), sub: "Available now" },

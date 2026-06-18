@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, Mail } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileText, Mail } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { Typewriter } from "@/components/ui/Typewriter";
 import { useRef } from "react";
@@ -50,7 +50,7 @@ export function HeroSection() {
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-55" />
 
       {/* Content container */}
-      <div className="relative mx-auto max-w-none px-6 pt-28 pb-24 sm:px-10 sm:pt-36 sm:pb-32 lg:px-20 xl:px-32">
+      <div className="relative mx-auto max-w-none px-6 pt-20 pb-20 sm:px-10 sm:pt-28 sm:pb-28 lg:px-20 lg:pt-32 xl:px-32">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.2fr_1fr]">
           {/* Left: Text content */}
           <div className="w-full">
@@ -82,16 +82,14 @@ export function HeroSection() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="animate-fade-in-up delay-300 mt-12 flex flex-wrap items-center gap-4">
+            <div className="animate-fade-in-up delay-300 mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <a
                 href="#projects"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:translate-y-0"
+                className="touch-target group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:translate-y-0"
               >
                 <span className="relative z-10">{t("viewProjects")}</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                {/* Ripple effect */}
-                <span className="absolute inset-0 scale-0 rounded-lg bg-white/20 opacity-0 transition-all duration-500 group-hover:scale-150 group-hover:opacity-100" />
-                {/* Shimmer sweep on hover */}
+                <span className="absolute inset-0 scale-0 rounded-xl bg-white/20 opacity-0 transition-all duration-500 group-hover:scale-150 group-hover:opacity-100" />
                 <span
                   className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full"
                   style={{ animation: "shimmer 2s ease-in-out infinite" }}
@@ -100,7 +98,7 @@ export function HeroSection() {
 
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-2 rounded-lg border border-border/80 bg-background/80 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/10 hover:shadow-md active:translate-y-0"
+                className="touch-target group inline-flex items-center justify-center gap-2 rounded-xl border border-primary/25 bg-primary/10 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/45 hover:bg-primary/15 hover:shadow-md active:translate-y-0"
               >
                 <Mail className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
                 {t("getInTouch")}
@@ -109,16 +107,34 @@ export function HeroSection() {
               <a
                 href="/Tamus_AI_Engineer_CV.pdf"
                 download
-                className="group inline-flex items-center gap-2 rounded-lg border border-border/80 bg-background/80 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/10 hover:shadow-md active:translate-y-0"
+                className="touch-target group inline-flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/70 px-6 py-3 text-sm font-medium text-muted-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-accent/60 hover:text-foreground hover:shadow-md active:translate-y-0"
               >
                 <FileText className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
                 {t("downloadCV")}
               </a>
             </div>
+
+            {/* Recruiter quick scan */}
+            <div className="animate-fade-in-up delay-400 mt-7 rounded-2xl border border-border/60 bg-card/50 p-4 backdrop-blur-sm sm:max-w-xl">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                {t("heroProofLead")}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {["RAG", "Applied NLP", "Evaluation", "FastAPI", "PyTorch"].map((item) => (
+                  <span
+                    key={item}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/15 bg-primary/5 px-3 py-1.5 font-mono text-[11px] text-foreground"
+                  >
+                    <CheckCircle2 className="h-3 w-3 text-primary" aria-hidden="true" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Right: Animated Code Card */}
-          <div className="animate-slide-in-right delay-400 hidden lg:block">
+          <div className="animate-slide-in-right delay-400 hidden lg:block" aria-hidden="true">
             <div className="float relative group">
               {/* Background glow behind card - enhanced */}
               <div className="absolute -inset-8 rounded-3xl bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-3xl transition-all duration-500 group-hover:from-primary/30 group-hover:via-primary/10" />
@@ -356,7 +372,7 @@ export function HeroSection() {
         </div>
 
         {/* Stats bar */}
-        <div className="animate-fade-in-up delay-500 mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div className="animate-fade-in-up delay-500 mt-14 grid grid-cols-2 gap-3 sm:mt-20 sm:grid-cols-4 sm:gap-4">
           {[
             { k: t("focus"), v: "LLM / RAG", sub: "Applied NLP" },
             { k: t("stack"), v: t("pythonPyTorch"), sub: "Core tools" },
@@ -365,7 +381,7 @@ export function HeroSection() {
           ].map((item, idx) => (
             <div
               key={item.k}
-              className="gradient-border group relative rounded-xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-card/90 hover:shadow-2xl hover:shadow-primary/15"
+              className="gradient-border group relative rounded-xl border border-border/60 bg-card/60 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-card/90 hover:shadow-2xl hover:shadow-primary/15 sm:p-5"
             >
               <p className="font-mono text-[10px] uppercase tracking-widest text-primary transition-colors group-hover:text-accent-foreground">
                 {item.k}
@@ -381,7 +397,7 @@ export function HeroSection() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="mt-20 flex justify-center">
+        <div className="mt-14 flex justify-center sm:mt-20">
           <a
             href="#about"
             className="group flex flex-col items-center gap-3 text-muted-foreground transition-colors hover:text-primary"

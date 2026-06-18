@@ -1,16 +1,21 @@
-import { useRef, useCallback, type ReactNode, type MouseEvent } from "react";
+import { useRef, useCallback, type ReactNode, type MouseEvent, type KeyboardEvent } from "react";
 
 interface TiltCardProps {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
   maxTilt?: number;
+  ariaLabel?: string;
 }
 
-export function TiltCard({ children, className = "", onClick, maxTilt = 8 }: TiltCardProps) {
+export function TiltCard({ children, className = "", onClick, maxTilt = 8, ariaLabel }: TiltCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = useCallback((e: MouseEvent<HTMLDivElement>) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce), (hover: none), (pointer: coarse)").matches) {
+      return;
+    }
+
     const card = cardRef.current;
     if (!card) return;
 
@@ -33,13 +38,26 @@ export function TiltCard({ children, className = "", onClick, maxTilt = 8 }: Til
     }
   }, []);
 
+  const handleKeyDown = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
+    if (!onClick) return;
+
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onClick();
+    }
+  }, [onClick]);
+
   return (
     <div
       ref={cardRef}
       className={className}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      aria-label={ariaLabel}
       style={{ transition: "transform 0.2s ease-out" }}
     >
       {children}

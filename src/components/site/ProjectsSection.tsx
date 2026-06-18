@@ -90,9 +90,8 @@ export function ProjectsSection() {
             <div className="mt-8 flex flex-wrap gap-2">
               {allTags.map((tag) => (
                 <button
-                  key={tag}
-                  onClick={() => setActiveTag(tag)}
-                  className={`rounded-full border px-4 py-1.5 font-mono text-xs transition-all duration-300 ${
+                  aria-pressed={activeTag === tag}
+                  className={`touch-target rounded-full border px-4 py-1.5 font-mono text-xs transition-all duration-300 ${
                     activeTag === tag
                       ? "border-primary bg-primary text-primary-foreground shadow-md shadow-primary/25 scale-105"
                       : "border-border/60 bg-card/60 text-muted-foreground hover:border-primary/40 hover:bg-primary/5 hover:text-foreground hover:scale-105 active:scale-95"
@@ -111,7 +110,8 @@ export function ProjectsSection() {
             <ScrollReveal key={p.name} delay={idx * 100} direction="up">
               <TiltCard
                 onClick={() => setOpenProject(projects.indexOf(p))}
-                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/15 active:translate-y-0"
+                ariaLabel={`${t("openProjectDetails")}: ${p.name}`}
+                className="card-interactive tap-highlight-none group relative cursor-pointer overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/15 active:translate-y-0"
               >
                 {/* Gradient overlay on hover - smoother */}
                 <div
@@ -142,7 +142,12 @@ export function ProjectsSection() {
                     <h3 className="font-mono text-lg font-semibold text-foreground transition-colors duration-300 group-hover:text-primary">
                       {p.name}
                     </h3>
-                    <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:scale-110" />
+                    <div className="flex flex-col items-end gap-2">
+                      <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:scale-110 group-hover:text-primary" />
+                      <span className="rounded-full border border-border/60 bg-background/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground transition-colors group-hover:border-primary/30 group-hover:text-primary">
+                        {t("viewCaseStudy")}
+                      </span>
+                    </div>
                   </div>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground/90">
                     {p.blurb}
@@ -170,14 +175,20 @@ export function ProjectsSection() {
                         <Github className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />{" "}
                         {t("code")}
                       </a>
-                      <a
-                        href={p.demoUrl}
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-foreground hover:scale-105 active:scale-95"
-                      >
-                        <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />{" "}
-                        {t("demo")}
-                      </a>
+                      {p.demoUrl === "#" ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground/70">
+                          <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /> {t("demoComingSoon")}
+                        </span>
+                      ) : (
+                        <a
+                          href={p.demoUrl}
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-foreground hover:scale-105 active:scale-95"
+                        >
+                          <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />{" "}
+                          {t("demo")}
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -208,7 +219,10 @@ export function ProjectsSection() {
               <div className="p-8 sm:p-10">
                 <DialogHeader className="text-left">
                   <DialogTitle className="font-mono text-2xl font-semibold tracking-tight">
-                    {projects[openProject].name}
+                    <span className="block font-mono text-xs uppercase tracking-widest text-primary">
+                      {t("projectDetails")}
+                    </span>
+                    <span className="mt-2 block">{projects[openProject].name}</span>
                   </DialogTitle>
                   <DialogDescription className="sr-only">
                     Project details for {projects[openProject].name}
@@ -251,19 +265,25 @@ export function ProjectsSection() {
                       >
                         <Github className="h-4 w-4" /> {t("viewCode")}
                       </a>
-                      <a
-                        href={projects[openProject].demoUrl}
-                        className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 font-mono text-xs font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
-                      >
-                        <ArrowUpRight className="h-4 w-4" /> {t("liveDemo")}
-                      </a>
+                      {projects[openProject].demoUrl === "#" ? (
+                        <span className="inline-flex items-center gap-2 rounded-lg border border-border bg-muted/40 px-4 py-2.5 font-mono text-xs text-muted-foreground">
+                          <ArrowUpRight className="h-4 w-4" /> {t("demoComingSoon")}
+                        </span>
+                      ) : (
+                        <a
+                          href={projects[openProject].demoUrl}
+                          className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 font-mono text-xs font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
+                        >
+                          <ArrowUpRight className="h-4 w-4" /> {t("liveDemo")}
+                        </a>
+                      )}
                     </div>
                     {/* ESC hint */}
                     <span className="hidden items-center gap-1.5 font-mono text-[10px] text-muted-foreground/60 sm:flex">
                       <kbd className="rounded border border-border/60 bg-muted/50 px-1.5 py-0.5 text-[10px]">
                         ESC
                       </kbd>
-                      to close
+                      {t("escToClose")}
                     </span>
                   </div>
                 </div>

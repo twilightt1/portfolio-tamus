@@ -53,7 +53,7 @@ export function AboutSection() {
             const Icon = item.icon;
             return (
               <ScrollReveal key={item.labelKey} delay={250 + idx * 80}>
-                <div className="group h-full rounded-2xl border border-border/60 bg-card/55 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:bg-card hover:shadow-lg hover:shadow-primary/10">
+                <div className="group h-full rounded-2xl border border-border/60 bg-card/50 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:bg-card hover:shadow-lg hover:shadow-primary/10">
                   <div className="flex items-center gap-3">
                     <div className="grid h-10 w-10 place-items-center rounded-xl border border-primary/10 bg-primary/10 transition-transform duration-300 group-hover:scale-105">
                       <Icon className="h-4 w-4 text-primary" aria-hidden="true" />

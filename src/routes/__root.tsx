@@ -97,10 +97,7 @@ function RootComponent() {
   return (
     <I18nProvider>
       <CustomCursor />
-      <MatrixRain
-        isActive={showMatrixRain}
-        onClose={() => setShowMatrixRain(false)}
-      />
+      <MatrixRain isActive={showMatrixRain} onClose={() => setShowMatrixRain(false)} />
       <div className="flex min-h-screen flex-col bg-background">
         <Header />
         <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">

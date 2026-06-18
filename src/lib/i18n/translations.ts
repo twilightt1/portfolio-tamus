@@ -75,6 +75,36 @@ export const translations = {
     zh: "下载简历",
     ja: "履歴書をダウンロード",
   },
+  skipToContent: {
+    en: "Skip to content",
+    vi: "Bỏ qua đến nội dung chính",
+    zh: "跳到主要内容",
+    ja: "メインコンテンツへスキップ",
+  },
+  openMenu: {
+    en: "Open navigation menu",
+    vi: "Mở menu điều hướng",
+    zh: "打开导航菜单",
+    ja: "ナビゲーションメニューを開く",
+  },
+  closeMenu: {
+    en: "Close navigation menu",
+    vi: "Đóng menu điều hướng",
+    zh: "关闭导航菜单",
+    ja: "ナビゲーションメニューを閉じる",
+  },
+  heroProofLabel: {
+    en: "Core focus areas",
+    vi: "Trọng tâm chính",
+    zh: "核心方向",
+    ja: "主要な専門領域",
+  },
+  heroProofLead: {
+    en: "Recruiter quick scan",
+    vi: "Điểm nổi bật cho recruiter",
+    zh: "招聘者快速浏览",
+    ja: "採用担当者向け要点",
+  },
 
   // Stats
   focus: {
@@ -294,16 +324,16 @@ export const translations = {
     ja: "プロジェクト",
   },
   thingsIBuilt: {
-    en: "AI systems from my CV.",
-    vi: "Các hệ thống AI trong CV của tôi.",
-    zh: "简历中的 AI 系统。",
-    ja: "CVに掲載したAIシステム。",
+    en: "Things I've built.",
+    vi: 'Những thứ tôi đã xây dựng.',
+    zh: '我构建的东西。',
+    ja: '構築したもの。',
   },
   projectsDescription: {
-    en: "Two production-oriented projects focused on resume/job matching, truth-guarded LLM suggestions, hybrid RAG, agentic self-correction, and evaluation workflows.",
-    vi: "Hai dự án định hướng production về matching CV/JD, gợi ý LLM có guardrail, hybrid RAG, agent tự hiệu chỉnh và workflow đánh giá.",
-    zh: "两个面向生产的项目，聚焦简历/职位匹配、带验证的 LLM 建议、混合 RAG、智能体自校正与评估流程。",
-    ja: "履歴書/求人マッチング、検証付きLLM提案、ハイブリッドRAG、エージェントの自己修正、評価ワークフローに注力した2つの実践的プロジェクトです。",
+    en: "A small, honest selection of projects. Each one taught me something I didn't know going in.",
+    vi: "Một vài dự án tiêu biểu. Mỗi dự án đều dạy tôi điều gì đó tôi chưa biết trước khi bắt đầu.",
+    zh: "精选的几个项目。每一个都教会了我一些开始之前不知道的东西。",
+    ja: "厳選され たプロジェクト。それぞれが、始める前に知らなかったことを教えてくれました。",
   },
   project: {
     en: "Project",
@@ -340,6 +370,36 @@ export const translations = {
     vi: "điểm nổi bật triển khai",
     zh: "实现亮点",
     ja: "実装ハイライト",
+  },
+  viewCaseStudy: {
+    en: "View case study",
+    vi: "Xem case study",
+    zh: "查看案例研究",
+    ja: "ケーススタディを見る",
+  },
+  openProjectDetails: {
+    en: "Open project details",
+    vi: "Mở chi tiết dự án",
+    zh: "打开项目详情",
+    ja: "プロジェクト詳細を開く",
+  },
+  projectDetails: {
+    en: "Project details",
+    vi: "Chi tiết dự án",
+    zh: "项目详情",
+    ja: "プロジェクト詳細",
+  },
+  demoComingSoon: {
+    en: "Demo coming soon",
+    vi: "Demo sắp có",
+    zh: "演示即将推出",
+    ja: "デモは準備中",
+  },
+  escToClose: {
+    en: "to close",
+    vi: "để đóng",
+    zh: "关闭",
+    ja: "で閉じる",
   },
 
   // Skills
@@ -403,6 +463,12 @@ export const translations = {
     zh: "正在学习",
     ja: "学習中",
   },
+  mostRelevant: {
+    en: "Most relevant",
+    vi: "Liên quan nhất",
+    zh: "最相关",
+    ja: "最も関連性が高い",
+  },
 
   // Contact
   contact: {
@@ -446,6 +512,24 @@ export const translations = {
     vi: "Đã sao chép!",
     zh: "已复制！",
     ja: "コピーしました！",
+  },
+  copyEmailAddress: {
+    en: "Copy email address",
+    vi: "Sao chép địa chỉ email",
+    zh: "复制邮箱地址",
+    ja: "メールアドレスをコピー",
+  },
+  emailCopiedStatus: {
+    en: "Email copied to clipboard",
+    vi: "Email đã được sao chép vào clipboard",
+    zh: "邮箱已复制到剪贴板",
+    ja: "メールアドレスをクリップボードにコピーしました",
+  },
+  availableToTalk: {
+    en: "Available to talk about AI/ML internship roles",
+    vi: "Sẵn sàng trao đổi về vị trí thực tập AI/ML",
+    zh: "可讨论 AI/ML 实习岗位",
+    ja: "AI/MLインターン職について相談可能",
   },
 
   // Side cards

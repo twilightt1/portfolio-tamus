@@ -9,6 +9,12 @@ const techItems = [
   { name: "pgvector", icon: Database },
 ];
 
+const summaryItems = [
+  { labelKey: "aboutFocusLabel" as const, valueKey: "aboutFocusValue" as const, icon: Brain },
+  { labelKey: "status" as const, valueKey: "seekingIntern" as const, icon: Sparkles },
+  { labelKey: "stack" as const, valueKey: "pythonPyTorch" as const, icon: Database },
+];
+
 export function AboutSection() {
   const { t } = useI18n();
 
@@ -41,6 +47,32 @@ export function AboutSection() {
           </ScrollReveal>
         </div>
 
+        {/* Quick scan summary */}
+        <div className="mb-6 grid grid-cols-1 gap-3 md:grid-cols-3">
+          {summaryItems.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <ScrollReveal key={item.labelKey} delay={250 + idx * 80}>
+                <div className="group h-full rounded-2xl border border-border/60 bg-card/55 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:bg-card hover:shadow-lg hover:shadow-primary/10">
+                  <div className="flex items-center gap-3">
+                    <div className="grid h-10 w-10 place-items-center rounded-xl border border-primary/10 bg-primary/10 transition-transform duration-300 group-hover:scale-105">
+                      <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                        {t(item.labelKey)}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-foreground">
+                        {t(item.valueKey)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            );
+          })}
+        </div>
+
         {/* 3 Cards — clean and balanced */}
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           {/* Card 1: Bio */}
@@ -55,7 +87,7 @@ export function AboutSection() {
                     {t("aboutWhoIAm")}
                   </h3>
                   <div className="space-y-3 text-base leading-relaxed text-muted-foreground">
-                    <p>
+                    <p className="rounded-xl border border-primary/15 bg-primary/5 p-4 text-foreground/90">
                       {t("aboutBioIntro")}{" "}
                       <span className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 font-medium text-primary">
                         <Brain className="h-3.5 w-3.5" />
@@ -73,7 +105,7 @@ export function AboutSection() {
                       return (
                         <span
                           key={item.name}
-                          className="inline-flex items-center gap-1.5 rounded-lg border border-border/40 bg-muted/30 px-3 py-1.5 font-mono text-xs text-muted-foreground transition-all duration-300 hover:border-primary/30 hover:text-primary"
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-border/40 bg-muted/30 px-3 py-1.5 font-mono text-xs text-muted-foreground transition-all duration-300 hover:border-primary/30 hover:bg-primary/5 hover:text-primary"
                         >
                           <Icon className="h-3 w-3" />
                           {item.name}

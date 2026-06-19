@@ -26,7 +26,7 @@ export function AboutSection() {
         <div className="absolute right-0 bottom-0 h-[400px] w-[400px] translate-x-1/3 translate-y-1/4 rounded-full bg-accent/5 blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 py-24 sm:px-10 sm:py-32 lg:px-20">
+      <div className="mobile-section relative mx-auto max-w-7xl px-4 py-24 sm:px-10 sm:py-32 lg:px-20">
         {/* Section Header */}
         <div className="mb-14 max-w-3xl">
           <ScrollReveal>
@@ -36,29 +36,33 @@ export function AboutSection() {
             </div>
           </ScrollReveal>
           <ScrollReveal delay={100}>
-            <h2 className="mt-6 font-mono text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <h2 className="mt-5 font-mono text-3xl font-bold tracking-tight text-foreground sm:mt-6 sm:text-5xl">
               {t("curiousByDefault")}
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            <p className="mt-4 text-base leading-7 text-muted-foreground sm:mt-5 sm:text-xl sm:leading-relaxed">
               {t("aboutDescription")}
             </p>
           </ScrollReveal>
         </div>
 
         {/* Quick scan summary */}
-        <div className="mb-6 grid grid-cols-1 gap-3 md:grid-cols-3">
+        <div className="mobile-scroll-row mobile-fade-mask mb-6 grid grid-cols-1 gap-3 md:grid-cols-3">
           {summaryItems.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <ScrollReveal key={item.labelKey} delay={250 + idx * 80}>
+              <ScrollReveal
+                key={item.labelKey}
+                delay={250 + idx * 80}
+                className="mobile-snap-card mobile-card-min md:min-w-0"
+              >
                 <div className="group h-full rounded-2xl border border-border/60 bg-card/50 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:bg-card hover:shadow-lg hover:shadow-primary/10">
                   <div className="flex items-center gap-3">
-                    <div className="grid h-10 w-10 place-items-center rounded-xl border border-primary/10 bg-primary/10 transition-transform duration-300 group-hover:scale-105">
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-primary/10 bg-primary/10 transition-transform duration-300 group-hover:scale-105">
                       <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                         {t(item.labelKey)}
                       </p>
@@ -77,7 +81,7 @@ export function AboutSection() {
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           {/* Card 1: Bio */}
           <ScrollReveal delay={300} className="lg:col-span-2">
-            <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm p-7 sm:p-8 transition-all duration-500 hover:border-border hover:shadow-xl">
+            <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card/80 p-5 backdrop-blur-sm transition-all duration-500 hover:border-border hover:shadow-xl sm:p-8">
               <div className="flex items-start gap-5">
                 <div className="hidden sm:flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/10">
                   <Code className="h-6 w-6 text-primary" />
@@ -120,7 +124,7 @@ export function AboutSection() {
 
           {/* Card 2: Quick Info */}
           <ScrollReveal delay={400}>
-            <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm p-7 transition-all duration-500 hover:border-border hover:shadow-xl">
+            <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card/80 p-5 backdrop-blur-sm transition-all duration-500 hover:border-border hover:shadow-xl sm:p-7">
               <div className="flex flex-col h-full justify-between gap-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">

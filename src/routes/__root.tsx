@@ -98,9 +98,9 @@ function RootComponent() {
     <I18nProvider>
       <CustomCursor />
       <MatrixRain isActive={showMatrixRain} onClose={() => setShowMatrixRain(false)} />
-      <div className="flex min-h-screen flex-col bg-background">
+      <div className="flex min-h-screen flex-col overflow-x-clip bg-background">
         <Header />
-        <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
+        <main id="main-content" tabIndex={-1} className="flex-1 overflow-x-clip focus:outline-none">
           <PageTransition key={location.pathname}>
             <Outlet />
           </PageTransition>

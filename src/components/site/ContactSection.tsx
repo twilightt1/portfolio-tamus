@@ -53,7 +53,7 @@ export function ContactSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               <div className="relative">
-                <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 font-mono text-[11px] text-primary sm:mb-6 sm:text-xs">
+                <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 font-mono text-[11px] leading-5 text-primary sm:mb-6 sm:text-xs">
                   <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
                   {t("availableToTalk")}
                 </div>
@@ -71,7 +71,7 @@ export function ContactSection() {
                     type="button"
                     onClick={copyEmail}
                     aria-label={t("copyEmailAddress")}
-                    className="touch-target tap-highlight-none group/btn inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-2xl border border-border/80 bg-background/80 px-5 py-3 font-mono text-xs text-muted-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-primary/5 hover:text-foreground active:scale-[0.98] sm:w-auto sm:rounded-xl sm:py-2.5"
+                    className="touch-target tap-highlight-none group/btn inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-2xl border border-border/80 bg-background/80 px-5 py-3 font-mono text-xs text-muted-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-primary/5 hover:text-foreground active:scale-[0.98] min-[390px]:w-auto sm:rounded-xl sm:py-2.5"
                   >
                     {copied ? (
                       <>
@@ -90,10 +90,10 @@ export function ContactSection() {
                   </span>
                 </div>
 
-                <div className="mt-8 grid grid-cols-1 gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-3">
+                <div className="mt-8 grid grid-cols-1 gap-3 min-[390px]:grid-cols-2 sm:mt-10 sm:grid-cols-3 sm:gap-3">
                   <a
                     href={`mailto:${EMAIL}`}
-                    className="touch-target tap-highlight-none group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] sm:rounded-xl sm:py-3"
+                    className="touch-target tap-highlight-none group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-primary px-5 py-3.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] min-[390px]:col-span-2 sm:col-span-1 sm:rounded-xl sm:px-6 sm:py-3"
                   >
                     <Mail className="relative z-10 h-4 w-4" aria-hidden="true" />
                     <span className="relative z-10">{t("sendEmail")}</span>
@@ -123,44 +123,44 @@ export function ContactSection() {
           {/* Side info cards */}
           <ScrollReveal delay={400} direction="right">
             <div className="flex flex-col gap-4">
-              <div className="group relative overflow-hidden rounded-3xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5 sm:rounded-2xl sm:p-6">
+              <div className="group relative min-w-0 overflow-hidden rounded-3xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5 sm:rounded-2xl sm:p-6">
                 <div className="flex items-center gap-4">
                   <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20 group-hover:shadow-lg">
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
-                  <div>
-                    <p className="font-mono text-sm font-semibold text-foreground">
+                  <div className="min-w-0">
+                    <p className="break-words font-mono text-sm font-semibold text-foreground">
                       {t("responseTime")}
                     </p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">{t("within24Hours")}</p>
+                    <p className="mt-0.5 break-words text-xs text-muted-foreground">{t("within24Hours")}</p>
                   </div>
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-3xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5 sm:rounded-2xl sm:p-6">
+              <div className="group relative min-w-0 overflow-hidden rounded-3xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5 sm:rounded-2xl sm:p-6">
                 <div className="flex items-center gap-4">
                   <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20 group-hover:shadow-lg">
                     <Github className="h-6 w-6 text-primary" />
                   </div>
-                  <div>
-                    <p className="font-mono text-sm font-semibold text-foreground">
+                  <div className="min-w-0">
+                    <p className="break-words font-mono text-sm font-semibold text-foreground">
                       {t("openSource")}
                     </p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">{t("activeContributor")}</p>
+                    <p className="mt-0.5 break-words text-xs text-muted-foreground">{t("activeContributor")}</p>
                   </div>
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-3xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5 sm:rounded-2xl sm:p-6">
+              <div className="group relative min-w-0 overflow-hidden rounded-3xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5 sm:rounded-2xl sm:p-6">
                 <div className="flex items-center gap-4">
                   <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20 group-hover:shadow-lg">
                     <Linkedin className="h-6 w-6 text-primary" />
                   </div>
-                  <div>
-                    <p className="font-mono text-sm font-semibold text-foreground">
+                  <div className="min-w-0">
+                    <p className="break-words font-mono text-sm font-semibold text-foreground">
                       {t("connect")}
                     </p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">{t("letsNetwork")}</p>
+                    <p className="mt-0.5 break-words text-xs text-muted-foreground">{t("letsNetwork")}</p>
                   </div>
                 </div>
               </div>

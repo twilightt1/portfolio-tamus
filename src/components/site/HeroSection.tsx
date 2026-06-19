@@ -50,8 +50,8 @@ export function HeroSection() {
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-35 sm:opacity-55" />
 
       {/* Content container */}
-      <div className="relative mx-auto w-full max-w-none px-4 pt-14 pb-12 sm:px-10 sm:pt-28 sm:pb-28 lg:px-20 lg:pt-32 xl:px-32">
-        <div className="grid grid-cols-1 items-center gap-10 sm:gap-16 lg:grid-cols-[1.2fr_1fr]">
+      <div className="relative mx-auto w-full max-w-none px-4 pt-10 pb-10 min-[390px]:pt-12 sm:px-10 sm:pt-24 sm:pb-24 lg:px-20 lg:pt-32 xl:px-32">
+        <div className="grid grid-cols-1 items-center gap-8 sm:gap-14 lg:grid-cols-[1.2fr_1fr]">
           {/* Left: Text content */}
           <div className="w-full">
             {/* Badge */}
@@ -63,7 +63,7 @@ export function HeroSection() {
             </div>
 
             {/* H1 Title */}
-            <h1 className="animate-fade-in-up delay-100 mt-6 font-mono text-[clamp(2.05rem,12vw,3rem)] font-bold leading-[1.03] tracking-tight text-foreground sm:mt-9 sm:text-5xl lg:text-6xl">
+            <h1 className="animate-fade-in-up delay-100 mt-5 font-mono text-[clamp(2rem,10.6vw,3rem)] font-bold leading-[1.04] tracking-tight text-foreground sm:mt-9 sm:text-5xl sm:leading-[1.03] lg:text-6xl">
               {t("heroGreeting")}{" "}
               <span className="inline-block align-middle text-gradient">{t("heroName")}.</span>
               <br />
@@ -77,15 +77,15 @@ export function HeroSection() {
             </h1>
 
             {/* Description */}
-            <p className="animate-fade-in-up delay-200 mt-6 max-w-lg text-[15px] leading-7 text-muted-foreground sm:mt-10 sm:text-lg sm:leading-relaxed">
+            <p className="animate-fade-in-up delay-200 mt-5 max-w-xl text-[15px] leading-7 text-muted-foreground sm:mt-8 sm:text-lg sm:leading-relaxed">
               {t("heroDescription")}
             </p>
 
             {/* CTA Buttons */}
-            <div className="animate-fade-in-up delay-300 mt-8 grid grid-cols-1 gap-3 min-[430px]:grid-cols-2 sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:gap-4">
+            <div className="animate-fade-in-up delay-300 mt-7 grid grid-cols-1 gap-3 min-[360px]:grid-cols-2 sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:gap-4">
               <a
                 href="#projects"
-                className="touch-target tap-highlight-none group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] sm:rounded-xl sm:py-3"
+                className="touch-target tap-highlight-none group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-primary px-4 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] sm:rounded-xl sm:px-6 sm:py-3"
               >
                 <span className="relative z-10">{t("viewProjects")}</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -98,7 +98,7 @@ export function HeroSection() {
 
               <a
                 href="#contact"
-                className="touch-target tap-highlight-none group inline-flex items-center justify-center gap-2 rounded-2xl border border-primary/25 bg-primary/10 px-6 py-3.5 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/15 hover:shadow-md active:scale-[0.98] sm:rounded-xl sm:py-3"
+                className="touch-target tap-highlight-none group inline-flex items-center justify-center gap-2 rounded-2xl border border-primary/25 bg-primary/10 px-4 py-3.5 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/15 hover:shadow-md active:scale-[0.98] sm:rounded-xl sm:px-6 sm:py-3"
               >
                 <Mail className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
                 {t("getInTouch")}
@@ -107,7 +107,7 @@ export function HeroSection() {
               <a
                 href="/Tamus_AI_Engineer_CV.pdf"
                 download
-                className="touch-target tap-highlight-none group inline-flex items-center justify-center gap-2 rounded-2xl border border-border/70 bg-background/70 px-6 py-3.5 text-sm font-medium text-muted-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-accent/60 hover:text-foreground hover:shadow-md active:scale-[0.98] min-[430px]:col-span-2 sm:col-span-auto sm:rounded-xl sm:py-3"
+                className="touch-target tap-highlight-none group inline-flex items-center justify-center gap-2 rounded-2xl border border-border/70 bg-background/70 px-4 py-3.5 text-sm font-medium text-muted-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-accent/60 hover:text-foreground hover:shadow-md active:scale-[0.98] min-[360px]:col-span-2 sm:col-span-auto sm:rounded-xl sm:px-6 sm:py-3"
               >
                 <FileText className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
                 {t("downloadCV")}
@@ -115,7 +115,7 @@ export function HeroSection() {
             </div>
 
             {/* Recruiter quick scan */}
-            <div className="animate-fade-in-up delay-400 mt-6 rounded-2xl border border-border/60 bg-card/50 p-3.5 backdrop-blur-sm sm:mt-7 sm:max-w-xl sm:p-4">
+            <div className="animate-fade-in-up delay-400 mt-5 rounded-2xl border border-border/60 bg-card/50 p-3.5 backdrop-blur-sm sm:mt-7 sm:max-w-xl sm:p-4">
               <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                 {t("heroProofLead")}
               </p>
@@ -372,7 +372,7 @@ export function HeroSection() {
         </div>
 
         {/* Stats bar */}
-        <div className="animate-fade-in-up delay-500 mt-10 grid grid-cols-2 gap-3 sm:mt-20 sm:grid-cols-4 sm:gap-4">
+        <div className="animate-fade-in-up delay-500 mt-8 grid grid-cols-1 gap-3 min-[360px]:grid-cols-2 sm:mt-20 sm:grid-cols-4 sm:gap-4">
           {[
             { k: t("focus"), v: "AI / ML", sub: "Primary focus" },
             { k: t("stack"), v: t("pythonPyTorch"), sub: "Core tools" },
@@ -381,12 +381,12 @@ export function HeroSection() {
           ].map((item) => (
             <div
               key={item.k}
-              className="gradient-border group relative min-h-[6rem] min-w-0 rounded-2xl border border-border/60 bg-card/60 p-3.5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-card/90 hover:shadow-2xl hover:shadow-primary/15 sm:rounded-xl sm:p-5"
+              className="gradient-border group relative min-h-[5.5rem] min-w-0 rounded-2xl border border-border/60 bg-card/60 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-card/90 hover:shadow-2xl hover:shadow-primary/15 min-[360px]:min-h-[6rem] sm:rounded-xl sm:p-5"
             >
               <p className="truncate font-mono text-[10px] uppercase tracking-widest text-primary transition-colors group-hover:text-accent-foreground">
                 {item.k}
               </p>
-              <p className="mt-1.5 break-words font-mono text-[13px] font-semibold leading-snug text-foreground transition-all group-hover:scale-105 group-hover:text-primary sm:text-sm">
+              <p className="mt-1.5 break-words font-mono text-[12px] font-semibold leading-snug text-foreground transition-all group-hover:scale-105 group-hover:text-primary sm:text-sm">
                 {item.v}
               </p>
               <p className="mt-1 font-mono text-[10px] leading-snug text-muted-foreground/60 group-hover:text-muted-foreground">

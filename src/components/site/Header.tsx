@@ -139,7 +139,7 @@ export function Header() {
           aria-modal={open ? "true" : undefined}
           aria-label="Mobile navigation"
           aria-hidden={!open}
-          className={`fixed inset-x-3 top-[4.25rem] z-40 max-h-[calc(100dvh-5rem)] overflow-hidden rounded-3xl border border-border/70 bg-background/95 shadow-2xl shadow-foreground/10 backdrop-blur-2xl transition-all duration-300 ease-expo md:hidden ${
+          className={`fixed inset-x-3 top-[4.25rem] z-40 max-h-[calc(100dvh-5rem)] max-w-[calc(100vw-1.5rem)] overflow-hidden rounded-3xl border border-border/70 bg-background/95 shadow-2xl shadow-foreground/10 backdrop-blur-2xl transition-all duration-300 ease-expo md:hidden ${
             open
               ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
               : "pointer-events-none -translate-y-3 scale-[0.98] opacity-0"

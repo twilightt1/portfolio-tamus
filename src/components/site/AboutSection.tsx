@@ -41,7 +41,7 @@ export function AboutSection() {
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <p className="mt-4 text-base leading-7 text-muted-foreground sm:mt-5 sm:text-xl sm:leading-relaxed">
+            <p className="mt-4 text-[15px] leading-7 text-muted-foreground sm:mt-5 sm:text-xl sm:leading-relaxed">
               {t("aboutDescription")}
             </p>
           </ScrollReveal>
@@ -82,18 +82,18 @@ export function AboutSection() {
           {/* Card 1: Bio */}
           <ScrollReveal delay={300} className="lg:col-span-2">
             <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card/80 p-5 backdrop-blur-sm transition-all duration-500 hover:border-border hover:shadow-xl sm:p-8">
-              <div className="flex items-start gap-5">
+              <div className="flex min-w-0 items-start gap-4 sm:gap-5">
                 <div className="hidden sm:flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/10">
                   <Code className="h-6 w-6 text-primary" />
                 </div>
-                <div className="space-y-4">
+                <div className="min-w-0 space-y-4">
                   <h3 className="font-mono text-sm font-semibold uppercase tracking-wider text-primary">
                     {t("aboutWhoIAm")}
                   </h3>
-                  <div className="space-y-3 text-base leading-relaxed text-muted-foreground">
+                  <div className="space-y-3 text-[15px] leading-7 text-muted-foreground sm:text-base sm:leading-relaxed">
                     <p className="rounded-xl border border-primary/15 bg-primary/5 p-4 text-foreground/90">
                       {t("aboutBioIntro")}{" "}
-                      <span className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 font-medium text-primary">
+                      <span className="inline-flex max-w-full items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 font-medium text-primary">
                         <Brain className="h-3.5 w-3.5" />
                         {t("aboutBioHighlight")}
                       </span>
@@ -131,11 +131,11 @@ export function AboutSection() {
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20">
                       <MapPin className="h-5 w-5 text-emerald-500" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
                         {t("aboutBasedInLabel")}
                       </p>
-                      <p className="text-sm font-semibold text-foreground">
+                      <p className="break-words text-sm font-semibold text-foreground">
                         {t("aboutLocationValue")}
                       </p>
                     </div>
@@ -144,11 +144,11 @@ export function AboutSection() {
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 border border-blue-500/20">
                       <GraduationCap className="h-5 w-5 text-blue-500" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
                         {t("aboutEducationLabel")}
                       </p>
-                      <p className="text-sm font-semibold text-foreground">
+                      <p className="break-words text-sm font-semibold text-foreground">
                         {t("aboutEducationValue")}
                       </p>
                     </div>
@@ -157,11 +157,11 @@ export function AboutSection() {
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 border border-amber-500/20">
                       <Zap className="h-5 w-5 text-amber-500" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
                         {t("aboutFocusLabel")}
                       </p>
-                      <p className="text-sm font-semibold text-foreground">
+                      <p className="break-words text-sm font-semibold text-foreground">
                         {t("aboutFocusValue")}
                       </p>
                     </div>
@@ -174,7 +174,7 @@ export function AboutSection() {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                   </span>
-                  <span className="font-mono text-xs text-emerald-600 dark:text-emerald-400">
+                  <span className="font-mono text-[11px] leading-5 text-emerald-600 dark:text-emerald-400 sm:text-xs">
                     {t("aboutStatusValue")}
                   </span>
                 </div>

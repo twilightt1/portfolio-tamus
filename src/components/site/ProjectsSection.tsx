@@ -114,7 +114,7 @@ export function ProjectsSection() {
               <TiltCard
                 onClick={() => setOpenProject(projects.indexOf(p))}
                 keyboardInteractive={false}
-                className="card-interactive tap-highlight-none group relative cursor-pointer overflow-hidden rounded-3xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/15 active:scale-[0.99] sm:rounded-2xl"
+                className="card-interactive tap-highlight-none group relative min-w-0 cursor-pointer overflow-hidden rounded-3xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/15 active:scale-[0.99] sm:rounded-2xl"
               >
                 {/* Gradient overlay on hover - smoother */}
                 <div
@@ -140,12 +140,12 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Bottom: Content */}
-                <div className="flex flex-1 flex-col p-5 transition-all duration-300 group-hover:translate-y-[-2px] sm:p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-mono text-base font-semibold text-foreground transition-colors duration-300 group-hover:text-primary sm:text-lg">
+                <div className="flex min-w-0 flex-1 flex-col p-5 transition-all duration-300 group-hover:translate-y-[-2px] sm:p-6">
+                  <div className="flex min-w-0 flex-col gap-3 min-[390px]:flex-row min-[390px]:items-start min-[390px]:justify-between sm:gap-4">
+                    <h3 className="min-w-0 font-mono text-base font-semibold leading-snug text-foreground transition-colors duration-300 group-hover:text-primary sm:text-lg">
                       {p.name}
                     </h3>
-                    <div className="flex flex-col items-end gap-2">
+                    <div className="flex shrink-0 flex-row-reverse items-center justify-end gap-2 min-[390px]:flex-col min-[390px]:items-end">
                       <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:scale-110 group-hover:text-primary" />
                       <button
                         type="button"
@@ -160,7 +160,7 @@ export function ProjectsSection() {
                       </button>
                     </div>
                   </div>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground/90">
+                  <p className="mt-3 flex-1 text-[13px] leading-6 text-muted-foreground transition-colors duration-300 group-hover:text-foreground/90 sm:text-sm sm:leading-relaxed">
                     {p.blurb}
                   </p>
 
@@ -175,7 +175,7 @@ export function ProjectsSection() {
                         </span>
                       ))}
                     </div>
-                    <div className="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-start">
+                    <div className="grid w-full grid-cols-2 gap-3 sm:flex sm:w-auto sm:items-center sm:justify-start">
                       <a
                         href={p.githubUrl}
                         target="_blank"
@@ -187,7 +187,7 @@ export function ProjectsSection() {
                         {t("code")}
                       </a>
                       {p.demoUrl === "#" ? (
-                        <span className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-border/40 bg-muted/30 px-3 py-2 font-mono text-xs text-muted-foreground/70">
+                        <span className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-border/40 bg-muted/30 px-3 py-2 text-center font-mono text-[11px] leading-4 text-muted-foreground/70 sm:text-xs">
                           <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />{" "}
                           {t("demoComingSoon")}
                         </span>
@@ -216,9 +216,9 @@ export function ProjectsSection() {
           {openProject !== null && (
             <>
               <div
-                className={`relative grid h-40 place-items-center bg-gradient-to-br ${projects[openProject].accent} sm:h-56`}
+                className={`relative grid h-32 place-items-center bg-gradient-to-br ${projects[openProject].accent} sm:h-56`}
               >
-                <span className="font-mono text-6xl font-bold text-primary/60 sm:text-7xl">
+                <span className="font-mono text-5xl font-bold text-primary/60 sm:text-7xl">
                   {projects[openProject].glyph}
                 </span>
                 <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1 backdrop-blur-sm sm:left-6 sm:top-6">
@@ -228,9 +228,9 @@ export function ProjectsSection() {
                   </span>
                 </div>
               </div>
-              <div className="p-5 sm:p-10">
+              <div className="p-5 pb-0 sm:p-10">
                 <DialogHeader className="pr-12 text-left sm:pr-0">
-                  <DialogTitle className="font-mono text-xl font-semibold tracking-tight sm:text-2xl">
+                  <DialogTitle className="font-mono text-lg font-semibold tracking-tight sm:text-2xl">
                     <span className="block font-mono text-xs uppercase tracking-widest text-primary">
                       {t("projectDetails")}
                     </span>
@@ -241,7 +241,7 @@ export function ProjectsSection() {
                   </DialogDescription>
                 </DialogHeader>
                 <div className="mt-5 space-y-5 sm:mt-6">
-                  <p className="text-[15px] leading-7 text-muted-foreground sm:text-base sm:leading-relaxed">
+                  <p className="text-sm leading-7 text-muted-foreground sm:text-base sm:leading-relaxed">
                     {projects[openProject].description}
                   </p>
                   <div className="rounded-2xl border border-border/60 bg-muted/30 p-4 sm:rounded-xl sm:p-5">

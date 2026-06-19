@@ -45,11 +45,11 @@ export function ScrollReveal({
   }, [threshold, once]);
 
   const transforms: Record<string, string> = {
-    up: "translate-y-10",
-    down: "-translate-y-10",
-    left: "translate-x-10",
-    right: "-translate-x-10",
-    fade: "scale-[0.96]",
+    up: "translate-y-8 sm:translate-y-10",
+    down: "-translate-y-8 sm:-translate-y-10",
+    left: "translate-y-8 sm:translate-y-0 sm:translate-x-10",
+    right: "translate-y-8 sm:translate-y-0 sm:-translate-x-10",
+    fade: "scale-[0.98] sm:scale-[0.96]",
   };
 
   return (

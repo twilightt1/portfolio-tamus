@@ -25,45 +25,45 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-noise"
+      className="mobile-hero relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-noise"
     >
       {/* === ORBS — Bigger, drift animation, violet accent === */}
       <div className="pointer-events-none absolute inset-0">
         {/* Main primary orb — top right */}
         <div
-          className="absolute -top-40 right-[-10%] h-[700px] w-[700px] rounded-full bg-primary/6 blur-[140px]"
+          className="absolute -top-28 right-[-45%] h-[360px] w-[360px] rounded-full bg-primary/7 blur-[90px] sm:-top-40 sm:right-[-10%] sm:h-[700px] sm:w-[700px] sm:blur-[140px]"
           style={{ animation: "orb-drift 18s ease-in-out infinite" }}
         />
         {/* Secondary orb — bottom left with violet */}
         <div
-          className="absolute -bottom-32 left-[-5%] h-[550px] w-[550px] rounded-full bg-violet/4 blur-[110px]"
+          className="absolute -bottom-24 left-[-40%] h-[320px] w-[320px] rounded-full bg-violet/5 blur-[80px] sm:-bottom-32 sm:left-[-5%] sm:h-[550px] sm:w-[550px] sm:blur-[110px]"
           style={{ animation: "orb-drift 22s ease-in-out infinite reverse" }}
         />
         {/* Tertiary glow — center-right */}
         <div
-          className="absolute bottom-1/4 right-[15%] h-[400px] w-[400px] rounded-full bg-accent/12 blur-[90px]"
+          className="absolute bottom-1/4 right-[5%] h-[240px] w-[240px] rounded-full bg-accent/10 blur-[70px] sm:right-[15%] sm:h-[400px] sm:w-[400px] sm:blur-[90px]"
           style={{ animation: "orb-drift 15s ease-in-out infinite" }}
         />
       </div>
 
       {/* Grid background — stronger opacity */}
-      <div className="bg-grid pointer-events-none absolute inset-0 opacity-55" />
+      <div className="bg-grid pointer-events-none absolute inset-0 opacity-35 sm:opacity-55" />
 
       {/* Content container */}
-      <div className="relative mx-auto max-w-none px-6 pt-20 pb-20 sm:px-10 sm:pt-28 sm:pb-28 lg:px-20 lg:pt-32 xl:px-32">
-        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.2fr_1fr]">
+      <div className="relative mx-auto w-full max-w-none px-4 pt-14 pb-12 sm:px-10 sm:pt-28 sm:pb-28 lg:px-20 lg:pt-32 xl:px-32">
+        <div className="grid grid-cols-1 items-center gap-10 sm:gap-16 lg:grid-cols-[1.2fr_1fr]">
           {/* Left: Text content */}
           <div className="w-full">
             {/* Badge */}
-            <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-primary backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-primary/50 hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20">
+            <div className="animate-fade-in-up inline-flex max-w-full items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-primary backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-primary/50 hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 sm:px-4 sm:text-xs sm:tracking-widest">
               <span className="pulse-ring relative flex h-2.5 w-2.5 shrink-0 rounded-full">
                 <span className="relative inline-flex h-full w-full animate-ping-fade rounded-full bg-primary" />
               </span>
-              {t("openToInternships")}
+              <span className="truncate">{t("openToInternships")}</span>
             </div>
 
             {/* H1 Title */}
-            <h1 className="animate-fade-in-up delay-100 mt-9 font-mono text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            <h1 className="animate-fade-in-up delay-100 mt-6 font-mono text-[clamp(2.05rem,12vw,3rem)] font-bold leading-[1.03] tracking-tight text-foreground sm:mt-9 sm:text-5xl lg:text-6xl">
               {t("heroGreeting")}{" "}
               <span className="inline-block align-middle text-gradient">{t("heroName")}.</span>
               <br />
@@ -77,15 +77,15 @@ export function HeroSection() {
             </h1>
 
             {/* Description */}
-            <p className="animate-fade-in-up delay-200 mt-10 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="animate-fade-in-up delay-200 mt-6 max-w-lg text-[15px] leading-7 text-muted-foreground sm:mt-10 sm:text-lg sm:leading-relaxed">
               {t("heroDescription")}
             </p>
 
             {/* CTA Buttons */}
-            <div className="animate-fade-in-up delay-300 mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            <div className="animate-fade-in-up delay-300 mt-8 grid grid-cols-1 gap-3 min-[430px]:grid-cols-2 sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:gap-4">
               <a
                 href="#projects"
-                className="touch-target group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:translate-y-0"
+                className="touch-target tap-highlight-none group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] sm:rounded-xl sm:py-3"
               >
                 <span className="relative z-10">{t("viewProjects")}</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -98,7 +98,7 @@ export function HeroSection() {
 
               <a
                 href="#contact"
-                className="touch-target group inline-flex items-center justify-center gap-2 rounded-xl border border-primary/25 bg-primary/10 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/15 hover:shadow-md active:translate-y-0"
+                className="touch-target tap-highlight-none group inline-flex items-center justify-center gap-2 rounded-2xl border border-primary/25 bg-primary/10 px-6 py-3.5 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/15 hover:shadow-md active:scale-[0.98] sm:rounded-xl sm:py-3"
               >
                 <Mail className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
                 {t("getInTouch")}
@@ -107,7 +107,7 @@ export function HeroSection() {
               <a
                 href="/Tamus_AI_Engineer_CV.pdf"
                 download
-                className="touch-target group inline-flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/70 px-6 py-3 text-sm font-medium text-muted-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-accent/60 hover:text-foreground hover:shadow-md active:translate-y-0"
+                className="touch-target tap-highlight-none group inline-flex items-center justify-center gap-2 rounded-2xl border border-border/70 bg-background/70 px-6 py-3.5 text-sm font-medium text-muted-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-accent/60 hover:text-foreground hover:shadow-md active:scale-[0.98] min-[430px]:col-span-2 sm:col-span-auto sm:rounded-xl sm:py-3"
               >
                 <FileText className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
                 {t("downloadCV")}
@@ -115,7 +115,7 @@ export function HeroSection() {
             </div>
 
             {/* Recruiter quick scan */}
-            <div className="animate-fade-in-up delay-400 mt-7 rounded-2xl border border-border/60 bg-card/50 p-4 backdrop-blur-sm sm:max-w-xl">
+            <div className="animate-fade-in-up delay-400 mt-6 rounded-2xl border border-border/60 bg-card/50 p-3.5 backdrop-blur-sm sm:mt-7 sm:max-w-xl sm:p-4">
               <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                 {t("heroProofLead")}
               </p>
@@ -372,24 +372,24 @@ export function HeroSection() {
         </div>
 
         {/* Stats bar */}
-        <div className="animate-fade-in-up delay-500 mt-14 grid grid-cols-2 gap-3 sm:mt-20 sm:grid-cols-4 sm:gap-4">
+        <div className="animate-fade-in-up delay-500 mt-10 grid grid-cols-2 gap-3 sm:mt-20 sm:grid-cols-4 sm:gap-4">
           {[
             { k: t("focus"), v: "AI / ML", sub: "Primary focus" },
             { k: t("stack"), v: t("pythonPyTorch"), sub: "Core tools" },
             { k: t("projects"), v: t("shipped"), sub: "Production-ready" },
             { k: t("status"), v: t("seekingIntern"), sub: "Available now" },
-          ].map((item, idx) => (
+          ].map((item) => (
             <div
               key={item.k}
-              className="gradient-border group relative rounded-xl border border-border/60 bg-card/60 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-card/90 hover:shadow-2xl hover:shadow-primary/15 sm:p-5"
+              className="gradient-border group relative min-h-[6rem] min-w-0 rounded-2xl border border-border/60 bg-card/60 p-3.5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-card/90 hover:shadow-2xl hover:shadow-primary/15 sm:rounded-xl sm:p-5"
             >
-              <p className="font-mono text-[10px] uppercase tracking-widest text-primary transition-colors group-hover:text-accent-foreground">
+              <p className="truncate font-mono text-[10px] uppercase tracking-widest text-primary transition-colors group-hover:text-accent-foreground">
                 {item.k}
               </p>
-              <p className="mt-1.5 font-mono text-sm font-semibold text-foreground transition-all group-hover:scale-105 group-hover:text-primary">
+              <p className="mt-1.5 break-words font-mono text-[13px] font-semibold leading-snug text-foreground transition-all group-hover:scale-105 group-hover:text-primary sm:text-sm">
                 {item.v}
               </p>
-              <p className="mt-0.5 font-mono text-[10px] text-muted-foreground/60 group-hover:text-muted-foreground">
+              <p className="mt-1 font-mono text-[10px] leading-snug text-muted-foreground/60 group-hover:text-muted-foreground">
                 {item.sub}
               </p>
             </div>
@@ -397,7 +397,7 @@ export function HeroSection() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="mt-14 flex justify-center sm:mt-20">
+        <div className="mt-10 hidden justify-center sm:mt-20 sm:flex">
           <a
             href="#about"
             className="group flex flex-col items-center gap-3 text-muted-foreground transition-colors hover:text-primary"

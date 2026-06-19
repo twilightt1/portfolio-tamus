@@ -84,7 +84,7 @@ export function SkillsSection() {
       {/* Grid pattern */}
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-20" />
 
-      <div className="relative mx-auto max-w-none px-6 py-24 sm:px-10 sm:py-28 lg:px-20 xl:px-32">
+      <div className="mobile-section relative mx-auto max-w-none px-4 py-20 sm:px-10 sm:py-24 lg:px-20 xl:px-32">
         {/* Section heading */}
         <div className="mb-14 sm:mb-18">
           <ScrollReveal>
@@ -93,12 +93,12 @@ export function SkillsSection() {
             </p>
           </ScrollReveal>
           <ScrollReveal delay={100}>
-            <h2 className="text-gradient-static mt-3 font-mono text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mt-3 font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               {t("toolsOfTheTrade")}
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            <p className="mt-4 max-w-2xl text-[15px] leading-7 text-muted-foreground sm:text-lg sm:leading-relaxed">
               {t("skillsDescription")}
             </p>
           </ScrollReveal>
@@ -110,11 +110,11 @@ export function SkillsSection() {
               <p className="font-mono text-xs uppercase tracking-widest text-primary">
                 {t("mostRelevant")}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="mobile-scroll-row mobile-fade-mask mt-5 flex gap-2 sm:mt-6 sm:flex-wrap">
                 {relevantSkills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-primary/20 bg-background/70 px-3 py-1.5 font-mono text-[11px] text-foreground shadow-sm shadow-primary/5"
+                    className="mobile-snap-card shrink-0 rounded-full border border-primary/20 bg-primary/5 px-3.5 py-2 font-mono text-[11px] text-primary sm:px-3 sm:py-1.5"
                   >
                     {skill}
                   </span>
@@ -125,14 +125,12 @@ export function SkillsSection() {
         </ScrollReveal>
 
         {/* Skills grid */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
           {skillGroups.map((g, groupIdx) => {
             const Icon = g.icon;
             return (
               <ScrollReveal key={g.titleKey} delay={groupIdx * 120} direction="up">
-                <div
-                  className={`group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-300 ease-spring hover:-translate-y-1 hover:bg-card sm:p-6 ${g.borderColor} ${g.glowColor} hover:shadow-2xl active:translate-y-0`}
-                >
+                <div className="group relative h-full overflow-hidden rounded-3xl border border-border/60 bg-card/65 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/15 active:translate-y-0 sm:rounded-2xl sm:p-6">
                   {/* Category glow overlay on hover - smoother */}
                   <div
                     className={`absolute inset-0 ${g.bgColor} opacity-0 transition-all duration-500 group-hover:opacity-40 group-hover:scale-105`}

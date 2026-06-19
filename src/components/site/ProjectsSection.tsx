@@ -67,7 +67,7 @@ export function ProjectsSection() {
         <div className="absolute left-0 bottom-1/4 h-[300px] w-[300px] rounded-full bg-accent/5 blur-[80px]" />
       </div>
 
-      <div className="relative mx-auto max-w-none px-6 py-20 sm:px-10 sm:py-24 lg:px-20 xl:px-32">
+      <div className="mobile-section relative mx-auto max-w-none px-4 py-20 sm:px-10 sm:py-24 lg:px-20 xl:px-32">
         <div className="mb-12 sm:mb-16">
           <ScrollReveal>
             <p className="font-mono text-xs uppercase tracking-widest text-primary">
@@ -80,20 +80,21 @@ export function ProjectsSection() {
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            <p className="mt-4 max-w-2xl text-[15px] leading-7 text-muted-foreground sm:text-lg sm:leading-relaxed">
               {t("projectsDescription")}
             </p>
           </ScrollReveal>
 
           {/* Filter tabs */}
           <ScrollReveal delay={300}>
-            <div className="mt-8 flex flex-wrap gap-2">
+            <div className="mobile-scroll-row mobile-fade-mask mt-6 flex flex-nowrap gap-2 sm:mt-8 sm:flex-wrap">
               {allTags.map((tag) => (
                 <button
                   key={tag}
+                  type="button"
                   onClick={() => setActiveTag(tag)}
                   aria-pressed={activeTag === tag}
-                  className={`touch-target rounded-full border px-4 py-1.5 font-mono text-xs transition-all duration-300 ${
+                  className={`touch-target tap-highlight-none mobile-snap-card shrink-0 rounded-full border px-4 py-2 font-mono text-xs transition-all duration-300 ${
                     activeTag === tag
                       ? "scale-105 border-primary bg-primary text-primary-foreground shadow-md shadow-primary/25"
                       : "border-border/60 bg-card/60 text-muted-foreground hover:scale-105 hover:border-primary/40 hover:bg-primary/5 hover:text-foreground active:scale-95"
@@ -107,13 +108,13 @@ export function ProjectsSection() {
         </div>
 
         {/* Project cards - Bento Grid */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
           {filtered.map((p, idx) => (
             <ScrollReveal key={p.name} delay={idx * 100} direction="up">
               <TiltCard
                 onClick={() => setOpenProject(projects.indexOf(p))}
                 keyboardInteractive={false}
-                className="card-interactive tap-highlight-none group relative cursor-pointer overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/15 active:translate-y-0"
+                className="card-interactive tap-highlight-none group relative cursor-pointer overflow-hidden rounded-3xl border border-border/60 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-card hover:shadow-2xl hover:shadow-primary/15 active:scale-[0.99] sm:rounded-2xl"
               >
                 {/* Gradient overlay on hover - smoother */}
                 <div
@@ -122,7 +123,7 @@ export function ProjectsSection() {
 
                 {/* Top: Glyph area */}
                 <div
-                  className={`relative grid h-44 place-items-center bg-gradient-to-br ${p.accent} transition-all duration-500 group-hover:brightness-110`}
+                  className={`relative grid h-36 place-items-center bg-gradient-to-br ${p.accent} transition-all duration-500 group-hover:brightness-110 sm:h-44`}
                 >
                   <span className="font-mono text-6xl font-bold text-primary/60 transition-all duration-500 group-hover:scale-110 group-hover:text-primary/80 group-hover:animate-wiggle">
                     {p.glyph}
@@ -139,9 +140,9 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Bottom: Content */}
-                <div className="flex flex-1 flex-col p-6 transition-all duration-300 group-hover:translate-y-[-2px]">
+                <div className="flex flex-1 flex-col p-5 transition-all duration-300 group-hover:translate-y-[-2px] sm:p-6">
                   <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-mono text-lg font-semibold text-foreground transition-colors duration-300 group-hover:text-primary">
+                    <h3 className="font-mono text-base font-semibold text-foreground transition-colors duration-300 group-hover:text-primary sm:text-lg">
                       {p.name}
                     </h3>
                     <div className="flex flex-col items-end gap-2">
@@ -163,7 +164,7 @@ export function ProjectsSection() {
                     {p.blurb}
                   </p>
 
-                  <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-border/60 pt-5">
+                  <div className="mt-5 flex flex-col gap-4 border-t border-border/60 pt-5 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex flex-wrap gap-2">
                       {p.tags.map((tag) => (
                         <span
@@ -174,19 +175,19 @@ export function ProjectsSection() {
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-start">
                       <a
                         href={p.githubUrl}
                         target="_blank"
                         rel="noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-foreground hover:scale-105 active:scale-95"
+                        className="touch-target tap-highlight-none inline-flex items-center justify-center gap-1.5 rounded-xl border border-border/50 bg-background/50 px-3 py-2 font-mono text-xs text-muted-foreground transition-all duration-300 hover:scale-105 hover:bg-accent hover:text-foreground active:scale-95"
                       >
                         <Github className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />{" "}
                         {t("code")}
                       </a>
                       {p.demoUrl === "#" ? (
-                        <span className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground/70">
+                        <span className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-border/40 bg-muted/30 px-3 py-2 font-mono text-xs text-muted-foreground/70">
                           <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />{" "}
                           {t("demoComingSoon")}
                         </span>
@@ -194,7 +195,7 @@ export function ProjectsSection() {
                         <a
                           href={p.demoUrl}
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-xs text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-foreground hover:scale-105 active:scale-95"
+                          className="touch-target tap-highlight-none inline-flex items-center justify-center gap-1.5 rounded-xl border border-border/50 bg-background/50 px-3 py-2 font-mono text-xs text-muted-foreground transition-all duration-300 hover:scale-105 hover:bg-accent hover:text-foreground active:scale-95"
                         >
                           <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />{" "}
                           {t("demo")}
@@ -211,25 +212,25 @@ export function ProjectsSection() {
 
       {/* Project Modal */}
       <Dialog open={openProject !== null} onOpenChange={(open) => !open && setOpenProject(null)}>
-        <DialogContent className="max-w-2xl gap-0 p-0 overflow-hidden sm:rounded-2xl">
+        <DialogContent className="gap-0 overflow-y-auto p-0 sm:max-w-2xl sm:rounded-2xl">
           {openProject !== null && (
             <>
               <div
-                className={`relative grid h-56 place-items-center bg-gradient-to-br ${projects[openProject].accent}`}
+                className={`relative grid h-40 place-items-center bg-gradient-to-br ${projects[openProject].accent} sm:h-56`}
               >
-                <span className="font-mono text-7xl font-bold text-primary/60">
+                <span className="font-mono text-6xl font-bold text-primary/60 sm:text-7xl">
                   {projects[openProject].glyph}
                 </span>
-                <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1 backdrop-blur-sm">
+                <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1 backdrop-blur-sm sm:left-6 sm:top-6">
                   <Sparkles className="h-3 w-3 text-primary" />
                   <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                     0{openProject + 1}
                   </span>
                 </div>
               </div>
-              <div className="p-8 sm:p-10">
-                <DialogHeader className="text-left">
-                  <DialogTitle className="font-mono text-2xl font-semibold tracking-tight">
+              <div className="p-5 sm:p-10">
+                <DialogHeader className="pr-12 text-left sm:pr-0">
+                  <DialogTitle className="font-mono text-xl font-semibold tracking-tight sm:text-2xl">
                     <span className="block font-mono text-xs uppercase tracking-widest text-primary">
                       {t("projectDetails")}
                     </span>
@@ -239,51 +240,54 @@ export function ProjectsSection() {
                     Project details for {projects[openProject].name}
                   </DialogDescription>
                 </DialogHeader>
-                <div className="mt-6 space-y-5">
-                  <p className="text-base leading-relaxed text-muted-foreground">
+                <div className="mt-5 space-y-5 sm:mt-6">
+                  <p className="text-[15px] leading-7 text-muted-foreground sm:text-base sm:leading-relaxed">
                     {projects[openProject].description}
                   </p>
-                  <div className="rounded-xl border border-border/60 bg-muted/30 p-5">
+                  <div className="rounded-2xl border border-border/60 bg-muted/30 p-4 sm:rounded-xl sm:p-5">
                     <p className="font-mono text-xs uppercase tracking-widest text-primary">
                       {t("keyLearnings")}
                     </p>
-                    <ul className="mt-3 space-y-2">
+                    <ul className="mt-3 space-y-2.5">
                       {projects[openProject].learnings.map((l) => (
-                        <li key={l} className="flex items-start gap-3 text-sm text-foreground">
-                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                        <li
+                          key={l}
+                          className="flex items-start gap-3 text-sm leading-6 text-foreground"
+                        >
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                           <span>{l}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="mobile-scroll-row mobile-fade-mask flex flex-nowrap gap-2 sm:flex-wrap">
                     {projects[openProject].tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md border border-border/60 bg-background/50 px-3 py-1.5 font-mono text-[11px] text-accent-foreground"
+                        className="mobile-snap-card shrink-0 rounded-lg border border-border/60 bg-background/50 px-3 py-1.5 font-mono text-[11px] text-accent-foreground"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center justify-between gap-3 border-t border-border/60 pt-5">
-                    <div className="flex items-center gap-3">
+                  <div className="mobile-sticky-actions flex flex-col gap-3 sm:m-0 sm:flex-row sm:items-center sm:justify-between sm:border-t sm:bg-transparent sm:p-0 sm:pt-5 sm:backdrop-blur-none">
+                    <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:flex sm:items-center">
                       <a
                         href={projects[openProject].githubUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2.5 font-mono text-xs text-foreground transition-colors hover:bg-accent"
+                        className="touch-target tap-highlight-none inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-background px-4 py-3 font-mono text-xs text-foreground transition-colors hover:bg-accent active:scale-95 sm:rounded-lg sm:py-2.5"
                       >
                         <Github className="h-4 w-4" /> {t("viewCode")}
                       </a>
                       {projects[openProject].demoUrl === "#" ? (
-                        <span className="inline-flex items-center gap-2 rounded-lg border border-border bg-muted/40 px-4 py-2.5 font-mono text-xs text-muted-foreground">
+                        <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-border bg-muted/40 px-4 py-3 font-mono text-xs text-muted-foreground sm:rounded-lg sm:py-2.5">
                           <ArrowUpRight className="h-4 w-4" /> {t("demoComingSoon")}
                         </span>
                       ) : (
                         <a
                           href={projects[openProject].demoUrl}
-                          className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 font-mono text-xs font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
+                          className="touch-target tap-highlight-none inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-3 font-mono text-xs font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 active:scale-95 sm:rounded-lg sm:py-2.5"
                         >
                           <ArrowUpRight className="h-4 w-4" /> {t("liveDemo")}
                         </a>

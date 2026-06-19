@@ -29,9 +29,31 @@ export function Header() {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       setScrollProgress(docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0);
     };
+
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
 
   return (
     <>
@@ -39,26 +61,28 @@ export function Header() {
         {t("skipToContent")}
       </a>
       <header
-        className={`relative sticky top-0 z-40 w-full transition-all duration-300 ${
-          scrolled
-            ? "border-b border-border/60 bg-background/80 shadow-lg shadow-foreground/[0.04] backdrop-blur-xl supports-[backdrop-filter]:bg-background/70"
+        className={`relative sticky top-0 z-50 w-full transition-all duration-300 ${
+          scrolled || open
+            ? "border-b border-border/60 bg-background/85 shadow-lg shadow-foreground/[0.04] backdrop-blur-xl supports-[backdrop-filter]:bg-background/75"
             : "border-b border-transparent bg-background/0"
         }`}
       >
-        <div className="mx-auto flex h-16 max-w-none items-center justify-between px-6 sm:px-10 lg:px-20 xl:px-32">
+        <div className="relative z-50 mx-auto flex h-14 max-w-none items-center justify-between px-4 sm:h-16 sm:px-10 lg:px-20 xl:px-32">
           <Link
             to="/"
-            className="group flex items-center gap-1.5 rounded-lg font-mono text-sm font-semibold tracking-tight text-foreground transition-all duration-300 hover:drop-shadow-[0_0_8px_oklch(from_var(--primary)_l_c_h_/_0.3)] focus-visible:outline-offset-4"
+            className="group flex min-w-0 items-center gap-1.5 rounded-lg font-mono text-sm font-semibold tracking-tight text-foreground transition-all duration-300 hover:drop-shadow-[0_0_8px_oklch(from_var(--primary)_l_c_h_/_0.3)] focus-visible:outline-offset-4"
             onClick={() => setOpen(false)}
           >
             <span className="inline-block rounded-md bg-primary/10 px-1.5 py-0.5 text-primary transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_12px_oklch(from_var(--primary)_l_c_h_/_0.2)]">
               &gt;_
             </span>
-            <span className="hidden sm:inline">tamus.pham</span>
+            <span className="hidden max-w-[8rem] truncate min-[390px]:inline sm:max-w-none">
+              tamus.pham
+            </span>
             <span className="animate-pulse text-primary">_</span>
           </Link>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
               {links.map((l) => (
                 <a
@@ -84,10 +108,10 @@ export function Header() {
               aria-label={open ? t("closeMenu") : t("openMenu")}
               aria-expanded={open}
               aria-controls="mobile-navigation"
-              className="touch-target inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border/60 bg-background/70 backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent focus-visible:outline-offset-4 md:hidden"
+              className="touch-target tap-highlight-none inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border/60 bg-background/80 shadow-sm backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent active:scale-95 focus-visible:outline-offset-4 md:hidden"
               onClick={() => setOpen((v) => !v)}
             >
-              {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -98,43 +122,68 @@ export function Header() {
           style={{ width: `${scrollProgress}%` }}
         />
 
-        {/* Mobile nav — slide-down animation */}
+        {/* Mobile nav — floating sheet */}
+        {open && (
+          <button
+            type="button"
+            aria-label={t("closeMenu")}
+            className="fixed inset-0 top-14 z-30 bg-background/55 backdrop-blur-sm md:hidden"
+            onClick={() => setOpen(false)}
+          />
+        )}
+
         <div
           id="mobile-navigation"
           ref={mobileNavRef}
-          role="dialog"
+          role={open ? "dialog" : undefined}
+          aria-modal={open ? "true" : undefined}
           aria-label="Mobile navigation"
           aria-hidden={!open}
-          className={`overflow-hidden border-border/60 bg-background/95 backdrop-blur-xl md:hidden transition-all duration-300 ease-in-out ${
-            open ? "max-h-[620px] border-t opacity-100" : "max-h-0 opacity-0"
+          className={`fixed inset-x-3 top-[4.25rem] z-40 max-h-[calc(100dvh-5rem)] overflow-hidden rounded-3xl border border-border/70 bg-background/95 shadow-2xl shadow-foreground/10 backdrop-blur-2xl transition-all duration-300 ease-expo md:hidden ${
+            open
+              ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
+              : "pointer-events-none -translate-y-3 scale-[0.98] opacity-0"
           }`}
+          style={{ visibility: open ? "visible" : "hidden" }}
         >
-          <div className="mx-auto flex max-w-none flex-col gap-2 px-6 py-4 sm:px-10 lg:px-20 xl:px-32">
+          <div className="safe-area-bottom flex max-h-[calc(100dvh-5rem)] flex-col gap-2 overflow-y-auto p-3">
+            <div className="mb-1 flex items-center justify-between rounded-2xl border border-border/50 bg-card/70 px-4 py-3">
+              <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+                {t("navigate")}
+              </span>
+              <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_12px_oklch(from_var(--primary)_l_c_h_/_0.6)]" />
+            </div>
+
             {links.map((l, idx) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 aria-current={activeSection === l.id ? "page" : undefined}
-                className={`touch-target flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 hover:-translate-x-1 active:translate-x-0 ${
+                className={`touch-target tap-highlight-none flex items-center justify-between rounded-2xl px-4 py-3.5 text-base font-medium transition-all duration-300 active:scale-[0.98] ${
                   activeSection === l.id
-                    ? "border border-primary/20 bg-primary/10 text-primary shadow-sm shadow-primary/10"
-                    : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
+                    ? "border border-primary/25 bg-primary/10 text-primary shadow-sm shadow-primary/10"
+                    : "border border-transparent text-foreground hover:bg-accent/60"
                 }`}
-                style={{ animationDelay: `${idx * 50}ms` }}
+                style={{ transitionDelay: open ? `${idx * 35}ms` : "0ms" }}
               >
                 <span>{l.label}</span>
-                {activeSection === l.id && (
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
-                )}
+                <span
+                  className={`h-2 w-2 rounded-full transition-all ${
+                    activeSection === l.id
+                      ? "scale-100 bg-primary"
+                      : "scale-75 bg-muted-foreground/25"
+                  }`}
+                  aria-hidden="true"
+                />
               </a>
             ))}
 
-            <div className="mt-3 grid grid-cols-1 gap-2 border-t border-border/60 pt-4 sm:grid-cols-2">
+            <div className="mt-2 grid grid-cols-1 gap-2 border-t border-border/60 pt-3 min-[420px]:grid-cols-2">
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
-                className="touch-target inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
+                className="touch-target tap-highlight-none inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
               >
                 <Mail className="h-4 w-4" />
                 {t("getInTouch")}
@@ -143,7 +192,7 @@ export function Header() {
                 href="/Tamus_AI_Engineer_CV.pdf"
                 download
                 onClick={() => setOpen(false)}
-                className="touch-target inline-flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/70 px-4 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/30 hover:bg-primary/5 active:scale-[0.98]"
+                className="touch-target tap-highlight-none inline-flex items-center justify-center gap-2 rounded-2xl border border-border/70 bg-card/70 px-4 py-3.5 text-sm font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-primary/5 active:scale-[0.98]"
               >
                 <Download className="h-4 w-4" />
                 {t("downloadCV")}

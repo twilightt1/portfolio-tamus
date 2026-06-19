@@ -26,7 +26,7 @@ export function ContactSection() {
         <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto max-w-none px-6 py-20 sm:px-10 sm:py-24 lg:px-20 xl:px-32">
+      <div className="mobile-section relative mx-auto max-w-none px-4 py-20 sm:px-10 sm:py-24 lg:px-20 xl:px-32">
         <div className="mb-12 sm:mb-16">
           <ScrollReveal>
             <p className="font-mono text-xs uppercase tracking-widest text-primary">
@@ -39,7 +39,7 @@ export function ContactSection() {
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            <p className="mt-4 max-w-2xl text-[15px] leading-7 text-muted-foreground sm:text-lg sm:leading-relaxed">
               {t("contactDescription")}
             </p>
           </ScrollReveal>
@@ -48,12 +48,12 @@ export function ContactSection() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr]">
           {/* Main contact card */}
           <ScrollReveal delay={300} direction="left">
-            <div className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/30 hover:bg-card hover:shadow-2xl hover:shadow-primary/10 sm:p-10">
+            <div className="group relative overflow-hidden rounded-3xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-500 hover:border-primary/30 hover:bg-card hover:shadow-2xl hover:shadow-primary/10 sm:rounded-2xl sm:p-10">
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               <div className="relative">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 font-mono text-xs text-primary">
+                <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 font-mono text-[11px] text-primary sm:mb-6 sm:text-xs">
                   <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
                   {t("availableToTalk")}
                 </div>
@@ -63,7 +63,7 @@ export function ContactSection() {
                 <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                   <a
                     href={`mailto:${EMAIL}`}
-                    className="break-all font-mono text-xl font-semibold text-foreground transition-colors hover:text-primary sm:text-2xl"
+                    className="break-all font-mono text-lg font-semibold text-foreground transition-colors hover:text-primary sm:text-2xl"
                   >
                     {EMAIL}
                   </a>
@@ -71,7 +71,7 @@ export function ContactSection() {
                     type="button"
                     onClick={copyEmail}
                     aria-label={t("copyEmailAddress")}
-                    className="touch-target group/btn inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border/80 bg-background/80 px-5 py-2.5 font-mono text-xs text-muted-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-primary/5 hover:text-foreground active:scale-[0.98]"
+                    className="touch-target tap-highlight-none group/btn inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-2xl border border-border/80 bg-background/80 px-5 py-3 font-mono text-xs text-muted-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-primary/5 hover:text-foreground active:scale-[0.98] sm:w-auto sm:rounded-xl sm:py-2.5"
                   >
                     {copied ? (
                       <>
@@ -90,10 +90,10 @@ export function ContactSection() {
                   </span>
                 </div>
 
-                <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <div className="mt-8 grid grid-cols-1 gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-3">
                   <a
                     href={`mailto:${EMAIL}`}
-                    className="touch-target group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"
+                    className="touch-target tap-highlight-none group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] sm:rounded-xl sm:py-3"
                   >
                     <Mail className="relative z-10 h-4 w-4" aria-hidden="true" />
                     <span className="relative z-10">{t("sendEmail")}</span>
@@ -103,7 +103,7 @@ export function ContactSection() {
                     href="https://github.com/twilightt1"
                     target="_blank"
                     rel="noreferrer"
-                    className="touch-target inline-flex items-center justify-center gap-2 rounded-xl border border-border/80 bg-background/80 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent/50 hover:shadow-md active:scale-[0.98]"
+                    className="touch-target tap-highlight-none inline-flex items-center justify-center gap-2 rounded-2xl border border-border/80 bg-background/80 px-6 py-3.5 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent/50 hover:shadow-md active:scale-[0.98] sm:rounded-xl sm:py-3"
                   >
                     <Github className="h-4 w-4" aria-hidden="true" /> GitHub
                   </a>
@@ -111,7 +111,7 @@ export function ContactSection() {
                     href="https://linkedin.com/in/tamus"
                     target="_blank"
                     rel="noreferrer"
-                    className="touch-target inline-flex items-center justify-center gap-2 rounded-xl border border-border/80 bg-background/80 px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent/50 hover:shadow-md active:scale-[0.98]"
+                    className="touch-target tap-highlight-none inline-flex items-center justify-center gap-2 rounded-2xl border border-border/80 bg-background/80 px-6 py-3.5 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent/50 hover:shadow-md active:scale-[0.98] sm:rounded-xl sm:py-3"
                   >
                     <Linkedin className="h-4 w-4" aria-hidden="true" /> LinkedIn
                   </a>
@@ -123,7 +123,7 @@ export function ContactSection() {
           {/* Side info cards */}
           <ScrollReveal delay={400} direction="right">
             <div className="flex flex-col gap-4">
-              <div className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5">
+              <div className="group relative overflow-hidden rounded-3xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5 sm:rounded-2xl sm:p-6">
                 <div className="flex items-center gap-4">
                   <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20 group-hover:shadow-lg">
                     <Mail className="h-6 w-6 text-primary" />
@@ -137,7 +137,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5">
+              <div className="group relative overflow-hidden rounded-3xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5 sm:rounded-2xl sm:p-6">
                 <div className="flex items-center gap-4">
                   <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20 group-hover:shadow-lg">
                     <Github className="h-6 w-6 text-primary" />
@@ -151,7 +151,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5">
+              <div className="group relative overflow-hidden rounded-3xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5 sm:rounded-2xl sm:p-6">
                 <div className="flex items-center gap-4">
                   <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20 group-hover:shadow-lg">
                     <Linkedin className="h-6 w-6 text-primary" />

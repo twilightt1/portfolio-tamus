@@ -13,7 +13,7 @@ import {
 
 const projects = [
   {
-    name: "AI Resume Match & Optimizer",
+    name: "Jobfit - AI Resume Match & Optimizer",
     blurb:
       "End-to-end AI/ML pipeline that parses resumes and job descriptions, scores match quality, and generates truth-guarded rewrite suggestions.",
     description:
@@ -26,11 +26,11 @@ const projects = [
       "Implemented embeddings and pgvector retrieval for semantic skill matching and ATS keyword coverage.",
       "Added evaluation workflows for parsing, matching, retrieval quality, and guardrail performance.",
     ],
-    githubUrl: "https://github.com/twilightt1",
+    githubUrl: "https://github.com/twilightt1/jobfit",
     demoUrl: "#",
   },
   {
-    name: "Personal AI Second Brain",
+    name: "Mindlayer - Personal AI Second Brain",
     blurb:
       "Hybrid RAG and agentic memory system using BM25, dense retrieval, reranking, LangGraph self-correction, and citation-aware answers.",
     description:
@@ -43,7 +43,7 @@ const projects = [
       "Designed self-correction loops that grade answers and citations before returning responses.",
       "Evaluated RAG quality with custom metrics, a 40+ QA dataset, experiment tracking, and cost logging.",
     ],
-    githubUrl: "https://github.com/twilightt1",
+    githubUrl: "https://github.com/twilightt1/mindlayer",
     demoUrl: "#",
   },
 ];

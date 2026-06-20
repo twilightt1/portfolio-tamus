@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
-import { Download, Mail, Menu, X } from "lucide-react";
+import { Mail, Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useI18n } from "@/lib/i18n";
@@ -179,23 +179,14 @@ export function Header() {
               </a>
             ))}
 
-            <div className="mt-2 grid grid-cols-1 gap-2 border-t border-border/60 pt-3 min-[420px]:grid-cols-2">
+            <div className="mt-2 border-t border-border/60 pt-3">
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
-                className="touch-target tap-highlight-none inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
+                className="touch-target tap-highlight-none inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
               >
                 <Mail className="h-4 w-4" />
                 {t("getInTouch")}
-              </a>
-              <a
-                href="/Tamus_AI_Engineer_CV.pdf"
-                download
-                onClick={() => setOpen(false)}
-                className="touch-target tap-highlight-none inline-flex items-center justify-center gap-2 rounded-2xl border border-border/70 bg-card/70 px-4 py-3.5 text-sm font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-primary/5 active:scale-[0.98]"
-              >
-                <Download className="h-4 w-4" />
-                {t("downloadCV")}
               </a>
             </div>
           </div>

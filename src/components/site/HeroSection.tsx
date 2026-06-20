@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, FileText, Mail } from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { Typewriter } from "@/components/ui/Typewriter";
 import { useRef } from "react";
@@ -102,15 +102,6 @@ export function HeroSection() {
               >
                 <Mail className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
                 {t("getInTouch")}
-              </a>
-
-              <a
-                href="/Tamus_AI_Engineer_CV.pdf"
-                download
-                className="touch-target tap-highlight-none group inline-flex items-center justify-center gap-2 rounded-2xl border border-border/70 bg-background/70 px-4 py-3.5 text-sm font-medium text-muted-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-accent/60 hover:text-foreground hover:shadow-md active:scale-[0.98] min-[360px]:col-span-2 sm:col-span-auto sm:rounded-xl sm:px-6 sm:py-3"
-              >
-                <FileText className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary" />{" "}
-                {t("downloadCV")}
               </a>
             </div>
 
